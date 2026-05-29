@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ダッシュボード | ShopSwift Admin</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[#f5f6f7] text-[#111827]">
+
+<div class="flex min-h-screen">
+
+    {{-- sidebar --}}
+    <aside class="w-64 shrink-0 bg-[#070d16] text-white">
+
+        <div class="h-20 px-8 flex items-center border-b border-white/10">
+
+            <div>
+                <div class="text-2xl font-bold">
+                    ShopSwift
+                </div>
+
+                <div class="text-xs text-gray-400">
+                    ADMIN PANEL
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="px-4 py-6 space-y-2">
+
+            <a href="{{ route('admin.dashboard') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10">
+
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+
+                ダッシュボード
+
+            </a>
+
+            <a href="{{ route('admin.products.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
+
+                <i data-lucide="package" class="w-5 h-5"></i>
+
+                商品管理
+
+            </a>
+
+            <a href="{{ route('admin.orders.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
+
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+
+                注文管理
+
+            </a>
+
+            <a href="{{ route('admin.shipping.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
+
+                <i data-lucide="truck" class="w-5 h-5"></i>
+
+                発送状況
+
+            </a>
+            <a href="{{ route('admin.payments.index') }}"
+               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
+
+                <i data-lucide="money" class="w-5 h-5"></i>
+
+                決済状況
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    {{-- main --}}
+    <main class="flex-1 min-w-0 p-8 overflow-hidden">
+
+        <div class="mb-10">
+
+            <h1 class="text-5xl font-bold mb-4">
+                ダッシュボード
+            </h1>
+
+            <p class="text-gray-500 text-xl">
+                売上・注文状況を確認できます
+            </p>
+
+        </div>
+
+        {{-- cards --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6 mb-10">
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <h2 class="text-gray-500 font-bold">
+                        本日の売上
+                    </h2>
+
+                    <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center">
+
+                        <i data-lucide="yen-sign" class="w-6 h-6 text-green-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="text-5xl font-bold mb-4">
+                    ¥{{ number_format($todaySales) }}
+                </div>
+
+                <div class="text-gray-400">
+                    {{ now()->format('Y/m/d') }}
+                </div>
+
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <h2 class="text-gray-500 font-bold">
+                        総売上
+                    </h2>
+
+                    <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+                        <i data-lucide="wallet" class="w-6 h-6 text-blue-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="text-5xl font-bold">
+                    ¥{{ number_format($totalSales) }}
+                </div>
+
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <h2 class="text-gray-500 font-bold">
+                        注文数
+                    </h2>
+
+                    <div class="w-12 h-12 rounded-2xl bg-purple-100 flex items-center justify-center">
+
+                        <i data-lucide="shopping-bag" class="w-6 h-6 text-purple-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="text-5xl font-bold">
+                    {{ $ordersCount }}件
+                </div>
+
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <h2 class="text-gray-500 font-bold">
+                        商品数
+                    </h2>
+
+                    <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center">
+
+                        <i data-lucide="package" class="w-6 h-6 text-orange-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="text-5xl font-bold">
+                    {{ $productsCount }}件
+                </div>
+
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-8">
+
+                <div class="flex items-center justify-between mb-6">
+
+                    <h2 class="text-gray-500 font-bold">
+                        在庫切れ
+                    </h2>
+
+                    <div class="w-12 h-12 rounded-2xl bg-red-100 flex items-center justify-center">
+
+                        <i data-lucide="alert-triangle" class="w-6 h-6 text-red-600"></i>
+
+                    </div>
+
+                </div>
+
+                <div class="text-5xl font-bold">
+                    {{ $outOfStockCount }}件
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+
+            {{-- 最近の注文 --}}
+            <div class="xl:col-span-2 bg-white border border-gray-200 rounded-3xl overflow-hidden">
+
+                <div class="px-8 py-6 border-b">
+
+                    <h2 class="text-3xl font-bold">
+                        最近の注文
+                    </h2>
+
+                </div>
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full min-w-[900px]">
+
+                        <thead class="bg-gray-50 border-b">
+
+                            <tr class="text-left text-sm text-gray-500">
+
+                                <th class="px-6 py-4">
+                                    注文番号
+                                </th>
+
+                                <th class="px-6 py-4">
+                                    注文者
+                                </th>
+
+                                <th class="px-6 py-4">
+                                    金額
+                                </th>
+
+                                <th class="px-6 py-4">
+                                    状況
+                                </th>
+
+                                <th class="px-6 py-4">
+                                    日時
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        @forelse ($recentOrders as $order)
+
+                            <tr class="border-b hover:bg-gray-50">
+
+                                <td class="px-6 py-5 font-bold whitespace-nowrap">
+                                    #{{ $order->id }}
+                                </td>
+
+                                <td class="px-6 py-5 whitespace-nowrap">
+                                    {{ $order->customer_name }}
+                                </td>
+
+                                <td class="px-6 py-5 font-bold whitespace-nowrap">
+                                    ¥{{ number_format($order->total_amount) }}
+                                </td>
+
+                                <td class="px-6 py-5">
+
+                                    <div class="flex flex-col gap-2">
+
+                                        {{-- 決済状況 --}}
+                                        @switch($order->payment_status)
+
+                                            @case('paid')
+
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm w-fit">
+                                                    決済完了
+                                                </span>
+
+                                                @break
+
+                                            @case('pending')
+
+                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm w-fit">
+                                                    未決済
+                                                </span>
+
+                                                @break
+
+                                            @case('refunded')
+
+                                                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm w-fit">
+                                                    返金済み
+                                                </span>
+
+                                                @break
+
+                                        @endswitch
+
+                                        {{-- 発送状況 --}}
+                                        @switch($order->shipping_status)
+
+                                            @case('preparing')
+
+                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm w-fit">
+                                                    発送準備中
+                                                </span>
+
+                                                @break
+
+                                            @case('shipping')
+
+                                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm w-fit">
+                                                    発送中
+                                                </span>
+
+                                                @break
+
+                                            @case('completed')
+
+                                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm w-fit">
+                                                    配送完了
+                                                </span>
+
+                                                @break
+
+                                        @endswitch
+
+                                    </div>
+
+                                </td>
+
+                                <td class="px-6 py-5 text-sm text-gray-500 whitespace-nowrap">
+                                    {{ $order->created_at->format('Y/m/d H:i') }}
+                                </td>
+
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td colspan="5"
+                                    class="px-6 py-16 text-center text-gray-500">
+
+                                    注文データがありません。
+
+                                </td>
+
+                            </tr>
+
+                        @endforelse
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            {{-- 人気商品 --}}
+            <div class="bg-white border border-gray-200 rounded-3xl overflow-hidden">
+
+                <div class="px-8 py-6 border-b">
+
+                    <h2 class="text-3xl font-bold">
+                        人気商品ランキング
+                    </h2>
+
+                </div>
+
+                <div class="divide-y">
+
+                    @forelse ($popularProducts as $index => $product)
+
+                        <div class="p-6 flex items-center justify-between">
+
+                            <div>
+
+                                <div class="text-sm text-gray-400 mb-1">
+                                    {{ $index + 1 }}位
+                                </div>
+
+                                <div class="font-bold text-lg">
+                                    {{ $product->product_name }}
+                                </div>
+
+                            </div>
+
+                            <div class="text-right">
+
+                                <div class="font-bold">
+                                    {{ $product->total_quantity }}個
+                                </div>
+
+                                <div class="text-sm text-gray-500">
+                                    ¥{{ number_format($product->total_sales) }}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @empty
+
+                        <div class="p-8 text-center text-gray-500">
+                            商品データがありません。
+                        </div>
+
+                    @endforelse
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
