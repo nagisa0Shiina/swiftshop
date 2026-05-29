@@ -4,21 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    /**
-     * 退会確認画面
-     */
     public function confirm()
     {
         return view('account.delete');
     }
 
-    /**
-     * 退会処理
-     */
     public function destroy(Request $request)
     {
         $request->validate([
@@ -30,18 +25,40 @@ class AccountController extends Controller
         $user = $request->user();
 
         if (! Hash::check($request->password, $user->password)) {
-            return back()
-                ->withErrors([
-                    'password' => 'パスワードが一致しません。',
-                ]);
+            return back()->withErrors([
+                'password' => 'パスワードが一致しません。',
+            ]);
         }
 
-        Auth::logout();
+        DB::transaction(function () use ($user, $request) {
+            $userId = $user->id;
+            $email = $user->email;
 
-        $user->delete();
+            $orders = $user->orders()->with('items')->get();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+            foreach ($orders as $order) {
+                $order->items()->delete();
+                $order->delete();
+            }
+
+            $user->cartItems()->delete();
+            $user->favorites()->delete();
+
+            DB::table('sessions')
+                ->where('user_id', $userId)
+                ->delete();
+
+            DB::table('password_reset_tokens')
+                ->where('email', $email)
+                ->delete();
+
+            Auth::logout();
+
+            $user->forceDelete();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        });
 
         return redirect()
             ->route('products.index')
