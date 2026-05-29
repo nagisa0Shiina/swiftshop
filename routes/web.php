@@ -9,31 +9,27 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| 公開ページ：未ログインでも閲覧可能
+| 公開ページ
 |--------------------------------------------------------------------------
 */
 
-// トップページ：人気商品
 Route::get('/', [ProductController::class, 'index'])
     ->name('products.index');
 
-// 全商品一覧
 Route::get('/products/all', [ProductController::class, 'all'])
     ->name('products.all');
 
-// 商品詳細
 Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('products.show');
 
-// お問い合わせ：未ログインでも利用可能
 Route::get('/contact', [ContactController::class, 'index'])
     ->name('contact.index');
 
@@ -41,7 +37,6 @@ Route::post('/contact', [ContactController::class, 'send'])
     ->middleware('throttle:5,1')
     ->name('contact.send');
 
-// 固定ページ：デモ用
 Route::view('/terms', 'pages.terms')
     ->name('terms');
 
@@ -51,7 +46,6 @@ Route::view('/privacy', 'pages.privacy')
 Route::view('/commercial', 'pages.commercial')
     ->name('commercial');
 
-// 記事ページ：デモ用
 Route::view('/articles', 'articles.index')
     ->name('articles.index');
 
@@ -64,6 +58,17 @@ Route::view('/articles/aroma-humidifier', 'articles.aroma-humidifier')
 Route::view('/articles/free-shipping', 'articles.free-shipping')
     ->name('articles.free-shipping');
 
+/*
+|--------------------------------------------------------------------------
+| メール認証リンク
+|--------------------------------------------------------------------------
+| 未ログイン状態でもメール内リンクを踏めるように auth 外へ置く
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 
 /*
 |--------------------------------------------------------------------------
@@ -99,12 +104,9 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | ログイン済みのみ
-|--------------------------------------------------------------------------
-| メール認証前でもアクセス可能にするもの
 |--------------------------------------------------------------------------
 */
 
@@ -114,10 +116,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/email/verify', [AuthController::class, 'verificationNotice'])
         ->name('verification.notice');
-
-    Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])
-        ->middleware(['signed', 'throttle:6,1'])
-        ->name('verification.verify');
 
     Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
         ->middleware('throttle:6,1')
@@ -129,19 +127,18 @@ Route::middleware('auth')->group(function () {
     Route::put('/settings/password', [PasswordController::class, 'update'])
         ->middleware('throttle:5,1')
         ->name('password.update');
-    Route::get('/account/delete', [AccountController::class, 'confirm'])
-    ->name('account.delete.confirm');
 
-Route::delete('/account/delete', [AccountController::class, 'destroy'])
-    ->middleware('throttle:5,1')
-    ->name('account.delete');
+    Route::get('/account/delete', [AccountController::class, 'confirm'])
+        ->name('account.delete.confirm');
+
+    Route::delete('/account/delete', [AccountController::class, 'destroy'])
+        ->middleware('throttle:5,1')
+        ->name('account.delete');
 });
 
 /*
 |--------------------------------------------------------------------------
 | ログイン済み + メール認証済みのみ
-|--------------------------------------------------------------------------
-| 購入・会員機能
 |--------------------------------------------------------------------------
 */
 

@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     /**
-     * 新規登録画面を表示する
+     * 新規登録画面を表示
      */
     public function showRegister()
     {
@@ -22,6 +22,8 @@ class AuthController extends Controller
 
     /**
      * 新規登録処理
+     *
+     * 登録後はログインさせず、認証メールを送ってログイン画面へ戻す
      */
     public function register(Request $request)
     {
@@ -45,19 +47,15 @@ class AuthController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-      $user->sendEmailVerificationNotification();
-
-    Auth::login($user);
-
-        $request->session()->regenerate();
+        $user->sendEmailVerificationNotification();
 
         return redirect()
-            ->route('verification.notice')
-            ->with('success', '確認メールを送信しました。メール内のリンクをクリックして認証を完了してください。');
+            ->route('login')
+            ->with('success', '確認メールを送信しました。メール認証を完了してからログインしてください。');
     }
 
     /**
-     * ログイン画面を表示する
+     * ログイン画面を表示
      */
     public function showLogin()
     {
@@ -66,6 +64,8 @@ class AuthController extends Controller
 
     /**
      * ログイン処理
+     *
+     * 未認証ユーザーはログイン不可
      */
     public function login(Request $request)
     {
@@ -88,12 +88,22 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->user()->is_admin) {
-            return redirect()->route('admin.products.index');
+        if (! $request->user()->hasVerifiedEmail()) {
+            Auth::logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()
+                ->route('login')
+                ->withErrors([
+                    'email' => 'メール認証が完了していません。メール内のリンクから認証を完了してください。',
+                ])
+                ->onlyInput('email');
         }
 
-        if (! $request->user()->hasVerifiedEmail()) {
-            return redirect()->route('verification.notice');
+        if ($request->user()->is_admin) {
+            return redirect()->route('admin.products.index');
         }
 
         return redirect()->route('products.index');
@@ -107,7 +117,6 @@ class AuthController extends Controller
         Auth::logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
@@ -115,6 +124,8 @@ class AuthController extends Controller
 
     /**
      * メール認証待ち画面
+     *
+     * 今回の仕様では基本使わないが、再送信用として残す
      */
     public function verificationNotice()
     {
@@ -123,51 +134,44 @@ class AuthController extends Controller
 
     /**
      * メール認証処理
+     *
+     * 未ログイン状態でも認証リンクを踏めるようにする
      */
     public function verifyEmail(Request $request)
     {
-        if (! $request->user()) {
+        $user = User::findOrFail($request->route('id'));
+
+        if (! hash_equals((string) $request->route('hash'), sha1($user->getEmailForVerification()))) {
             abort(403);
         }
 
-        if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
-            abort(403);
-        }
-
-        if (! hash_equals((string) $request->route('hash'), sha1($request->user()->getEmailForVerification()))) {
-            abort(403);
-        }
-
-        if (! $request->user()->hasVerifiedEmail()) {
-            $request->user()->markEmailAsVerified();
+        if (! $user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
         }
 
         return redirect()
-            ->route('products.index')
-            ->with('success', 'メール認証が完了しました。');
+            ->route('login')
+            ->with('success', 'メール認証が完了しました。ログインしてください。');
     }
 
     /**
      * 認証メール再送信
+     *
+     * ログイン済み未認証ユーザー用
      */
     public function resendVerificationEmail(Request $request)
     {
-
-    // すでにメール認証が完了しているユーザーなら、
-// 認証メールを再送信せずトップページへ戻す
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()->route('products.index');
         }
 
-        // まだメール認証が完了していないユーザーが再送信を要求した場合、
-// 認証メールをもう一度送信する
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('success', '確認メールを再送信しました。');
     }
 
     /**
-     * パスワードを忘れた方向けの画面を表示する
+     * パスワードを忘れた方向け画面
      */
     public function showForgotPassword()
     {
@@ -175,7 +179,7 @@ class AuthController extends Controller
     }
 
     /**
-     * パスワード再設定用URLを送信する
+     * パスワード再設定メール送信
      */
     public function sendResetLink(Request $request)
     {
@@ -194,13 +198,15 @@ class AuthController extends Controller
             return back()->with('success', 'パスワード再設定用のメールを送信しました。');
         }
 
-        return back()->withErrors([
-            'email' => 'パスワード再設定メールを送信できませんでした。',
-        ]);
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors([
+                'email' => 'パスワード再設定メールを送信できませんでした。',
+            ]);
     }
 
     /**
-     * 新しいパスワード設定画面を表示する
+     * 新しいパスワード設定画面
      */
     public function showResetPassword(Request $request, string $token)
     {
@@ -211,7 +217,7 @@ class AuthController extends Controller
     }
 
     /**
-     * 新しいパスワードを保存する
+     * 新しいパスワードを保存
      */
     public function resetPassword(Request $request)
     {
@@ -220,14 +226,12 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
+            'email.required' => 'メールアドレスが確認できません。',
+            'email.email' => '有効なメールアドレスではありません。',
             'password.required' => '新しいパスワードを入力してください。',
             'password.min' => 'パスワードは8文字以上で入力してください。',
             'password.confirmed' => 'パスワード確認が一致しません。',
         ]);
-
-      // 入力された email・token・新しいパスワードを使って、
-// パスワード再設定が可能かLaravelが確認する。
-// tokenが正しければ、新しいパスワードをDBに保存する。
 
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
@@ -240,66 +244,17 @@ class AuthController extends Controller
                 event(new PasswordReset($user));
             }
         );
-    //もしユーザーが正常にパスワード設定終えたらログイン画面に飛ばしログインを促す。失敗したら'パスワード再設定に失敗しました。',のエラーを返す。メールアドレスは入力されたまま
+
         if ($status === Password::PASSWORD_RESET) {
             return redirect()
                 ->route('login')
                 ->with('success', 'パスワードを再設定しました。ログインしてください。');
         }
 
-     return back()
-    ->withInput($request->only('email'))
-    ->withErrors([
-        'email' => 'パスワード再設定に失敗しました。',
-    ]);
-
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors([
+                'email' => 'パスワード再設定に失敗しました。',
+            ]);
     }
-
-
-public function destroy(Request $request)
-{
-
-
-$request->validated([
-    'password' => ['required'],
-],[
-    'password.required' => 'パスワードを入力してください',
-]);
-
-
-$user = $request->user();
-
-//ユーザーが入力したパスワードをチェックし一致してなければ'パスワードが一致しません'のエラーを返す。
-if(! Hash::check($request->password, $user->password)){
-    return back()->withErrors([
-        'password' => 'パスワードが一致しません',
-    ]);
-}
-
-Auth::logout();
-
-$userId = $user->id;
-
-
-$user->update([
-    'name' => '退会済みユーザー',
-    'email' => 'deleted_user_' . $userId . '@deleted.local',
-    'password' => Hash::make(Str::random(32)),
-    'remember_token' => null,
-]);
-
-$user->delete();
-
-$request->session()->invalidate();
-$request->session()->regenerateToken();
-
-return redirect()
-->route('products.index')
-->with('success', '退会処理が完了しました。ご利用ありがとうございました');
-
-
-}
-
-
-
 }
