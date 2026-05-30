@@ -225,7 +225,7 @@
                                         <button type="submit"
                                                 class="w-20 h-11 rounded-xl text-sm font-bold
                                                     {{ $isUnavailable
-                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed py-2 px-3'
+                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed py-4 px-3'
                                                         : 'bg-[#070d16] text-white hover:bg-gray-800'
                                                     }}"
                                                 @if ($isUnavailable)
