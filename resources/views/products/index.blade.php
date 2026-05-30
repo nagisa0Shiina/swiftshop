@@ -749,7 +749,7 @@
                                 3,000円以上で送料無料
                             </h3>
 
-                            <p class="text-gray-600 text-sm leading-7">
+                            <p class="text-black-600 text-sm leading-7">
                                 一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。
                             </p>
                         </div>
