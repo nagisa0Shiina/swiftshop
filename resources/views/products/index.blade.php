@@ -734,7 +734,7 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background-color: rgba(248, 249, 250, 0.10);
+            background-color: rgba(248, 249, 250, 0.1);
             backdrop-filter: blur(20px);
         }
 
@@ -804,7 +804,7 @@
 
                         <div class="ss-benefit-card snap-start shrink-0">
                             <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
+                                <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -812,7 +812,7 @@
                                     3,000円以上で送料無料
                                 </h3>
 
-                                <p class="text-gray-600 leading-8 text-base">
+                                <p class="text-white leading-8 text-base">
                                     一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
                                 </p>
                             </div>
@@ -820,7 +820,7 @@
 
                         <div class="ss-benefit-card snap-start shrink-0">
                             <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
+                                <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -828,7 +828,7 @@
                                     返品・交換のご相談OK
                                 </h3>
 
-                                <p class="text-gray-600 leading-8 text-base">
+                                <p class="text-white leading-8 text-base">
                                     商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。安心してお買い物いただけます。
                                 </p>
                             </div>
@@ -836,7 +836,7 @@
 
                         <div class="ss-benefit-card snap-start shrink-0">
                             <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
+                                <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -844,7 +844,7 @@
                                     安全な決済
                                 </h3>
 
-                                <p class="text-gray-600 leading-8 text-base">
+                                <p class="text-white leading-8 text-base">
                                     Stripe決済に対応。カード情報を安全に扱い、スムーズにお支払いできます。購入後は注文履歴から確認できます。
                                 </p>
                             </div>
@@ -852,7 +852,7 @@
 
                         <div class="ss-benefit-card snap-start shrink-0">
                             <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
+                                <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -860,7 +860,7 @@
                                     会員限定の便利機能
                                 </h3>
 
-                                <p class="text-gray-600 leading-8 text-base">
+                                <p class="text-white leading-8 text-base">
                                     注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。欲しい商品を管理しやすくなります。
                                 </p>
                             </div>
@@ -868,7 +868,7 @@
 
                         <div class="ss-benefit-card snap-start shrink-0">
                             <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
+                                <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -876,7 +876,7 @@
                                     ギフトにも対応
                                 </h3>
 
-                                <p class="text-gray-600 leading-8 text-base">
+                                <p class="text-white  leading-8 text-base">
                                     大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
                                 </p>
                             </div>
