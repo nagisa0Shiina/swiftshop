@@ -716,6 +716,11 @@
 
         {{-- ShopSwiftでのお買い物 --}}
         <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8">
+              <img
+                        src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVFMyU4MyU5NSVFMyU4MiVBMSVFMyU4MyU4MyVFMyU4MiVCNyVFMyU4MyVBNyVFMyU4MyVCM3xlbnwwfHwwfHx8MA%3D%3D"
+                        alt="心地よい暮らし"
+                        class="absolute inset-0 w-full h-full object-cover"
+                    >
 
             <div class="grid grid-cols-1 lg:grid-cols-12">
 
@@ -811,11 +816,7 @@
 
                 <div class="lg:col-span-5 relative min-h-[420px]">
 
-                    <img
-                        src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVFMyU4MyU5NSVFMyU4MiVBMSVFMyU4MyU4MyVFMyU4MiVCNyVFMyU4MyVBNyVFMyU4MyVCM3xlbnwwfHwwfHx8MA%3D%3D"
-                        alt="心地よい暮らし"
-                        class="absolute inset-0 w-full h-full object-cover"
-                    >
+                  
 
                     <div class="absolute inset-0 bg-gradient-to-r from-[#f7f3ee]/95 via-[#f7f3ee]/75 to-[#f7f3ee]/30"></div>
 
