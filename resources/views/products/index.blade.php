@@ -719,7 +719,7 @@
               <img
                         src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVFMyU4MyU5NSVFMyU4MiVBMSVFMyU4MyU4MyVFMyU4MiVCNyVFMyU4MyVBNyVFMyU4MyVCM3xlbnwwfHwwfHx8MA%3D%3D"
                         alt="心地よい暮らし"
-                        class="w-full h-full object-cover"
+                        class="absolute inset-0 w-full h-full object-cover"
                     >
 
             <div class="grid grid-cols-1 lg:grid-cols-12">
