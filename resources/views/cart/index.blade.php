@@ -2,29 +2,46 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ショッピングカート | ShopSwift</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body class="bg-[#f5f6f7] text-[#111827]">
+<body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="max-w-[1500px] mx-auto my-4 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+<div class="w-full max-w-[1500px] mx-auto bg-white min-h-screen sm:my-4 sm:border sm:border-gray-200 sm:rounded-xl sm:shadow-sm sm:overflow-hidden">
 
-    <header class="h-20 px-8 flex items-center justify-between border-b border-gray-100">
-        <a href="{{ route('products.index') }}" class="text-2xl font-bold">
+    <header class="sticky top-0 z-40 bg-white h-16 sm:h-20 px-4 sm:px-6 lg:px-8 flex items-center justify-between border-b border-gray-100">
+
+        <a href="{{ route('products.index') }}" class="text-xl sm:text-2xl font-bold">
             ShopSwift
         </a>
 
-        <nav class="hidden md:flex items-center gap-12 text-sm font-medium">
-            <a href="{{ route('products.index') }}">ホーム</a>
-            <a href="{{ route('products.index') }}">商品一覧</a>
-            <a href="{{ route('orders.index') }}">注文履歴</a>
-            <a href="{{ route('cart.index') }}">マイページ</a>
+        <nav class="hidden lg:flex items-center gap-10 text-sm font-medium">
+            <a href="{{ route('products.index') }}" class="hover:text-gray-500">
+                ホーム
+            </a>
+
+            <a href="{{ route('products.all') }}" class="hover:text-gray-500">
+                商品一覧
+            </a>
+
+            <a href="{{ route('orders.index') }}" class="hover:text-gray-500">
+                注文履歴
+            </a>
+
+            <a href="{{ route('mypage') }}" class="hover:text-gray-500">
+                マイページ
+            </a>
         </nav>
 
-        <div class="flex items-center gap-6">
-            <i data-lucide="search" class="w-6 h-6"></i>
+        <div class="flex items-center gap-4 sm:gap-6">
+
+            <a href="{{ route('products.all') }}" class="hidden sm:inline-flex">
+                <i data-lucide="search" class="w-6 h-6"></i>
+            </a>
 
             <a href="{{ route('cart.index') }}" class="relative">
                 <i data-lucide="shopping-cart" class="w-6 h-6"></i>
@@ -34,21 +51,35 @@
                 </span>
             </a>
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
+            <a href="{{ route('mypage') }}">
+                <i data-lucide="user" class="w-6 h-6"></i>
+            </a>
 
-                <button>
-                    <i data-lucide="user" class="w-6 h-6"></i>
-                </button>
-            </form>
         </div>
+
     </header>
 
-    <main class="px-8 py-8">
+    <main class="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
 
-        <h1 class="text-2xl font-bold mb-8">
-            ショッピングカート
-        </h1>
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 sm:mb-8">
+
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold">
+                    ショッピングカート
+                </h1>
+
+                <p class="text-gray-500 text-sm mt-2">
+                    カート内の商品を確認できます。
+                </p>
+            </div>
+
+            <a href="{{ route('products.all') }}"
+               class="inline-flex items-center justify-center gap-2 px-5 py-3 border border-gray-200 rounded-xl font-bold hover:bg-gray-50">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                買い物を続ける
+            </a>
+
+        </div>
 
         @if (session('success'))
             <div class="mb-6 bg-green-100 text-green-700 px-5 py-4 rounded-xl">
@@ -66,148 +97,299 @@
 
         @if ($cartItems->isEmpty())
 
-            <div class="bg-white border border-gray-200 rounded-xl p-12 text-center">
+            <div class="bg-white border border-gray-200 rounded-2xl p-8 sm:p-12 text-center">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gray-100 flex items-center justify-center">
+                    <i data-lucide="shopping-cart" class="w-8 h-8 text-gray-400"></i>
+                </div>
+
                 <p class="text-gray-500 mb-6">
                     カートは空です。
                 </p>
 
-                <a href="{{ route('products.index') }}"
-                   class="inline-block bg-[#070d16] text-white px-8 py-4 rounded-md font-bold">
+                <a href="{{ route('products.all') }}"
+                   class="inline-block bg-[#070d16] text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-800 transition">
                     商品一覧へ戻る
                 </a>
             </div>
 
         @else
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            @php
+                $hasUnavailableItems = $cartItems->contains(function ($item) {
+                    return ! $item->product->is_active || $item->product->stock <= 0;
+                });
+            @endphp
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
                 <div class="lg:col-span-2">
-                    <table class="w-full border-collapse">
-                        <thead>
-                            <tr class="border-b text-sm text-gray-500">
-                                <th class="text-left pb-4">商品</th>
-                                <th class="text-right pb-4">価格</th>
-                                <th class="text-center pb-4">数量</th>
-                                <th class="text-right pb-4">小計</th>
-                                <th class="pb-4"></th>
-                            </tr>
-                        </thead>
 
-                        <tbody>
-                            @foreach ($cartItems as $item)
-                                @php
-                                    $isUnavailable = ! $item->product->is_active || $item->product->stock <= 0;
-                                @endphp
+                    {{-- mobile cards --}}
+                    <div class="lg:hidden space-y-4">
 
-                                <tr class="border-b {{ $isUnavailable ? 'bg-red-50/40' : '' }}">
-                                    <td class="py-5">
-                                        <div class="flex items-center gap-4">
-                                            <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
-                                                @if ($item->product->image_path)
-                                                    <img
-                                                        src="{{ asset('storage/' . $item->product->image_path) }}"
-                                                        class="w-full h-full object-cover {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
-                                                    >
-                                                @else
-                                                    <span class="text-2xl {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}">
-                                                        @if (str_contains($item->product->name, 'マグ') || str_contains($item->product->name, 'カップ'))
-                                                            ☕
-                                                        @elseif (str_contains($item->product->name, 'ディフューザー'))
-                                                            🧴
-                                                        @elseif (str_contains($item->product->name, 'バッグ'))
-                                                            👜
-                                                        @elseif (str_contains($item->product->name, 'ウォッチ') || str_contains($item->product->name, '時計'))
-                                                            ⌚
-                                                        @else
-                                                            📦
-                                                        @endif
-                                                    </span>
-                                                @endif
-                                            </div>
+                        @foreach ($cartItems as $item)
+                            @php
+                                $isUnavailable = ! $item->product->is_active || $item->product->stock <= 0;
+                            @endphp
 
-                                            <div>
-                                                <div class="font-bold">
-                                                    {{ $item->product->name }}
-                                                </div>
+                            <div class="border border-gray-200 rounded-2xl p-4 {{ $isUnavailable ? 'bg-red-50/40' : 'bg-white' }}">
 
-                                                @if (! $item->product->is_active)
-                                                    <div class="text-red-500 text-sm font-bold mt-1">
-                                                        販売停止中の商品です
-                                                    </div>
-                                                @elseif ($item->product->stock <= 0)
-                                                    <div class="text-red-500 text-sm font-bold mt-1">
-                                                        売り切れの商品です
-                                                    </div>
-                                                @else
-                                                    <div class="text-gray-500 text-sm mt-1">
-                                                        在庫：{{ $item->product->stock }}
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </td>
+                                <div class="flex gap-4">
 
-                                    <td class="py-5 text-right text-sm">
-                                        ¥{{ number_format($item->product->price) }}
-                                    </td>
-
-                                    <td class="py-5">
-                                        <form
-                                            method="POST"
-                                            action="{{ route('cart.update', $item) }}"
-                                            class="flex items-center justify-center gap-2"
-                                        >
-                                            @csrf
-                                            @method('PATCH')
-
-                                            <input
-                                                type="number"
-                                                name="quantity"
-                                                value="{{ $item->quantity }}"
-                                                min="1"
-                                                max="{{ max($item->product->stock, 1) }}"
-                                                class="w-16 h-9 border rounded-md text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
-                                                @if ($isUnavailable)
-                                                    disabled
-                                                @endif
+                                    <div class="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                        @if ($item->product->image_path)
+                                            <img
+                                                src="{{ asset('storage/' . $item->product->image_path) }}"
+                                                class="w-full h-full object-cover {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
                                             >
+                                        @else
+                                            <span class="text-3xl {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}">
+                                                @if (str_contains($item->product->name, 'マグ') || str_contains($item->product->name, 'カップ'))
+                                                    ☕
+                                                @elseif (str_contains($item->product->name, 'ディフューザー'))
+                                                    🧴
+                                                @elseif (str_contains($item->product->name, 'バッグ'))
+                                                    👜
+                                                @elseif (str_contains($item->product->name, 'ウォッチ') || str_contains($item->product->name, '時計'))
+                                                    ⌚
+                                                @else
+                                                    📦
+                                                @endif
+                                            </span>
+                                        @endif
+                                    </div>
 
-                                            <button
-                                                class="w-12 h-9 rounded-md text-xs
+                                    <div class="min-w-0 flex-1">
+
+                                        <div class="flex items-start justify-between gap-3">
+                                            <div>
+                                                <h2 class="font-bold break-words">
+                                                    {{ $item->product->name }}
+                                                </h2>
+
+                                                <p class="text-sm text-gray-500 mt-1">
+                                                    ¥{{ number_format($item->product->price) }}
+                                                </p>
+                                            </div>
+
+                                            <form method="POST" action="{{ route('cart.destroy', $item) }}">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit"
+                                                        class="w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 flex items-center justify-center">
+                                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                        @if (! $item->product->is_active)
+                                            <div class="text-red-500 text-sm font-bold mt-2">
+                                                販売停止中の商品です
+                                            </div>
+                                        @elseif ($item->product->stock <= 0)
+                                            <div class="text-red-500 text-sm font-bold mt-2">
+                                                売り切れの商品です
+                                            </div>
+                                        @else
+                                            <div class="text-gray-500 text-sm mt-2">
+                                                在庫：{{ $item->product->stock }}
+                                            </div>
+                                        @endif
+
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
+
+                                    <form method="POST"
+                                          action="{{ route('cart.update', $item) }}"
+                                          class="flex items-center gap-2">
+
+                                        @csrf
+                                        @method('PATCH')
+
+                                        <input
+                                            type="number"
+                                            name="quantity"
+                                            value="{{ $item->quantity }}"
+                                            min="1"
+                                            max="{{ max($item->product->stock, 1) }}"
+                                            class="w-full h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
+                                            @if ($isUnavailable)
+                                                disabled
+                                            @endif
+                                        >
+
+                                        <button type="submit"
+                                                class="w-20 h-11 rounded-xl text-sm font-bold
                                                     {{ $isUnavailable
                                                         ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                                         : 'bg-[#070d16] text-white hover:bg-gray-800'
                                                     }}"
                                                 @if ($isUnavailable)
                                                     disabled
-                                                @endif
-                                            >
-                                                更新
-                                            </button>
-                                        </form>
-                                    </td>
+                                                @endif>
+                                            更新
+                                        </button>
+                                    </form>
 
-                                    <td class="py-5 text-right font-bold text-sm">
-                                        ¥{{ number_format($item->product->price * $item->quantity) }}
-                                    </td>
+                                    <div class="bg-gray-50 rounded-xl px-4 py-3 text-right">
+                                        <div class="text-xs text-gray-500 mb-1">
+                                            小計
+                                        </div>
 
-                                    <td class="py-5 text-right">
-                                        <form method="POST" action="{{ route('cart.destroy', $item) }}">
-                                            @csrf
-                                            @method('DELETE')
+                                        <div class="font-bold">
+                                            ¥{{ number_format($item->product->price * $item->quantity) }}
+                                        </div>
+                                    </div>
 
-                                            <button class="text-gray-500 hover:text-red-500">
-                                                <i data-lucide="x" class="w-4 h-4"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                </div>
+
+                            </div>
+                        @endforeach
+
+                    </div>
+
+                    {{-- desktop table --}}
+                    <div class="hidden lg:block bg-white border border-gray-200 rounded-2xl overflow-hidden">
+
+                        <div class="overflow-x-auto">
+
+                            <table class="w-full min-w-[820px] border-collapse">
+                                <thead>
+                                    <tr class="border-b text-sm text-gray-500 bg-gray-50">
+                                        <th class="text-left px-6 py-4">商品</th>
+                                        <th class="text-right px-6 py-4">価格</th>
+                                        <th class="text-center px-6 py-4">数量</th>
+                                        <th class="text-right px-6 py-4">小計</th>
+                                        <th class="px-6 py-4"></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($cartItems as $item)
+                                        @php
+                                            $isUnavailable = ! $item->product->is_active || $item->product->stock <= 0;
+                                        @endphp
+
+                                        <tr class="border-b last:border-b-0 {{ $isUnavailable ? 'bg-red-50/40' : '' }}">
+                                            <td class="px-6 py-5">
+                                                <div class="flex items-center gap-4">
+                                                    <div class="w-16 h-16 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                                        @if ($item->product->image_path)
+                                                            <img
+                                                                src="{{ asset('storage/' . $item->product->image_path) }}"
+                                                                class="w-full h-full object-cover {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
+                                                            >
+                                                        @else
+                                                            <span class="text-2xl {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}">
+                                                                @if (str_contains($item->product->name, 'マグ') || str_contains($item->product->name, 'カップ'))
+                                                                    ☕
+                                                                @elseif (str_contains($item->product->name, 'ディフューザー'))
+                                                                    🧴
+                                                                @elseif (str_contains($item->product->name, 'バッグ'))
+                                                                    👜
+                                                                @elseif (str_contains($item->product->name, 'ウォッチ') || str_contains($item->product->name, '時計'))
+                                                                    ⌚
+                                                                @else
+                                                                    📦
+                                                                @endif
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="font-bold">
+                                                            {{ $item->product->name }}
+                                                        </div>
+
+                                                        @if (! $item->product->is_active)
+                                                            <div class="text-red-500 text-sm font-bold mt-1">
+                                                                販売停止中の商品です
+                                                            </div>
+                                                        @elseif ($item->product->stock <= 0)
+                                                            <div class="text-red-500 text-sm font-bold mt-1">
+                                                                売り切れの商品です
+                                                            </div>
+                                                        @else
+                                                            <div class="text-gray-500 text-sm mt-1">
+                                                                在庫：{{ $item->product->stock }}
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="px-6 py-5 text-right text-sm whitespace-nowrap">
+                                                ¥{{ number_format($item->product->price) }}
+                                            </td>
+
+                                            <td class="px-6 py-5">
+                                                <form method="POST"
+                                                      action="{{ route('cart.update', $item) }}"
+                                                      class="flex items-center justify-center gap-2">
+                                                    @csrf
+                                                    @method('PATCH')
+
+                                                    <input
+                                                        type="number"
+                                                        name="quantity"
+                                                        value="{{ $item->quantity }}"
+                                                        min="1"
+                                                        max="{{ max($item->product->stock, 1) }}"
+                                                        class="w-16 h-9 border rounded-md text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
+                                                        @if ($isUnavailable)
+                                                            disabled
+                                                        @endif
+                                                    >
+
+                                                    <button type="submit"
+                                                            class="w-12 h-9 rounded-md text-xs
+                                                                {{ $isUnavailable
+                                                                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                                                    : 'bg-[#070d16] text-white hover:bg-gray-800'
+                                                                }}"
+                                                            @if ($isUnavailable)
+                                                                disabled
+                                                            @endif>
+                                                        更新
+                                                    </button>
+                                                </form>
+                                            </td>
+
+                                            <td class="px-6 py-5 text-right font-bold text-sm whitespace-nowrap">
+                                                ¥{{ number_format($item->product->price * $item->quantity) }}
+                                            </td>
+
+                                            <td class="px-6 py-5 text-right">
+                                                <form method="POST" action="{{ route('cart.destroy', $item) }}">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="text-gray-500 hover:text-red-500">
+                                                        <i data-lucide="x" class="w-4 h-4"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <aside class="bg-white border border-gray-200 rounded-xl p-6 h-fit">
+                <aside class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 h-fit lg:sticky lg:top-8">
+
+                    <h2 class="text-xl font-bold mb-5">
+                        注文内容
+                    </h2>
+
                     <div class="space-y-4 border-b pb-5 mb-5 text-sm">
                         <div class="flex justify-between">
                             <span class="text-gray-500">小計</span>
@@ -225,34 +407,27 @@
                         <span class="text-2xl font-bold">¥{{ number_format($total) }}</span>
                     </div>
 
-                    @php
-                $hasUnavailableItems = $cartItems->contains(function ($item) {
-                    return ! $item->product->is_active || $item->product->stock <= 0;
-                });
-            @endphp
+                    @if ($hasUnavailableItems)
 
-            @if ($hasUnavailableItems)
+                        <button disabled
+                                class="block w-full text-center bg-gray-300 text-gray-500 py-4 rounded-xl font-bold cursor-not-allowed">
+                            購入できない商品が含まれています
+                        </button>
 
-                <button
-                    disabled
-                    class="block w-full text-center bg-gray-300 text-gray-500 py-4 rounded-md font-bold cursor-not-allowed"
-                >
-                    購入できない商品が含まれています
-                </button>
+                    @else
 
-            @else
+                        <a href="{{ route('checkout.confirm') }}"
+                           class="block w-full text-center bg-[#070d16] text-white py-4 rounded-xl font-bold hover:bg-gray-800 transition">
+                            ご購入手続きへ
+                        </a>
 
-                <a href="{{ route('checkout.confirm') }}"
-                class="block w-full text-center bg-[#070d16] text-white py-4 rounded-md font-bold hover:bg-gray-800 transition">
-                    ご購入手続きへ
-                </a>
+                    @endif
 
-            @endif
-
-                    <a href="{{ route('products.index') }}"
+                    <a href="{{ route('products.all') }}"
                        class="block text-center mt-4 text-blue-500 text-sm">
                         ショッピングを続ける
                     </a>
+
                 </aside>
 
             </div>
