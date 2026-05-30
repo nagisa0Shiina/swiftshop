@@ -1083,76 +1083,60 @@
 
 
 
-    const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
-    const ssBenefitTrack = document.getElementById('ssBenefitTrack');
+ const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
     const ssBenefitPrev = document.getElementById('ssBenefitPrev');
     const ssBenefitNext = document.getElementById('ssBenefitNext');
 
-    if (ssBenefitCarousel && ssBenefitTrack && ssBenefitPrev && ssBenefitNext) {
-        const cards = Array.from(ssBenefitTrack.querySelectorAll('.ss-benefit-card'));
-        let currentIndex = 0;
-        const gap = 24;
+    if (ssBenefitCarousel && ssBenefitPrev && ssBenefitNext) {
+        const getCardWidth = () => {
+            const card = ssBenefitCarousel.querySelector('.ss-benefit-card');
 
-        function getVisibleCount() {
-            return window.innerWidth >= 768 ? 2 : 1;
-        }
-
-        function getCarouselInnerWidth() {
-            const style = window.getComputedStyle(ssBenefitCarousel);
-            const paddingLeft = parseFloat(style.paddingLeft) || 0;
-            const paddingRight = parseFloat(style.paddingRight) || 0;
-
-            return ssBenefitCarousel.clientWidth - paddingLeft - paddingRight;
-        }
-
-        function setCardWidths() {
-            const visibleCount = getVisibleCount();
-            const innerWidth = getCarouselInnerWidth();
-            const cardWidth = (innerWidth - gap * (visibleCount - 1)) / visibleCount;
-
-            cards.forEach((card) => {
-                card.style.width = `${cardWidth}px`;
-                card.style.minWidth = `${cardWidth}px`;
-                card.style.flex = `0 0 ${cardWidth}px`;
-            });
-
-            return cardWidth;
-        }
-
-        function getMaxIndex() {
-            return cards.length - getVisibleCount();
-        }
-
-        function updateCarousel() {
-            const cardWidth = setCardWidths();
-            const maxIndex = getMaxIndex();
-
-            if (currentIndex > maxIndex) {
-                currentIndex = 0;
+            if (!card) {
+                return 0;
             }
 
-            if (currentIndex < 0) {
-                currentIndex = maxIndex;
-            }
+            return card.getBoundingClientRect().width + 24;
+        };
 
-            ssBenefitTrack.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
-        }
+        const isAtStart = () => {
+            return ssBenefitCarousel.scrollLeft <= 5;
+        };
+
+        const isAtEnd = () => {
+            return ssBenefitCarousel.scrollLeft + ssBenefitCarousel.clientWidth >= ssBenefitCarousel.scrollWidth - 5;
+        };
 
         ssBenefitNext.addEventListener('click', () => {
-            currentIndex++;
-            updateCarousel();
+            if (isAtEnd()) {
+                ssBenefitCarousel.scrollTo({
+                    left: 0,
+                    behavior: 'smooth',
+                });
+
+                return;
+            }
+
+            ssBenefitCarousel.scrollBy({
+                left: getCardWidth(),
+                behavior: 'smooth',
+            });
         });
 
         ssBenefitPrev.addEventListener('click', () => {
-            currentIndex--;
-            updateCarousel();
-        });
+            if (isAtStart()) {
+                ssBenefitCarousel.scrollTo({
+                    left: ssBenefitCarousel.scrollWidth,
+                    behavior: 'smooth',
+                });
 
-        window.addEventListener('resize', () => {
-            updateCarousel();
-        });
+                return;
+            }
 
-        updateCarousel();
+            ssBenefitCarousel.scrollBy({
+                left: -getCardWidth(),
+                behavior: 'smooth',
+            });
+        });
     }
 
 </script>
