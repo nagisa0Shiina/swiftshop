@@ -714,43 +714,21 @@
 
         </section>
 
- {{-- ShopSwiftでのお買い物：確定版カルーセル --}}
+{{-- ShopSwiftでのお買い物：カルーセル確定版 --}}
 <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
 
     <style>
-        .ss-benefit-viewport {
-            overflow: hidden;
+        .ss-carousel-scroll::-webkit-scrollbar {
+            display: none;
         }
 
-        .ss-benefit-track {
-            display: flex;
-            gap: 24px;
-            transition: transform 0.45s ease;
-            will-change: transform;
-        }
-
-        .ss-benefit-card {
-            flex: 0 0 calc((100% - 24px) / 2);
-            min-width: calc((100% - 24px) / 2);
-        }
-
-        .ss-benefit-card-inner {
-            min-height: 340px;
-        }
-
-        @media (max-width: 767px) {
-            .ss-benefit-card {
-                flex: 0 0 100%;
-                min-width: 100%;
-            }
-
-            .ss-benefit-card-inner {
-                min-height: 320px;
-            }
+        .ss-carousel-scroll {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
     </style>
 
-    <div class="relative overflow-hidden min-h-[680px]">
+    <div class="relative overflow-hidden min-h-[620px]">
 
         <img
             src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80"
@@ -758,8 +736,8 @@
             class="absolute inset-0 w-full h-full object-cover"
         >
 
-        <div class="absolute inset-0 bg-black/25"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/20 to-white/65"></div>
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/25 to-white/65"></div>
 
         <div class="relative z-10 px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
 
@@ -775,22 +753,26 @@
 
             <div class="relative max-w-6xl mx-auto">
 
-            <button
-    type="button"
-    id="ssBenefitPrev"
-    class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
-    aria-label="前へ"
->
+                {{-- 左ボタン：画像端寄せ --}}
+                <button
+                    type="button"
+                    id="ssBenefitPrev"
+                    class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    aria-label="前へ"
+                >
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
 
-                <div class="ss-benefit-viewport mx-14">
+                {{-- カルーセル本体 --}}
+                <div
+                    id="ssBenefitCarousel"
+                    class="ss-carousel-scroll overflow-x-auto scroll-smooth snap-x snap-mandatory px-16 sm:px-20"
+                >
+                    <div class="flex gap-6">
 
-                    <div id="ssBenefitTrack" class="ss-benefit-track">
-
-                        <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
+                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
+                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -799,14 +781,14 @@
                                 </h3>
 
                                 <p class="text-gray-600 leading-8 text-base">
-                                    一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを、気軽にまとめてお選びいただけます。
+                                    一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
                                 </p>
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
+                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
+                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -820,9 +802,9 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
+                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
+                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -831,14 +813,14 @@
                                 </h3>
 
                                 <p class="text-gray-600 leading-8 text-base">
-                                    Stripe決済に対応。カード情報を安全に扱い、スムーズにお支払いできます。購入完了後は注文履歴から確認できます。
+                                    Stripe決済に対応。カード情報を安全に扱い、スムーズにお支払いできます。購入後は注文履歴から確認できます。
                                 </p>
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
+                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
+                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -852,9 +834,9 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
-                                <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
+                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
+                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                                <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
@@ -863,21 +845,23 @@
                                 </h3>
 
                                 <p class="text-gray-600 leading-8 text-base">
-                                    大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。シンプルで使いやすい商品をお届けします。
+                                    大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
                                 </p>
                             </div>
                         </div>
 
                     </div>
-
                 </div>
 
-              <button
+                {{-- 右ボタン：画像端寄せ --}}
+                <button
                     type="button"
-                    id="ssBenefitPrev"
-                    class="absolute -left-10 sm:-left-14 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
-                    aria-label="前へ"
+                    id="ssBenefitNext"
+                    class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    aria-label="次へ"
                 >
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
 
             </div>
 
@@ -1076,61 +1060,57 @@
         }, 2500);
     }
 
-        const ssBenefitTrack = document.getElementById('ssBenefitTrack');
+     const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
     const ssBenefitPrev = document.getElementById('ssBenefitPrev');
     const ssBenefitNext = document.getElementById('ssBenefitNext');
 
-    if (ssBenefitTrack && ssBenefitPrev && ssBenefitNext) {
-        const cards = Array.from(ssBenefitTrack.querySelectorAll('.ss-benefit-card'));
-        let currentIndex = 0;
-
-        function getVisibleCount() {
-            return window.innerWidth >= 768 ? 2 : 1;
-        }
-
-        function getStepWidth() {
-            const card = cards[0];
+    if (ssBenefitCarousel && ssBenefitPrev && ssBenefitNext) {
+        const getScrollAmount = () => {
+            const card = ssBenefitCarousel.querySelector('.ss-benefit-card');
             if (!card) return 0;
 
             const gap = 24;
             return card.getBoundingClientRect().width + gap;
-        }
+        };
 
-        function getMaxIndex() {
-            return cards.length - getVisibleCount();
-        }
+        const isAtEnd = () => {
+            return ssBenefitCarousel.scrollLeft + ssBenefitCarousel.clientWidth >= ssBenefitCarousel.scrollWidth - 10;
+        };
 
-        function updateCarousel() {
-            const maxIndex = getMaxIndex();
-
-            if (currentIndex > maxIndex) {
-                currentIndex = 0;
-            }
-
-            if (currentIndex < 0) {
-                currentIndex = maxIndex;
-            }
-
-            ssBenefitTrack.style.transform = `translateX(-${currentIndex * getStepWidth()}px)`;
-        }
+        const isAtStart = () => {
+            return ssBenefitCarousel.scrollLeft <= 10;
+        };
 
         ssBenefitNext.addEventListener('click', () => {
-            currentIndex++;
-            updateCarousel();
+            if (isAtEnd()) {
+                ssBenefitCarousel.scrollTo({
+                    left: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+
+            ssBenefitCarousel.scrollBy({
+                left: getScrollAmount(),
+                behavior: 'smooth'
+            });
         });
 
         ssBenefitPrev.addEventListener('click', () => {
-            currentIndex--;
-            updateCarousel();
-        });
+            if (isAtStart()) {
+                ssBenefitCarousel.scrollTo({
+                    left: ssBenefitCarousel.scrollWidth,
+                    behavior: 'smooth'
+                });
+                return;
+            }
 
-        window.addEventListener('resize', () => {
-            updateCarousel();
+            ssBenefitCarousel.scrollBy({
+                left: -getScrollAmount(),
+                behavior: 'smooth'
+            });
         });
-
-        updateCarousel();
     }
-</script>
 
 </body>
 </html>
