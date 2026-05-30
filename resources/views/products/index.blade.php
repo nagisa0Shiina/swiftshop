@@ -722,7 +722,7 @@
                         class="absolute inset-0 w-full h-full object-cover"
                     >
 
-            <div class="grid grid-cols-1 lg:grid-cols-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 relative">
 
                 <div class="lg:col-span-7 bg-[#eef0e4] p-6 sm:p-10 lg:p-14">
 
