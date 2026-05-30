@@ -771,7 +771,7 @@
                     <div class="flex gap-6">
 
                         <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                           <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -787,7 +787,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -803,7 +803,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -819,7 +819,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -835,7 +835,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="min-h-[340px] bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -1060,14 +1060,23 @@
         }, 2500);
     }
 
-     const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
+</script>
+<script>
+    lucide.createIcons();
+
+    const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
     const ssBenefitPrev = document.getElementById('ssBenefitPrev');
     const ssBenefitNext = document.getElementById('ssBenefitNext');
 
     if (ssBenefitCarousel && ssBenefitPrev && ssBenefitNext) {
+        const getCard = () => ssBenefitCarousel.querySelector('.ss-benefit-card');
+
         const getScrollAmount = () => {
-            const card = ssBenefitCarousel.querySelector('.ss-benefit-card');
-            if (!card) return 0;
+            const card = getCard();
+
+            if (!card) {
+                return 0;
+            }
 
             const gap = 24;
             return card.getBoundingClientRect().width + gap;
@@ -1085,14 +1094,15 @@
             if (isAtEnd()) {
                 ssBenefitCarousel.scrollTo({
                     left: 0,
-                    behavior: 'smooth'
+                    behavior: 'smooth',
                 });
+
                 return;
             }
 
             ssBenefitCarousel.scrollBy({
                 left: getScrollAmount(),
-                behavior: 'smooth'
+                behavior: 'smooth',
             });
         });
 
@@ -1100,17 +1110,19 @@
             if (isAtStart()) {
                 ssBenefitCarousel.scrollTo({
                     left: ssBenefitCarousel.scrollWidth,
-                    behavior: 'smooth'
+                    behavior: 'smooth',
                 });
+
                 return;
             }
 
             ssBenefitCarousel.scrollBy({
                 left: -getScrollAmount(),
-                behavior: 'smooth'
+                behavior: 'smooth',
             });
         });
     }
+</script>
 
 </body>
 </html>
