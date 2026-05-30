@@ -734,8 +734,10 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background-color: rgba(248, 249, 250, 0.1);
-            backdrop-filter: blur(20px);
+          background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
         }
 
         @media (max-width: 767px) {
@@ -812,7 +814,7 @@
                                     3,000円以上で送料無料
                                 </h3>
 
-                                <p class="text-white leading-8 text-base">
+                                <p class="text-gray-400 leading-8 text-base">
                                     一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
                                 </p>
                             </div>
@@ -828,7 +830,7 @@
                                     返品・交換のご相談OK
                                 </h3>
 
-                                <p class="text-white leading-8 text-base">
+                                <p class="text-gray-400  leading-8 text-base">
                                     商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。安心してお買い物いただけます。
                                 </p>
                             </div>
@@ -844,7 +846,7 @@
                                     安全な決済
                                 </h3>
 
-                                <p class="text-white leading-8 text-base">
+                                <p class="text-gray-400  leading-8 text-base">
                                     Stripe決済に対応。カード情報を安全に扱い、スムーズにお支払いできます。購入後は注文履歴から確認できます。
                                 </p>
                             </div>
@@ -860,7 +862,7 @@
                                     会員限定の便利機能
                                 </h3>
 
-                                <p class="text-white leading-8 text-base">
+                                <p class="text-gray-400 leading-8 text-base">
                                     注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。欲しい商品を管理しやすくなります。
                                 </p>
                             </div>
@@ -876,7 +878,7 @@
                                     ギフトにも対応
                                 </h3>
 
-                                <p class="text-white  leading-8 text-base">
+                                <p class="text-gray-400  leading-8 text-base">
                                     大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
                                 </p>
                             </div>
