@@ -717,7 +717,7 @@
         {{-- ShopSwiftでのお買い物 --}}
         <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative">
               <img
-                        src="https://images.unsplash.com/photo-1542744095-291d1f67b221?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="心地よい暮らし"
                         class="absolute inset-0 w-full h-full object-cover"
                     >
@@ -733,7 +733,7 @@
 
                         <div class="w-12 h-[2px] bg-[#8c9a6b] mb-5"></div>
 
-                        <p class="text-gray-600 leading-8 text-center">
+                        <p class="text-gray-800 leading-8 text-center">
                             安心してご利用いただけるサービスを整えています。
                         </p>
                     </div>
@@ -749,7 +749,7 @@
                                 3,000円以上で送料無料
                             </h3>
 
-                            <p class="text-black-600 text-sm leading-7">
+                            <p class="text-gray-800 text-sm leading-7">
                                 一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。
                             </p>
                         </div>
@@ -779,7 +779,7 @@
                                 安全な決済
                             </h3>
 
-                            <p class="text-gray-600 text-sm leading-7 text-black-600">
+                            <p class="text-gray-800 text-sm leading-7 text-black-600">
                                 Stripe決済に対応。カード情報を安全に扱い、安心してお買い物できます。
                             </p>
                         </div>
@@ -794,7 +794,7 @@
                                 会員限定の便利機能
                             </h3>
 
-                            <p class="text-gray-600 text-sm leading-7 text-black-600">
+                            <p class="text-gray-800 text-sm leading-7 text-black-600">
                                 注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。
                             </p>
                         </div>
@@ -809,7 +809,7 @@
                                 ギフトにも対応
                             </h3>
 
-                            <p class="text-gray-600 text-sm leading-7 text-black-600">
+                            <p class="text-gray-800 text-sm leading-7 text-black-600">
                                 大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
                             </p>
                         </div>
