@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-// use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -121,12 +121,12 @@ Route::middleware('auth')->group(function () {
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
-    // Route::get('/settings/password', [PasswordController::class, 'edit'])
-    //     ->name('password.edit');
+    Route::get('/settings/password', [PasswordController::class, 'edit'])
+        ->name('password.edit');
 
-    // Route::put('/settings/password', [PasswordController::class, 'update'])
-    //     ->middleware('throttle:5,1')
-    //     ->name('password.update');
+    Route::put('/settings/password', [PasswordController::class, 'update'])
+        ->middleware('throttle:5,1')
+        ->name('password.update');
 
     Route::get('/account/delete', [AccountController::class, 'confirm'])
         ->name('account.delete.confirm');
