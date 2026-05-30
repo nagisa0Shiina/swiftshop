@@ -715,7 +715,7 @@
         </section>
 
         {{-- ShopSwiftでのお買い物 --}}
-        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8">
+        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative">
               <img
                         src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVFMyU4MyU5NSVFMyU4MiVBMSVFMyU4MyU4MyVFMyU4MiVCNyVFMyU4MyVBNyVFMyU4MyVCM3xlbnwwfHwwfHx8MA%3D%3D"
                         alt="心地よい暮らし"
