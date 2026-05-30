@@ -734,7 +734,7 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background-color: rgba(248, 249, 250, 0.78);
+            background-color: rgba(248, 249, 250, 0.50);
             backdrop-filter: blur(20px);
         }
 
@@ -884,16 +884,6 @@
 
                     </div>
                 </div>
-
-                {{-- 右ボタン --}}
-                <button
-                    type="button"
-                    id="ssBenefitNext"
-                    class="absolute right-0 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
-                    aria-label="次へ"
-                >
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
 
             </div>
 
