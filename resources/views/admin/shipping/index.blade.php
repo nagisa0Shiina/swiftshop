@@ -13,6 +13,7 @@
             min-height: 100vh;
             display: flex;
             align-items: stretch;
+            background: #f5f6f7;
         }
 
         .admin-sidebar {
@@ -114,25 +115,23 @@
                 <span>注文管理</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
+            <a href="{{ route('admin.shipping.index') }}"
                class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
                 <i data-lucide="truck"></i>
                 <span>発送状況</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
+            <a href="{{ route('admin.payments.index') }}"
                class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="credit-card"></i>
                 <span>決済状況</span>
             </a>
 
-            @if (Route::has('admin.articles.index'))
-                <a href="{{ route('admin.articles.index') }}"
-                   class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="newspaper"></i>
-                    <span>記事管理</span>
-                </a>
-            @endif
+            <a href="{{ route('admin.articles.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="newspaper"></i>
+                <span>記事管理</span>
+            </a>
 
         </nav>
 
@@ -204,7 +203,7 @@
 
             <div class="overflow-x-auto">
 
-                <table class="w-full min-w-[980px] text-left">
+                <table class="w-full min-w-[1120px] text-left">
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
@@ -231,6 +230,13 @@
                                 'delivered' => '配送完了',
                                 'cancelled' => 'キャンセル',
                                 default => $shippingStatus ? $shippingStatus : '発送準備中',
+                            };
+
+                            $currentShipping = match ($shippingStatus) {
+                                'pending' => 'preparing',
+                                'shipped' => 'shipping',
+                                'delivered' => 'completed',
+                                default => $shippingStatus ?: 'preparing',
                             };
                         @endphp
 
@@ -265,17 +271,37 @@
                             </td>
 
                             <td class="px-6 py-7">
-                                <div class="flex items-center justify-end gap-3">
+                                @if (Route::has('admin.orders.updateShipping'))
+                                    <form method="POST"
+                                          action="{{ route('admin.orders.updateShipping', $order) }}"
+                                          class="flex items-center justify-end gap-3">
+                                        @csrf
+                                        @method('PATCH')
 
-                                    @if (Route::has('admin.orders.edit'))
-                                        <a href="{{ route('admin.orders.edit', $order) }}"
-                                           class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#111827] font-bold hover:bg-gray-100 transition whitespace-nowrap">
-                                            <i data-lucide="pencil" class="w-4 h-4"></i>
-                                            編集
-                                        </a>
-                                    @endif
+                                        <select name="shipping_status"
+                                                class="rounded-xl border border-gray-300 bg-white px-4 py-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                                            <option value="preparing" {{ $currentShipping === 'preparing' ? 'selected' : '' }}>
+                                                発送準備中
+                                            </option>
+                                            <option value="shipping" {{ $currentShipping === 'shipping' ? 'selected' : '' }}>
+                                                発送中
+                                            </option>
+                                            <option value="completed" {{ $currentShipping === 'completed' ? 'selected' : '' }}>
+                                                配送完了
+                                            </option>
+                                        </select>
 
-                                </div>
+                                        <button type="submit"
+                                                class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#070d16] px-5 py-3 text-sm font-bold text-white hover:bg-gray-800 transition whitespace-nowrap">
+                                            <i data-lucide="save" class="w-4 h-4"></i>
+                                            更新
+                                        </button>
+                                    </form>
+                                @else
+                                    <div class="flex items-center justify-end gap-3 text-gray-400 font-bold text-sm whitespace-nowrap">
+                                        更新ルート未設定
+                                    </div>
+                                @endif
                             </td>
 
                         </tr>
