@@ -367,7 +367,7 @@
 
                 <div class="flex justify-between gap-4">
                     <span class="text-gray-500">送料</span>
-                    <span class="font-bold">¥10,000以上で無料</span>
+                    <span class="font-bold">¥3,000以上で無料</span>
                 </div>
             </div>
         </div>
