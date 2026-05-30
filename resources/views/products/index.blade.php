@@ -504,7 +504,7 @@
             </div>
         @endif
     </section>
-
+{{-- 
     <section id="journal" class="mb-16 scroll-reveal">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
             <div>
@@ -555,7 +555,7 @@
             </a>
             </article>
         </div>
-    </section>
+    </section> --}}
 
 </main>
 
