@@ -741,7 +741,7 @@
                             </div>
 
                             <h3 class="font-bold mb-3">
-                                5,000円以上で送料無料
+                                3,000円以上で送料無料
                             </h3>
 
                             <p class="text-gray-600 text-sm leading-7">
@@ -812,7 +812,7 @@
                 <div class="lg:col-span-5 relative min-h-[420px]">
 
                     <img
-                        src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80"
+                        src="https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fCVFMyU4MyU5NSVFMyU4MiVBMSVFMyU4MyU4MyVFMyU4MiVCNyVFMyU4MyVBNyVFMyU4MyVCM3xlbnwwfHwwfHx8MA%3D%3D"
                         alt="心地よい暮らし"
                         class="absolute inset-0 w-full h-full object-cover"
                     >
