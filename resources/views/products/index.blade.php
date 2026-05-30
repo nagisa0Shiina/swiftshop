@@ -511,7 +511,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {{-- ShopSwiftのこだわり：画像全面背景 --}}
-        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-8 my-8">
+        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-6 my-8">
 
             <img
                 src="https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -594,7 +594,7 @@
         </section>
 
         {{-- はじめての方へ --}}
-        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-8 my-8>
+        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-6 my-8>
 
             <div class="mb-10">
 
@@ -715,7 +715,7 @@
         </section>
 
         {{-- ShopSwiftでのお買い物 --}}
-        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative">
+        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative py-6">
               <img
                         src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="心地よい暮らし"
@@ -740,7 +740,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
-                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm bg-black/50 p-4 text-white">
                             <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
