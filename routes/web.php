@@ -126,7 +126,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/settings/password', [PasswordController::class, 'update'])
         ->middleware('throttle:5,1')
-        ->name('password.update');
+        ->name('password.setting');
 
     Route::get('/account/delete', [AccountController::class, 'confirm'])
         ->name('account.delete.confirm');
