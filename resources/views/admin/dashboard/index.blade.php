@@ -11,17 +11,17 @@
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="min-h-screen lg:flex">
+<div class="min-h-screen">
 
-    {{-- Sidebar --}}
-    <aside class="hidden lg:flex lg:w-72 lg:shrink-0 min-h-screen bg-[#070d16] text-white flex-col">
+    {{-- PC Sidebar --}}
+    <aside class="fixed left-0 top-0 z-50 hidden lg:flex h-screen w-[280px] flex-col bg-[#070d16] text-white">
 
         <div class="px-8 py-8 border-b border-white/10">
             <a href="{{ route('admin.dashboard') }}" class="block">
-                <div class="text-2xl font-bold leading-none">
+                <div class="text-2xl font-bold leading-none whitespace-nowrap">
                     ShopSwift
                 </div>
-                <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50 whitespace-nowrap">
                     ADMIN PANEL
                 </div>
             </a>
@@ -33,33 +33,33 @@
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
-                <span>ダッシュボード</span>
+                <span class="block whitespace-nowrap">ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
-                <span>商品管理</span>
+                <span class="block whitespace-nowrap">商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-                <span>注文管理</span>
+                <span class="block whitespace-nowrap">注文管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
                 <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
-                <span>発送状況</span>
+                <span class="block whitespace-nowrap">発送状況</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
                 <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
-                <span>決済状況</span>
+                <span class="block whitespace-nowrap">決済状況</span>
             </a>
 
             @if (Route::has('admin.articles.index'))
@@ -67,7 +67,7 @@
                    class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                    {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                     <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
-                    <span>記事管理</span>
+                    <span class="block whitespace-nowrap">記事管理</span>
                 </a>
             @endif
 
@@ -78,7 +78,7 @@
             <a href="{{ route('products.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
-                <span>サイトを見る</span>
+                <span class="block whitespace-nowrap">サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -86,7 +86,7 @@
                 <button type="submit"
                         class="w-full flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
                     <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
-                    <span>ログアウト</span>
+                    <span class="block whitespace-nowrap">ログアウト</span>
                 </button>
             </form>
 
@@ -108,7 +108,7 @@
     </header>
 
     {{-- Main --}}
-    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+    <main class="min-h-screen lg:ml-[280px] px-4 sm:px-6 lg:px-8 xl:px-10 py-8 lg:py-10">
 
         <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6 mb-8">
 
@@ -134,8 +134,8 @@
         <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-5 mb-8">
 
             <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
-                <div class="flex items-start justify-between mb-8">
-                    <div class="text-gray-500 font-bold">本日の売上</div>
+                <div class="flex items-start justify-between mb-8 gap-4">
+                    <div class="text-gray-500 font-bold whitespace-nowrap">本日の売上</div>
                     <div class="w-7 h-7 rounded-full bg-green-100 shrink-0"></div>
                 </div>
 
@@ -149,8 +149,8 @@
             </div>
 
             <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
-                <div class="flex items-start justify-between mb-8">
-                    <div class="text-gray-500 font-bold">総売上</div>
+                <div class="flex items-start justify-between mb-8 gap-4">
+                    <div class="text-gray-500 font-bold whitespace-nowrap">総売上</div>
                     <i data-lucide="wallet-cards" class="w-7 h-7 text-blue-500 shrink-0"></i>
                 </div>
 
@@ -160,8 +160,8 @@
             </div>
 
             <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
-                <div class="flex items-start justify-between mb-8">
-                    <div class="text-gray-500 font-bold">注文数</div>
+                <div class="flex items-start justify-between mb-8 gap-4">
+                    <div class="text-gray-500 font-bold whitespace-nowrap">注文数</div>
                     <i data-lucide="shopping-bag" class="w-7 h-7 text-purple-500 shrink-0"></i>
                 </div>
 
@@ -171,8 +171,8 @@
             </div>
 
             <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
-                <div class="flex items-start justify-between mb-8">
-                    <div class="text-gray-500 font-bold">商品数</div>
+                <div class="flex items-start justify-between mb-8 gap-4">
+                    <div class="text-gray-500 font-bold whitespace-nowrap">商品数</div>
                     <i data-lucide="package" class="w-7 h-7 text-orange-500 shrink-0"></i>
                 </div>
 
@@ -182,8 +182,8 @@
             </div>
 
             <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
-                <div class="flex items-start justify-between mb-8">
-                    <div class="text-gray-500 font-bold">在庫切れ</div>
+                <div class="flex items-start justify-between mb-8 gap-4">
+                    <div class="text-gray-500 font-bold whitespace-nowrap">在庫切れ</div>
                     <i data-lucide="triangle-alert" class="w-7 h-7 text-red-500 shrink-0"></i>
                 </div>
 
@@ -210,42 +210,68 @@
                     <table class="w-full min-w-[780px] text-left">
                         <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
-                            <th class="px-6 py-5 text-gray-500 font-bold">注文番号</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">注文者</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">金額</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">状況</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">日時</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">状況</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">日時</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         @forelse (($recentOrders ?? collect()) as $order)
+
+                            @php
+                                $paymentStatus = $order->payment_status ?? '';
+                                $shippingStatus = $order->shipping_status ?? $order->status ?? '';
+
+                                $paymentLabel = match ($paymentStatus) {
+                                    'paid' => '決済完了',
+                                    'unpaid' => '未決済',
+                                    'pending' => '決済待ち',
+                                    'failed' => '決済失敗',
+                                    'refunded' => '返金済み',
+                                    default => $paymentStatus ? $paymentStatus : '未決済',
+                                };
+
+                                $shippingLabel = match ($shippingStatus) {
+                                    'pending' => '発送準備中',
+                                    'preparing' => '発送準備中',
+                                    'shipping' => '発送中',
+                                    'shipped' => '発送済み',
+                                    'completed' => '配送完了',
+                                    'delivered' => '配送完了',
+                                    'cancelled' => 'キャンセル',
+                                    default => $shippingStatus ? $shippingStatus : '発送準備中',
+                                };
+                            @endphp
+
                             <tr class="border-b border-gray-200 last:border-b-0">
-                                <td class="px-6 py-8 font-bold">
+                                <td class="px-6 py-8 font-bold whitespace-nowrap">
                                     #{{ $order->id }}
                                 </td>
 
-                                <td class="px-6 py-8 font-bold">
+                                <td class="px-6 py-8 font-bold whitespace-nowrap">
                                     {{ $order->user->name ?? $order->name ?? '不明' }}
                                 </td>
 
-                                <td class="px-6 py-8 font-bold">
+                                <td class="px-6 py-8 font-bold whitespace-nowrap">
                                     ¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}
                                 </td>
 
                                 <td class="px-6 py-8">
                                     <div class="flex flex-col items-start gap-2">
-                                        <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
-                                            {{ ($order->payment_status ?? '') === 'paid' ? '決済完了' : '未決済' }}
+                                        <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm whitespace-nowrap">
+                                            {{ $paymentLabel }}
                                         </span>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-bold text-sm">
-                                            {{ $order->shipping_status ?? $order->status ?? '発送準備中' }}
+                                        <span class="inline-flex px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-bold text-sm whitespace-nowrap">
+                                            {{ $shippingLabel }}
                                         </span>
                                     </div>
                                 </td>
 
-                                <td class="px-6 py-8 text-gray-500 font-bold">
+                                <td class="px-6 py-8 text-gray-500 font-bold whitespace-nowrap">
                                     {{ optional($order->created_at)->format('Y/m/d H:i') }}
                                 </td>
                             </tr>
@@ -277,17 +303,17 @@
                     @forelse (($popularProducts ?? collect()) as $index => $product)
                         <div class="flex items-start justify-between gap-4">
 
-                            <div>
+                            <div class="min-w-0">
                                 <div class="text-gray-400 font-bold mb-2">
                                     {{ $index + 1 }}位
                                 </div>
 
-                                <div class="font-bold text-lg">
+                                <div class="font-bold text-lg truncate">
                                     {{ $product->name }}
                                 </div>
                             </div>
 
-                            <div class="text-right">
+                            <div class="text-right shrink-0">
                                 <div class="font-bold">
                                     {{ $product->sold_count ?? $product->orders_count ?? 0 }}個
                                 </div>
