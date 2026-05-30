@@ -717,7 +717,7 @@
         {{-- ShopSwiftでのお買い物 --}}
         <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative">
               <img
-                        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="心地よい暮らし"
                         class="absolute inset-0 w-full h-full object-cover"
                     >
