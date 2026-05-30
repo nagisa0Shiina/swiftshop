@@ -505,13 +505,13 @@
         @endif
     </section>
 
-{{-- ShopSwift visual contents fixed with Unsplash images --}}
+{{-- ShopSwift visual contents --}}
 <section class="bg-white py-16 sm:py-20 overflow-hidden">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {{-- ShopSwiftのこだわり：画像全面背景 --}}
-        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[620px]">
+        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-8">
 
             <img
                 src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80"
@@ -519,9 +519,10 @@
                 class="absolute inset-0 w-full h-full object-cover"
             >
 
-            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/35"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-white/95 via-transparent to-transparent"></div>
 
-            <div class="relative z-10 min-h-[620px] p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
+            <div class="relative z-10 min-h-[640px] p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
 
                 <div class="max-w-2xl">
 
@@ -593,7 +594,7 @@
         </section>
 
         {{-- はじめての方へ --}}
-        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14">
+        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-8>
 
             <div class="mb-10">
 
@@ -677,7 +678,7 @@
 
                 </div>
 
-                {{-- step 3 --}}
+                {{-- step 3：届いた荷物の画像 --}}
                 <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-6px]">
 
                     <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold text-lg">
@@ -686,10 +687,10 @@
 
                     <div class="h-56 bg-gray-100 overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80"
-                            alt="ご注文完了"
+                            src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=900&q=80"
+                            alt="届いた荷物"
                             class="w-full h-full object-cover"
-                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=900&q=80';"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=900&q=80';"
                         >
                     </div>
 
@@ -714,7 +715,7 @@
         </section>
 
         {{-- ShopSwiftでのお買い物 --}}
-        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
+        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white py-8">
 
             <div class="grid grid-cols-1 lg:grid-cols-12">
 
