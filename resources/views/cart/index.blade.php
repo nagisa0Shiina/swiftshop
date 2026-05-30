@@ -131,12 +131,17 @@
 
                                 <div class="flex items-start gap-4">
 
-                                    <div class="w-28 h-24 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                    {{-- 商品画像：カートでは絶対に小さいサムネ固定 --}}
+                                    <div
+                                        class="bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0"
+                                        style="width:112px; height:96px; min-width:112px; max-width:112px;"
+                                    >
                                         @if ($item->product->image_path)
                                             <img
                                                 src="{{ asset('storage/' . $item->product->image_path) }}"
                                                 alt="{{ $item->product->name }}"
-                                                class="w-full h-full object-cover {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
+                                                class="{{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
+                                                style="width:112px; height:96px; min-width:112px; max-width:112px; max-height:96px; object-fit:cover; object-position:center; display:block;"
                                             >
                                         @else
                                             <span class="text-3xl {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}">
@@ -300,12 +305,16 @@
 
                                         <td class="px-6 py-5">
                                             <div class="flex items-center gap-4">
-                                                <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden shrink-0">
+                                                <div
+                                                    class="bg-gray-100 rounded-md flex items-center justify-center overflow-hidden shrink-0"
+                                                    style="width:64px; height:64px; min-width:64px; max-width:64px;"
+                                                >
                                                     @if ($item->product->image_path)
                                                         <img
                                                             src="{{ asset('storage/' . $item->product->image_path) }}"
                                                             alt="{{ $item->product->name }}"
-                                                            class="w-full h-full object-cover {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
+                                                            class="{{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
+                                                            style="width:64px; height:64px; min-width:64px; max-width:64px; max-height:64px; object-fit:cover; object-position:center; display:block;"
                                                         >
                                                     @else
                                                         <span class="text-2xl {{ $isUnavailable ? 'opacity-40 grayscale' : '' }}">
