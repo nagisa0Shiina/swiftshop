@@ -505,12 +505,12 @@
         @endif
     </section>
 
-{{-- ShopSwift visual contents fixed --}}
+{{-- ShopSwift visual contents fixed with Unsplash images --}}
 <section class="bg-white py-16 sm:py-20 overflow-hidden">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-        {{-- ShopSwiftのこだわり：全面背景 --}}
+        {{-- ShopSwiftのこだわり：画像全面背景 --}}
         <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[620px]">
 
             <img
@@ -519,9 +519,9 @@
                 class="absolute inset-0 w-full h-full object-cover"
             >
 
-            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/45"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
 
-            <div class="relative z-10 p-6 sm:p-10 lg:p-14 h-full min-h-[620px] flex flex-col justify-between">
+            <div class="relative z-10 min-h-[620px] p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
 
                 <div class="max-w-2xl">
 
@@ -677,17 +677,20 @@
 
                 </div>
 
-                {{-- step 3：画像抜け防止のため画像を使わない --}}
+                {{-- step 3 --}}
                 <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-6px]">
 
                     <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold text-lg">
                         3
                     </div>
 
-                    <div class="h-56 bg-gradient-to-br from-[#f8efe5] via-[#f4eee6] to-[#eef0e4] flex items-center justify-center">
-                        <div class="w-28 h-28 rounded-[2rem] bg-white/80 border border-white shadow-sm flex items-center justify-center">
-                            <i data-lucide="package-check" class="w-14 h-14 text-[#9a7b45]"></i>
-                        </div>
+                    <div class="h-56 bg-gray-100 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=900&q=80"
+                            alt="ご注文完了"
+                            class="w-full h-full object-cover"
+                            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=900&q=80';"
+                        >
                     </div>
 
                     <div class="p-6">
