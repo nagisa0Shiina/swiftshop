@@ -51,44 +51,88 @@ class CheckoutController extends Controller
     }
 
     public function store(Request $request)
-
     {
-$validated = $request->validate(
-  [
-    'customer_name' => [
-    'required',
-    'string',
-    'max:255',
-    'regex:/^[ぁ-んァ-ヶ一-龯a-zA-Z\s]+$/u',
-],
-    'customer_email' => [
-    'required',
-    'email:rfc,dns',
-    'max:255',
-],
+        $validated = $request->validate(
+            [
+                'customer_name' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    'regex:/^[ぁ-んァ-ヶ一-龯a-zA-Z\s]+$/u',
+                ],
 
-        // 例：123-4567
-        'postal_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
+                'customer_email' => [
+                    'required',
+                    'email:rfc,dns',
+                    'max:255',
+                ],
 
-        // 例：090-1234-5678 / 03-1234-5678
-        'phone' => ['required', 'regex:/^\d{2,4}-\d{2,4}-\d{3,4}$/'],
+                'postal_code' => [
+                    'required',
+                    'regex:/^\d{3}-?\d{4}$/',
+                ],
 
-        'address' => ['required', 'string', 'max:500'],
-    ],
-    [
-        'customer_name.regex' => 'お名前に記号やメールアドレスは使用できません。',
-        'customer_email.required' => 'メールアドレスを入力してください。',
-        'customer_email.email' => 'メールアドレスの形式が正しくありません。',
+                /*
+                |--------------------------------------------------------------------------
+                | 電話番号
+                |--------------------------------------------------------------------------
+                | OK:
+                | 090-1234-5678
+                | 080-1234-5678
+                | 070-1234-5678
+                | 09012345678
+                | 08012345678
+                | 07012345678
+                */
+                'phone' => [
+                    'required',
+                    'regex:/^0[789]0-?\d{4}-?\d{4}$/',
+                ],
 
-        'postal_code.required' => '郵便番号を入力してください。',
-        'postal_code.regex' => '郵便番号は 123-4567 の形式で入力してください。',
+                'address' => [
+                    'required',
+                    'string',
+                    'max:500',
+                ],
+            ],
+            [
+                'customer_name.required' => 'お名前を入力してください。',
+                'customer_name.regex' => 'お名前に記号やメールアドレスは使用できません。',
 
-        'phone.required' => '電話番号を入力してください。',
-        'phone.regex' => '電話番号は 090-1234-5678 の形式で入力してください。',
+                'customer_email.required' => 'メールアドレスを入力してください。',
+                'customer_email.email' => 'メールアドレスの形式が正しくありません。',
 
-        'address.required' => '住所を入力してください。',
-    ]
-);
+                'postal_code.required' => '郵便番号を入力してください。',
+                'postal_code.regex' => '郵便番号は 123-4567 または 1234567 の形式で入力してください。',
+
+                'phone.required' => '電話番号を入力してください。',
+                'phone.regex' => '電話番号は090・080・070から始まる正しい形式で入力してください。',
+
+                'address.required' => '住所を入力してください。',
+            ]
+        );
+
+        /*
+        |--------------------------------------------------------------------------
+        | 保存用に整形
+        |--------------------------------------------------------------------------
+        | 入力はハイフンあり/なし両方OK。
+        | DB保存時は 080-1234-5678 形式に統一。
+        */
+        $digitsPhone = preg_replace('/[^0-9]/', '', $validated['phone']);
+        $validated['phone'] = preg_replace(
+            '/^(0[789]0)(\d{4})(\d{4})$/',
+            '$1-$2-$3',
+            $digitsPhone
+        );
+
+        $digitsPostalCode = preg_replace('/[^0-9]/', '', $validated['postal_code']);
+        $validated['postal_code'] = preg_replace(
+            '/^(\d{3})(\d{4})$/',
+            '$1-$2',
+            $digitsPostalCode
+        );
+
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $user = $request->user();
@@ -128,18 +172,17 @@ $validated = $request->validate(
         });
 
         $order = Order::create([
-        'user_id' => $user->id,
-        'customer_name' => $validated['customer_name'],
-        'customer_email' => $validated['customer_email'],
-        'postal_code' => $validated['postal_code'],
-        'address' => $validated['address'],
-        'phone' => $validated['phone'],
-        'status' => 'pending',
-        'total_amount' => $total,
-        'payment_status' => 'paid',
-    'shipping_status' => 'preparing',
-]);
-        
+            'user_id' => $user->id,
+            'customer_name' => $validated['customer_name'],
+            'customer_email' => $validated['customer_email'],
+            'postal_code' => $validated['postal_code'],
+            'address' => $validated['address'],
+            'phone' => $validated['phone'],
+            'status' => 'pending',
+            'total_amount' => $total,
+            'payment_status' => 'pending',
+            'shipping_status' => 'preparing',
+        ]);
 
         foreach ($cartItems as $cartItem) {
             OrderItem::create([
@@ -204,6 +247,7 @@ $validated = $request->validate(
 
             $order->update([
                 'status' => 'paid',
+                'payment_status' => 'paid',
             ]);
         }
 
