@@ -715,7 +715,7 @@
         </section>
 
 {{-- ShopSwiftでのお買い物：修正版 --}}
-<section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
+<section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8">
 
     <style>
         .ss-benefit-carousel::-webkit-scrollbar {
