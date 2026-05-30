@@ -717,7 +717,7 @@
         {{-- ShopSwiftでのお買い物 --}}
         <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative">
               <img
-                        src="https://plus.unsplash.com/premium_photo-1675186049406-3fabe5f387eb?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        src="https://pixabay.com/ja/images/download/preis_king-online-shopping-4532460_1920.jpg"
                         alt="心地よい暮らし"
                         class="absolute inset-0 w-full h-full object-cover"
                     >
