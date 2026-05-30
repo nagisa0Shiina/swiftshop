@@ -734,7 +734,7 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background-color: rgba(248, 249, 250, 0.50);
+            background-color: rgba(248, 249, 250, 0.30);
             backdrop-filter: blur(20px);
         }
 
