@@ -740,7 +740,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
-                        <div class="bg-white/60 rounded-3xl p-6 border border-white shadow-sm bg-white backdrop-blur">
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6 border border-white shadow-sm bg-white">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
