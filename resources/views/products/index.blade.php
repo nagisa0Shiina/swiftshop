@@ -504,7 +504,7 @@
             </div>
         @endif
     </section>
-{{-- 
+
     <section id="journal" class="mb-16 scroll-reveal">
         <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
             <div>
@@ -522,7 +522,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 
-            <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
+            
+            {{-- <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
               <a href="{{ route('articles.morning-routine') }}" class="block">
                 <div class="h-52 md:h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">🕯️</div>
                 <div class="p-6">
@@ -553,9 +554,9 @@
                     <div class="text-sm text-gray-500">2024.05.01</div>
                 </div>
             </a>
-            </article>
+            </article> --}}
         </div>
-    </section> --}}
+    </section>
 
 </main>
 
