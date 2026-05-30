@@ -567,11 +567,11 @@
             <div class="relative max-w-6xl mx-auto">
 
                 <button
-                    type="button"
-                    id="ssBenefitPrev"
-                    class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
-                    aria-label="前へ"
-                >
+                type="button"
+                id="ssBenefitPrev"
+                class="absolute -left-10 sm:-left-14 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                aria-label="前へ"
+            >
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
 
@@ -580,7 +580,7 @@
                     <div id="ssBenefitTrack" class="ss-benefit-track">
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
+                           <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -596,7 +596,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
+                           <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -612,7 +612,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -628,7 +628,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -644,7 +644,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -664,13 +664,11 @@
                 </div>
 
                 <button
-                    type="button"
-                    id="ssBenefitNext"
-                    class="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
-                    aria-label="次へ"
+                type="button"
+                id="ssBenefitNext"
+                class="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
+                aria-label="次へ"
                 >
-                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                </button>
 
             </div>
 
