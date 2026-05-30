@@ -51,7 +51,7 @@
             </a>
 
             <a href="{{ route('admin.shipping.index') }}"
-                    class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    class="admin-sidebar-link flex items-center gap-4  rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
             <i data-lucide="truck"></i>
                 <span>発送状況</span>
                             </a>
