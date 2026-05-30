@@ -62,7 +62,7 @@
         @endif
 
         <form method="POST"
-              action="{{ route('password.update') }}"
+              action="{{ route('password.setting') }}"
               class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 space-y-6">
 
             @csrf
