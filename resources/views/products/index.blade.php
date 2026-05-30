@@ -718,13 +718,14 @@
 <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
 
     <style>
-        .ss-carousel-scroll::-webkit-scrollbar {
-            display: none;
+        .ss-benefit-card-inner {
+            min-height: 340px;
         }
 
-        .ss-carousel-scroll {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+        @media (max-width: 767px) {
+            .ss-benefit-card-inner {
+                min-height: 320px;
+            }
         }
     </style>
 
@@ -766,12 +767,16 @@
                 {{-- カルーセル本体 --}}
                 <div
                     id="ssBenefitCarousel"
-                    class="ss-carousel-scroll overflow-x-auto scroll-smooth snap-x snap-mandatory px-16 sm:px-20"
+                    class="overflow-hidden px-16 sm:px-20"
                 >
-                    <div class="flex gap-6">
+                    <div
+                        id="ssBenefitTrack"
+                        class="flex gap-6 transition-transform duration-500 ease-out"
+                        style="transform: translateX(0px);"
+                    >
 
-                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                           <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
+                        <div class="ss-benefit-card shrink-0">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -786,8 +791,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
+                        <div class="ss-benefit-card shrink-0">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -802,8 +807,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
+                        <div class="ss-benefit-card shrink-0">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -818,8 +823,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
+                        <div class="ss-benefit-card shrink-0">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -834,8 +839,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[calc((100%-24px)/2)]">
-                            <div class="ss-benefit-card snap-start shrink-0 w-full md:w-[48%]">
+                        <div class="ss-benefit-card shrink-0">
+                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -1060,69 +1065,82 @@
         }, 2500);
     }
 
-</script>
-<script>
-    lucide.createIcons();
+
 
     const ssBenefitCarousel = document.getElementById('ssBenefitCarousel');
+    const ssBenefitTrack = document.getElementById('ssBenefitTrack');
     const ssBenefitPrev = document.getElementById('ssBenefitPrev');
     const ssBenefitNext = document.getElementById('ssBenefitNext');
 
-    if (ssBenefitCarousel && ssBenefitPrev && ssBenefitNext) {
-        const getCard = () => ssBenefitCarousel.querySelector('.ss-benefit-card');
+    if (ssBenefitCarousel && ssBenefitTrack && ssBenefitPrev && ssBenefitNext) {
+        const cards = Array.from(ssBenefitTrack.querySelectorAll('.ss-benefit-card'));
+        let currentIndex = 0;
+        const gap = 24;
 
-        const getScrollAmount = () => {
-            const card = getCard();
+        function getVisibleCount() {
+            return window.innerWidth >= 768 ? 2 : 1;
+        }
 
-            if (!card) {
-                return 0;
+        function getCarouselInnerWidth() {
+            const style = window.getComputedStyle(ssBenefitCarousel);
+            const paddingLeft = parseFloat(style.paddingLeft) || 0;
+            const paddingRight = parseFloat(style.paddingRight) || 0;
+
+            return ssBenefitCarousel.clientWidth - paddingLeft - paddingRight;
+        }
+
+        function setCardWidths() {
+            const visibleCount = getVisibleCount();
+            const innerWidth = getCarouselInnerWidth();
+            const cardWidth = (innerWidth - gap * (visibleCount - 1)) / visibleCount;
+
+            cards.forEach((card) => {
+                card.style.width = `${cardWidth}px`;
+                card.style.minWidth = `${cardWidth}px`;
+                card.style.flex = `0 0 ${cardWidth}px`;
+            });
+
+            return cardWidth;
+        }
+
+        function getMaxIndex() {
+            return cards.length - getVisibleCount();
+        }
+
+        function updateCarousel() {
+            const cardWidth = setCardWidths();
+            const maxIndex = getMaxIndex();
+
+            if (currentIndex > maxIndex) {
+                currentIndex = 0;
             }
 
-            const gap = 24;
-            return card.getBoundingClientRect().width + gap;
-        };
+            if (currentIndex < 0) {
+                currentIndex = maxIndex;
+            }
 
-        const isAtEnd = () => {
-            return ssBenefitCarousel.scrollLeft + ssBenefitCarousel.clientWidth >= ssBenefitCarousel.scrollWidth - 10;
-        };
-
-        const isAtStart = () => {
-            return ssBenefitCarousel.scrollLeft <= 10;
-        };
+            ssBenefitTrack.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+        }
 
         ssBenefitNext.addEventListener('click', () => {
-            if (isAtEnd()) {
-                ssBenefitCarousel.scrollTo({
-                    left: 0,
-                    behavior: 'smooth',
-                });
-
-                return;
-            }
-
-            ssBenefitCarousel.scrollBy({
-                left: getScrollAmount(),
-                behavior: 'smooth',
-            });
+            currentIndex++;
+            updateCarousel();
         });
 
         ssBenefitPrev.addEventListener('click', () => {
-            if (isAtStart()) {
-                ssBenefitCarousel.scrollTo({
-                    left: ssBenefitCarousel.scrollWidth,
-                    behavior: 'smooth',
-                });
-
-                return;
-            }
-
-            ssBenefitCarousel.scrollBy({
-                left: -getScrollAmount(),
-                behavior: 'smooth',
-            });
+            currentIndex--;
+            updateCarousel();
         });
+
+        window.addEventListener('resize', () => {
+            updateCarousel();
+        });
+
+        updateCarousel();
     }
+
 </script>
+
 
 </body>
 </html>
