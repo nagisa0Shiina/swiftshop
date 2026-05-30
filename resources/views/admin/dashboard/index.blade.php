@@ -275,31 +275,150 @@
                     </h2>
                 </div>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full min-w-[760px]">
+                {{-- mobile --}}
+                <div class="lg:hidden divide-y divide-gray-200">
+
+                    @forelse ($recentOrders as $order)
+
+                        <div class="p-5">
+
+                            <div class="flex items-center justify-between gap-4 mb-4">
+
+                                <div class="min-w-0">
+                                    <div class="text-sm text-gray-400 mb-1">
+                                        注文番号
+                                    </div>
+
+                                    <div class="text-2xl font-bold">
+                                        #{{ $order->id }}
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col items-end gap-2 shrink-0 min-w-[116px]">
+
+                                    @switch($order->payment_status)
+
+                                        @case('paid')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold min-w-[88px]">
+                                                決済完了
+                                            </span>
+                                            @break
+
+                                        @case('pending')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold min-w-[72px]">
+                                                未決済
+                                            </span>
+                                            @break
+
+                                        @case('refunded')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-bold min-w-[88px]">
+                                                返金済み
+                                            </span>
+                                            @break
+
+                                    @endswitch
+
+                                    @switch($order->shipping_status)
+
+                                        @case('preparing')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold min-w-[104px]">
+                                                発送準備中
+                                            </span>
+                                            @break
+
+                                        @case('shipping')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold min-w-[72px]">
+                                                発送中
+                                            </span>
+                                            @break
+
+                                        @case('completed')
+                                            <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold min-w-[88px]">
+                                                配送完了
+                                            </span>
+                                            @break
+
+                                    @endswitch
+
+                                </div>
+
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 text-sm">
+
+                                <div class="bg-gray-50 rounded-2xl p-4">
+                                    <div class="text-gray-400 font-bold mb-1">
+                                        注文者
+                                    </div>
+
+                                    <div class="font-bold break-words">
+                                        {{ $order->customer_name }}
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50 rounded-2xl p-4">
+                                    <div class="text-gray-400 font-bold mb-1">
+                                        金額
+                                    </div>
+
+                                    <div class="font-bold">
+                                        ¥{{ number_format($order->total_amount) }}
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50 rounded-2xl p-4 col-span-2">
+                                    <div class="text-gray-400 font-bold mb-1">
+                                        日時
+                                    </div>
+
+                                    <div class="font-bold">
+                                        {{ $order->created_at->format('Y/m/d H:i') }}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @empty
+
+                        <div class="px-6 py-16 text-center text-gray-500">
+                            注文データがありません。
+                        </div>
+
+                    @endforelse
+
+                </div>
+
+                {{-- desktop --}}
+                <div class="hidden lg:block overflow-x-auto">
+
+                    <table class="w-full min-w-[820px]">
 
                         <thead class="bg-gray-50 border-b">
 
                             <tr class="text-left text-sm text-gray-500">
-                                <th class="px-5 sm:px-6 py-4">
+
+                                <th class="px-6 py-4">
                                     注文番号
                                 </th>
 
-                                <th class="px-5 sm:px-6 py-4">
+                                <th class="px-6 py-4">
                                     注文者
                                 </th>
 
-                                <th class="px-5 sm:px-6 py-4">
+                                <th class="px-6 py-4">
                                     金額
                                 </th>
 
-                                <th class="px-5 sm:px-6 py-4">
+                                <th class="px-6 py-4">
                                     状況
                                 </th>
 
-                                <th class="px-5 sm:px-6 py-4">
+                                <th class="px-6 py-4">
                                     日時
                                 </th>
+
                             </tr>
 
                         </thead>
@@ -310,38 +429,38 @@
 
                             <tr class="border-b hover:bg-gray-50">
 
-                                <td class="px-5 sm:px-6 py-5 font-bold whitespace-nowrap">
+                                <td class="px-6 py-5 font-bold whitespace-nowrap">
                                     #{{ $order->id }}
                                 </td>
 
-                                <td class="px-5 sm:px-6 py-5 whitespace-nowrap">
+                                <td class="px-6 py-5 whitespace-nowrap">
                                     {{ $order->customer_name }}
                                 </td>
 
-                                <td class="px-5 sm:px-6 py-5 font-bold whitespace-nowrap">
+                                <td class="px-6 py-5 font-bold whitespace-nowrap">
                                     ¥{{ number_format($order->total_amount) }}
                                 </td>
 
-                                <td class="px-5 sm:px-6 py-5">
+                                <td class="px-6 py-5">
 
-                                    <div class="flex flex-col gap-2">
+                                    <div class="flex flex-col items-start gap-2 shrink-0 min-w-[116px]">
 
                                         @switch($order->payment_status)
 
                                             @case('paid')
-                                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold min-w-[88px]">
                                                     決済完了
                                                 </span>
                                                 @break
 
                                             @case('pending')
-                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold min-w-[72px]">
                                                     未決済
                                                 </span>
                                                 @break
 
                                             @case('refunded')
-                                                <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-bold min-w-[88px]">
                                                     返金済み
                                                 </span>
                                                 @break
@@ -351,19 +470,19 @@
                                         @switch($order->shipping_status)
 
                                             @case('preparing')
-                                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full text-sm font-bold min-w-[104px]">
                                                     発送準備中
                                                 </span>
                                                 @break
 
                                             @case('shipping')
-                                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold min-w-[72px]">
                                                     発送中
                                                 </span>
                                                 @break
 
                                             @case('completed')
-                                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm w-fit">
+                                                <span class="inline-flex items-center justify-center whitespace-nowrap px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold min-w-[88px]">
                                                     配送完了
                                                 </span>
                                                 @break
@@ -374,7 +493,7 @@
 
                                 </td>
 
-                                <td class="px-5 sm:px-6 py-5 text-sm text-gray-500 whitespace-nowrap">
+                                <td class="px-6 py-5 text-sm text-gray-500 whitespace-nowrap">
                                     {{ $order->created_at->format('Y/m/d H:i') }}
                                 </td>
 
@@ -394,10 +513,6 @@
                         </tbody>
 
                     </table>
-                </div>
-
-                <div class="px-5 sm:px-8 py-4 bg-gray-50 text-xs text-gray-500 xl:hidden">
-                    横にスクロールして注文情報を確認できます。
                 </div>
 
             </div>
