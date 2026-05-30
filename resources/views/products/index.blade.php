@@ -505,58 +505,265 @@
         @endif
     </section>
 
-    <section id="journal" class="mb-16 scroll-reveal">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-            <div>
-                <h2 class="text-3xl font-bold mb-3">Journal</h2>
-                <p class="text-gray-500 leading-relaxed">
-                    暮らしに役立つアイデアや、商品のひとつひとつに込めた想いをお届けします。
+  {{-- ShopSwift contents --}}
+<section class="bg-white border-y border-gray-100 py-14 sm:py-20">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {{-- ShopSwiftのこだわり --}}
+        <div class="text-center mb-10 sm:mb-14">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#f5f1ea] rounded-full text-sm font-bold text-gray-600 mb-4">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                ShopSwift Style
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                ShopSwiftのこだわり
+            </h2>
+
+            <p class="text-gray-500 leading-relaxed">
+                毎日の暮らしに、心地よさとやさしさを。
+            </p>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 mb-16 sm:mb-20">
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5 items-start">
+                <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center shrink-0">
+                    <i data-lucide="armchair" class="w-8 h-8 text-[#7a6a58]"></i>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-3">
+                        長く使えるデザイン
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed text-sm sm:text-base">
+                        飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5 items-start">
+                <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center shrink-0">
+                    <i data-lucide="leaf" class="w-8 h-8 text-[#7a6a58]"></i>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-3">
+                        環境にやさしい選択
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed text-sm sm:text-base">
+                        素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row md:flex-col lg:flex-row gap-5 items-start">
+                <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center shrink-0">
+                    <i data-lucide="headphones" class="w-8 h-8 text-[#7a6a58]"></i>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold mb-3">
+                        安心のサポート
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed text-sm sm:text-base">
+                        ご購入前のご相談からアフターサポートまで、丁寧に対応。安心してお買い物いただけます。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- はじめての方へ --}}
+        <div class="bg-[#f7f3ee] rounded-3xl px-4 sm:px-8 lg:px-10 py-12 sm:py-16 mb-16 sm:mb-20">
+
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    はじめての方へ
+                </h2>
+
+                <p class="text-gray-500">
+                    かんたん3ステップでお買い物が完了します。
                 </p>
             </div>
 
-            <a href="{{ route('articles.index') }}" class="hidden md:flex items-center gap-2 font-bold">
-                すべての記事を見る
-                <span>›</span>
-            </a>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 sm:gap-6">
+
+                <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100">
+                    <div class="absolute -top-4 left-5 w-10 h-10 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold">
+                        1
+                    </div>
+
+                    <div class="w-20 h-20 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="search" class="w-10 h-10 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3">
+                        商品を選ぶ
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed">
+                        豊富なカテゴリから、お好みの商品をお選びください。気になる商品はお気に入りにも追加できます。
+                    </p>
+                </div>
+
+                <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100">
+                    <div class="absolute -top-4 left-5 w-10 h-10 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold">
+                        2
+                    </div>
+
+                    <div class="w-20 h-20 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="shopping-cart" class="w-10 h-10 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3">
+                        カートに入れる
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed">
+                        気になる商品をカートに入れて、数量や合計金額を確認しながら購入手続きへ進めます。
+                    </p>
+                </div>
+
+                <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100">
+                    <div class="absolute -top-4 left-5 w-10 h-10 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold">
+                        3
+                    </div>
+
+                    <div class="w-20 h-20 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="package-check" class="w-10 h-10 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3">
+                        ご注文完了
+                    </h3>
+
+                    <p class="text-gray-500 leading-relaxed">
+                        決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
+                    </p>
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {{-- ShopSwiftでのお買い物 --}}
+        <div class="mb-12 sm:mb-16">
 
-            
-            <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-              <a href="{{ route('articles.morning-routine') }}" class="block">
-                <div class="h-52 md:h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">🕯️</div>
-                <div class="p-6">
-                    <div class="text-xs text-gray-500 mb-3">暮らしのアイデア</div>
-                    <h3 class="text-xl font-bold mb-3">5分でできる、心地よい朝の過ごし方</h3>
-                    <div class="text-sm text-gray-500">2024.05.18</div>
-                </div>
-            </a>
-            </article>
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    ShopSwiftでのお買い物
+                </h2>
 
-            <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <a href="{{ route('articles.aroma-humidifier') }}" class="block">
-                <div class="h-52 md:h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">☕</div>
-                <div class="p-6">
-                    <div class="text-xs text-gray-500 mb-3">アイテムの使い方</div>
-                    <h3 class="text-xl font-bold mb-3">アロマ加湿器でつくる、リラックス空間</h3>
-                    <div class="text-sm text-gray-500">2024.05.10</div>
-                </div>
-            </a>
-            </article>
+                <p class="text-gray-500">
+                    安心してご利用いただけるサービスを整えています。
+                </p>
+            </div>
 
-            <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <a href="{{ route('articles.free-shipping') }}" class="block">
-                <div class="h-52 md:h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">📦</div>
-                <div class="p-6">
-                    <div class="text-xs text-gray-500 mb-3">お知らせ</div>
-                    <h3 class="text-xl font-bold mb-3">送料無料キャンペーンのお知らせ</h3>
-                    <div class="text-sm text-gray-500">2024.05.01</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                <div class="bg-white border border-gray-200 rounded-3xl p-6">
+                    <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="truck" class="w-8 h-8 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-3">
+                        5,000円以上で送料無料
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。
+                    </p>
                 </div>
-            </a>
-            </article>
+
+                <div class="bg-white border border-gray-200 rounded-3xl p-6">
+                    <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="refresh-cw" class="w-8 h-8 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-3">
+                        返品・交換のご相談OK
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。
+                    </p>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-3xl p-6">
+                    <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-3">
+                        安全な決済
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Stripe決済に対応。カード情報を安全に扱い、安心してお買い物できます。
+                    </p>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-3xl p-6">
+                    <div class="w-16 h-16 rounded-3xl bg-[#f5f1ea] flex items-center justify-center mb-5">
+                        <i data-lucide="user-round" class="w-8 h-8 text-[#7a6a58]"></i>
+                    </div>
+
+                    <h3 class="text-lg font-bold mb-3">
+                        会員限定の便利機能
+                    </h3>
+
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。
+                    </p>
+                </div>
+
+            </div>
+
         </div>
-    </section>
+
+        {{-- CTA --}}
+        <div class="relative overflow-hidden bg-[#f7f3ee] rounded-3xl border border-gray-100 px-5 sm:px-10 py-10 sm:py-12">
+
+            <div class="relative z-10 max-w-3xl mx-auto text-center">
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+                    心地よい暮らしのアイテムを、見つけてみませんか？
+                </h2>
+
+                <p class="text-gray-500 mb-8">
+                    シンプルで使いやすいアイテムを揃えました。
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+
+                    <a href="{{ route('products.all') }}"
+                       class="inline-flex items-center justify-center gap-2 bg-[#070d16] text-white px-6 py-4 rounded-2xl font-bold hover:bg-gray-800 transition">
+                        商品一覧を見る
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+
+                    <a href="{{ route('articles.index') }}"
+                       class="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-gray-50 transition">
+                        記事一覧を見る
+                        <i data-lucide="newspaper" class="w-5 h-5"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 </main>
 
