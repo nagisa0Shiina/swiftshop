@@ -12,6 +12,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,17 +48,20 @@ Route::view('/privacy', 'pages.privacy')
 Route::view('/commercial', 'pages.commercial')
     ->name('commercial');
 
-Route::view('/articles', 'articles.index')
+Route::get('/articles', [ArticleController::class, 'index'])
     ->name('articles.index');
 
-Route::view('/articles/morning-routine', 'articles.morning-routine')
-    ->name('articles.morning-routine');
+Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])
+    ->name('articles.show');
 
-Route::view('/articles/aroma-humidifier', 'articles.aroma-humidifier')
-    ->name('articles.aroma-humidifier');
+// Route::view('/articles/morning-routine', 'articles.morning-routine')
+//     ->name('articles.morning-routine');
 
-Route::view('/articles/free-shipping', 'articles.free-shipping')
-    ->name('articles.free-shipping');
+// Route::view('/articles/aroma-humidifier', 'articles.aroma-humidifier')
+//     ->name('articles.aroma-humidifier');
+
+// Route::view('/articles/free-shipping', 'articles.free-shipping')
+//     ->name('articles.free-shipping');
 
 /*
 |--------------------------------------------------------------------------
@@ -209,4 +214,7 @@ Route::middleware(['auth', 'admin'])
 
         Route::get('/payments', [AdminOrderController::class, 'payments'])
             ->name('payments.index');
+
+        Route::resource('articles', AdminArticleController::class)
+    ->except(['show']);
     });
