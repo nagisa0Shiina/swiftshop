@@ -39,10 +39,6 @@
 
         <div class="flex items-center gap-4 sm:gap-6">
 
-            <a href="{{ route('products.all') }}" class="hidden sm:inline-flex">
-                <i data-lucide="search" class="w-6 h-6"></i>
-            </a>
-
             <a href="{{ route('cart.index') }}" class="relative">
                 <i data-lucide="shopping-cart" class="w-6 h-6"></i>
 
@@ -125,18 +121,18 @@
                 <div class="lg:col-span-2">
 
                     {{-- mobile cards --}}
-                    <div class="lg:hidden space-y-4">
+                    <div class="lg:hidden space-y-5">
 
                         @foreach ($cartItems as $item)
                             @php
                                 $isUnavailable = ! $item->product->is_active || $item->product->stock <= 0;
                             @endphp
 
-                            <div class="border border-gray-200 rounded-2xl p-4 {{ $isUnavailable ? 'bg-red-50/40' : 'bg-white' }}">
+                            <div class="border border-gray-200 rounded-2xl p-5 {{ $isUnavailable ? 'bg-red-50/40' : 'bg-white' }}">
 
                                 <div class="flex gap-4">
 
-                                    <div class="w-20 h-20 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
+                                    <div class="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0">
                                         @if ($item->product->image_path)
                                             <img
                                                 src="{{ asset('storage/' . $item->product->image_path) }}"
@@ -163,11 +159,11 @@
 
                                         <div class="flex items-start justify-between gap-3">
                                             <div>
-                                                <h2 class="font-bold break-words">
+                                                <h2 class="font-bold text-xl break-words">
                                                     {{ $item->product->name }}
                                                 </h2>
 
-                                                <p class="text-sm text-gray-500 mt-1">
+                                                <p class="text-gray-500 mt-2">
                                                     ¥{{ number_format($item->product->price) }}
                                                 </p>
                                             </div>
@@ -177,8 +173,8 @@
                                                 @method('DELETE')
 
                                                 <button type="submit"
-                                                        class="w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 flex items-center justify-center">
-                                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                                        class="w-12 h-12 rounded-full bg-gray-100 text-gray-500 hover:bg-red-50 hover:text-red-500 flex items-center justify-center">
+                                                    <i data-lucide="x" class="w-6 h-6"></i>
                                                 </button>
                                             </form>
                                         </div>
@@ -192,7 +188,7 @@
                                                 売り切れの商品です
                                             </div>
                                         @else
-                                            <div class="text-gray-500 text-sm mt-2">
+                                            <div class="text-gray-500 mt-2">
                                                 在庫：{{ $item->product->stock }}
                                             </div>
                                         @endif
@@ -201,50 +197,75 @@
 
                                 </div>
 
-                                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 items-end">
+                                <div class="border-t border-gray-100 mt-6 pt-6">
 
                                     <form method="POST"
                                           action="{{ route('cart.update', $item) }}"
-                                          class="flex items-center gap-2">
+                                          class="space-y-4">
 
                                         @csrf
                                         @method('PATCH')
 
-                                        <input
-                                            type="number"
-                                            name="quantity"
-                                            value="{{ $item->quantity }}"
-                                            min="1"
-                                            max="{{ max($item->product->stock, 1) }}"
-                                            class="w-3xl w-10 h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
-                                            @if ($isUnavailable)
-                                                disabled
-                                            @endif
-                                        >
+                                        <div class="text-center text-gray-500 font-bold">
+                                            数量
+                                        </div>
+
+                                        <div class="max-w-sm mx-auto border border-gray-200 rounded-2xl p-2 flex items-center justify-between bg-white">
+
+                                            <button type="button"
+                                                    class="quantity-minus w-14 h-14 rounded-xl border border-gray-200 flex items-center justify-center text-2xl font-bold hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                                                    data-target="quantity-{{ $item->id }}"
+                                                    @if ($isUnavailable) disabled @endif>
+                                                −
+                                            </button>
+
+                                            <input
+                                                id="quantity-{{ $item->id }}"
+                                                type="number"
+                                                name="quantity"
+                                                value="{{ $item->quantity }}"
+                                                min="1"
+                                                max="{{ max($item->product->stock, 1) }}"
+                                                class="w-24 h-14 text-center text-2xl font-bold border-0 focus:ring-0 focus:outline-none {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
+                                                @if ($isUnavailable)
+                                                    disabled
+                                                @endif
+                                            >
+
+                                            <button type="button"
+                                                    class="quantity-plus w-14 h-14 rounded-xl border border-gray-200 flex items-center justify-center text-3xl font-bold hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400"
+                                                    data-target="quantity-{{ $item->id }}"
+                                                    @if ($isUnavailable) disabled @endif>
+                                                +
+                                            </button>
+
+                                        </div>
 
                                         <button type="submit"
-                                                class="w-20 h-11 rounded-xl text-sm font-bold
+                                                class="max-w-sm mx-auto w-full h-14 rounded-2xl text-base font-bold flex items-center justify-center gap-2
                                                     {{ $isUnavailable
-                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed py-4 px-3'
+                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                                         : 'bg-[#070d16] text-white hover:bg-gray-800'
                                                     }}"
                                                 @if ($isUnavailable)
                                                     disabled
                                                 @endif>
+                                            <i data-lucide="refresh-cw" class="w-5 h-5"></i>
                                             更新
                                         </button>
+
                                     </form>
 
-                                    <div class="bg-gray-50 rounded-xl px-4 py-3 text-right">
-                                        <div class="text-xs text-gray-500 mb-1">
-                                            小計
-                                        </div>
+                                </div>
 
-                                        <div class="font-bold">
-                                            ¥{{ number_format($item->product->price * $item->quantity) }}
-                                        </div>
+                                <div class="mt-5 bg-gray-50 rounded-2xl px-5 py-4 text-right">
+                                    <div class="text-gray-500 mb-1">
+                                        小計
                                     </div>
 
+                                    <div class="text-2xl font-bold">
+                                        ¥{{ number_format($item->product->price * $item->quantity) }}
+                                    </div>
                                 </div>
 
                             </div>
@@ -386,7 +407,7 @@
 
                 <aside class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 h-fit lg:sticky lg:top-8">
 
-                    <h2 class="text-xl font-bold mb-5">
+                    <h2 class="text-2xl font-bold mb-5">
                         注文内容
                     </h2>
 
@@ -404,7 +425,7 @@
 
                     <div class="flex justify-between items-center mb-6">
                         <span class="text-lg font-bold">合計</span>
-                        <span class="text-2xl font-bold">¥{{ number_format($total) }}</span>
+                        <span class="text-3xl font-bold">¥{{ number_format($total) }}</span>
                     </div>
 
                     @if ($hasUnavailableItems)
@@ -440,6 +461,36 @@
 
 <script>
     lucide.createIcons();
+
+    document.querySelectorAll('.quantity-minus').forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = document.getElementById(button.dataset.target);
+
+            if (!target) return;
+
+            const min = Number(target.min || 1);
+            const current = Number(target.value || min);
+
+            if (current > min) {
+                target.value = current - 1;
+            }
+        });
+    });
+
+    document.querySelectorAll('.quantity-plus').forEach((button) => {
+        button.addEventListener('click', () => {
+            const target = document.getElementById(button.dataset.target);
+
+            if (!target) return;
+
+            const max = Number(target.max || 999);
+            const current = Number(target.value || 1);
+
+            if (current < max) {
+                target.value = current + 1;
+            }
+        });
+    });
 </script>
 
 </body>
