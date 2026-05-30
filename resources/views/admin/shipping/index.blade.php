@@ -194,6 +194,12 @@
             </div>
         @endif
 
+        @if ($errors->any())
+            <div class="mb-6 rounded-2xl bg-red-100 text-red-700 px-5 py-4 font-bold">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
         <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
 
             <div class="px-6 py-6 border-b border-gray-200 flex items-center justify-between gap-4">
@@ -244,14 +250,6 @@
                                 'delivered' => 'completed',
                                 default => $shippingStatus ?: 'preparing',
                             };
-
-                            if (Route::has('admin.orders.updateShipping')) {
-                                $shippingUpdateAction = route('admin.orders.updateShipping', $order);
-                            } elseif (Route::has('admin.shipping.update')) {
-                                $shippingUpdateAction = route('admin.shipping.update', $order);
-                            } else {
-                                $shippingUpdateAction = url('/admin/orders/' . $order->id . '/shipping');
-                            }
                         @endphp
 
                         <tr class="border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition">
@@ -285,32 +283,34 @@
                             </td>
 
                             <td class="px-6 py-7">
-                                <form method="POST"
-                                      action="{{ $shippingUpdateAction }}"
-                                      class="flex items-center justify-end gap-3">
-                                    @csrf
-                                    @method('PATCH')
+                            <form method="POST"
+                                action="{{ route('admin.orders.updateStatus', $order) }}"
+                                class="flex items-center justify-end gap-3">
+                                @csrf
+                                @method('PATCH')
 
-                                    <select name="shipping_status"
-                                            class="rounded-xl border border-gray-300 bg-white px-4 py-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
-                                        <option value="preparing" {{ $currentShipping === 'preparing' ? 'selected' : '' }}>
-                                            発送準備中
-                                        </option>
-                                        <option value="shipping" {{ $currentShipping === 'shipping' ? 'selected' : '' }}>
-                                            発送中
-                                        </option>
-                                        <option value="completed" {{ $currentShipping === 'completed' ? 'selected' : '' }}>
-                                            配送完了
-                                        </option>
-                                    </select>
+                                <select name="status"
+                                        class="rounded-xl border border-gray-300 bg-white px-4 py-3 font-bold text-sm focus:outline-none focus:ring-2 focus:ring-blue-200">
+                                    <option value="pending" {{ ($order->status ?? '') === 'pending' ? 'selected' : '' }}>
+                                        発送準備中
+                                    </option>
 
-                                    <button type="submit"
-                                            class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#070d16] px-5 py-3 text-sm font-bold text-white hover:bg-gray-800 transition whitespace-nowrap">
-                                        <i data-lucide="save" class="w-4 h-4"></i>
-                                        更新
-                                    </button>
-                                </form>
-                            </td>
+                                    <option value="shipping" {{ ($order->status ?? '') === 'shipping' ? 'selected' : '' }}>
+                                        発送中
+                                    </option>
+
+                                    <option value="completed" {{ ($order->status ?? '') === 'completed' ? 'selected' : '' }}>
+                                        配送完了
+                                    </option>
+                                </select>
+
+                                <button type="submit"
+                                        class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#070d16] px-5 py-3 text-sm font-bold text-white hover:bg-gray-800 transition whitespace-nowrap">
+                                    <i data-lucide="save" class="w-4 h-4"></i>
+                                    更新
+                                </button>
+                            </form>
+                        </td>
 
                         </tr>
 
