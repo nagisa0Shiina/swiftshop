@@ -3,186 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>記事一覧 | ShopSwift</title>
+    <title>記事管理 | ShopSwift</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        aside, aside * {
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            word-break: keep-all !important;
+            overflow-wrap: normal !important;
+        }
+    </style>
 </head>
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="w-full max-w-[1500px] mx-auto bg-white min-h-screen sm:my-4 sm:border sm:border-gray-200 sm:rounded-xl sm:shadow-sm sm:overflow-hidden">
+<div class="min-h-screen flex">
 
-    <header class="sticky top-0 z-40 bg-white h-16 sm:h-20 px-4 sm:px-8 flex items-center justify-between border-b border-gray-100">
-
-        <a href="{{ route('products.index') }}" class="text-xl sm:text-2xl font-bold">
-            ShopSwift
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-10 text-sm font-medium">
-            <a href="{{ route('products.index') }}" class="hover:text-gray-500">
-                ホーム
+    <aside class="hidden lg:flex w-[300px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
+        <div class="px-8 py-8 border-b border-white/10">
+            <a href="{{ route('admin.dashboard') }}" class="block">
+                <div class="text-2xl font-bold leading-none whitespace-nowrap">ShopSwift</div>
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50 whitespace-nowrap">ADMIN PANEL</div>
             </a>
-
-            <a href="{{ route('products.all') }}" class="hover:text-gray-500">
-                商品一覧
-            </a>
-
-            <a href="{{ route('articles.index') }}" class="font-bold">
-                記事一覧
-            </a>
-
-            @auth
-                <a href="{{ route('orders.index') }}" class="hover:text-gray-500">
-                    注文履歴
-                </a>
-
-                <a href="{{ route('mypage') }}" class="hover:text-gray-500">
-                    マイページ
-                </a>
-            @endauth
-        </nav>
-
-        <div class="flex items-center gap-5 sm:gap-6">
-
-            @auth
-                <a href="{{ route('cart.index') }}" class="relative">
-                    <i data-lucide="shopping-cart" class="w-7 h-7 sm:w-6 sm:h-6"></i>
-
-                    <span class="absolute -top-3 -right-3 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
-                        {{ auth()->user()->cartItems()->sum('quantity') ?? 0 }}
-                    </span>
-                </a>
-
-                <a href="{{ route('mypage') }}">
-                    <i data-lucide="user" class="w-7 h-7 sm:w-6 sm:h-6"></i>
-                </a>
-            @else
-                <a href="{{ route('login') }}"
-                   class="inline-flex items-center justify-center px-4 py-2 rounded-xl border border-gray-200 font-bold text-sm hover:bg-gray-50">
-                    ログイン
-                </a>
-            @endauth
-
         </div>
 
-    </header>
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <a href="{{ route('admin.dashboard') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i><span>ダッシュボード</span>
+            </a>
 
-    <main class="w-full max-w-full px-4 sm:px-8 py-8 overflow-x-hidden">
+            <a href="{{ route('admin.products.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="package" class="w-5 h-5 shrink-0"></i><span>商品管理</span>
+            </a>
 
-        <section class="mb-10 sm:mb-12">
+            <a href="{{ route('admin.orders.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i><span>注文管理</span>
+            </a>
 
-            <div class="max-w-3xl">
+            <a href="{{ route('admin.orders.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="truck" class="w-5 h-5 shrink-0"></i><span>発送状況</span>
+            </a>
 
-                <div class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm font-bold text-gray-500 mb-5">
-                    <i data-lucide="newspaper" class="w-4 h-4"></i>
-                    ShopSwift Journal
-                </div>
+            <a href="{{ route('admin.orders.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i><span>決済状況</span>
+            </a>
 
-                <h1 class="text-3xl sm:text-5xl font-bold leading-tight mb-4">
-                    記事一覧
-                </h1>
+            <a href="{{ route('admin.articles.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap bg-white text-[#070d16] transition">
+                <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i><span>記事管理</span>
+            </a>
+        </nav>
 
-                <p class="text-gray-500 text-base sm:text-lg leading-relaxed">
-                    お知らせ・商品紹介・ECサイト運営に関する情報をお届けします。
-                </p>
+        <div class="px-4 py-6 border-t border-white/10 space-y-2">
+            <a href="{{ route('products.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i><span>サイトを見る</span>
+            </a>
 
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i><span>ログアウト</span>
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">記事管理</h1>
+                <p class="text-gray-500 mt-4 text-base sm:text-lg">記事の作成・編集・削除を管理できます</p>
             </div>
 
-        </section>
-
-        @if ($articles->isEmpty())
-
-            <div class="bg-white border border-gray-200 rounded-2xl p-10 sm:p-12 text-center">
-
-                <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gray-100 flex items-center justify-center">
-                    <i data-lucide="newspaper" class="w-8 h-8 text-gray-400"></i>
-                </div>
-
-                <p class="text-gray-500 mb-6">
-                    公開中の記事はまだありません。
-                </p>
-
-                <a href="{{ route('products.index') }}"
-                   class="inline-flex items-center justify-center gap-2 bg-[#070d16] text-white px-8 py-4 rounded-xl font-bold hover:bg-gray-800 transition">
-                    <i data-lucide="arrow-left" class="w-5 h-5"></i>
-                    ホームへ戻る
+            @if (Route::has('admin.articles.create'))
+                <a href="{{ route('admin.articles.create') }}"
+                   class="inline-flex items-center justify-center gap-3 bg-[#070d16] text-white rounded-2xl px-6 py-4 font-bold shadow-sm hover:bg-gray-800 transition whitespace-nowrap">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    新しい記事を追加
                 </a>
+            @endif
+        </div>
 
+        @if (session('success'))
+            <div class="mb-6 rounded-2xl bg-green-100 text-green-700 px-5 py-4 font-bold">
+                {{ session('success') }}
             </div>
-
-        @else
-
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-
-                @foreach ($articles as $article)
-
-                    <article class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-sm transition">
-
-                        <a href="{{ route('articles.show', $article) }}" class="block">
-
-                            <div class="aspect-video bg-gray-100 overflow-hidden">
-
-                                @if ($article->thumbnail_path)
-
-                                    <img
-                                        src="{{ asset('storage/' . $article->thumbnail_path) }}"
-                                        alt="{{ $article->title }}"
-                                        class="w-full h-full object-cover"
-                                    >
-
-                                @else
-
-                                    <div class="w-full h-full flex items-center justify-center">
-                                        <i data-lucide="newspaper" class="w-12 h-12 text-gray-300"></i>
-                                    </div>
-
-                                @endif
-
-                            </div>
-
-                            <div class="p-5 sm:p-6">
-
-                                <div class="text-sm text-gray-400 mb-3">
-                                    {{ optional($article->published_at)->format('Y/m/d') ?? $article->created_at->format('Y/m/d') }}
-                                </div>
-
-                                <h2 class="text-xl font-bold leading-relaxed mb-3 break-words">
-                                    {{ $article->title }}
-                                </h2>
-
-                                <p class="text-gray-500 text-sm leading-relaxed mb-5">
-                                    {{ $article->excerpt ?: Str::limit(strip_tags($article->body), 90) }}
-                                </p>
-
-                                <div class="inline-flex items-center gap-2 font-bold text-sm">
-                                    続きを読む
-                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                </div>
-
-                            </div>
-
-                        </a>
-
-                    </article>
-
-                @endforeach
-
-            </div>
-
-            <div class="mt-10 overflow-x-auto">
-                {{ $articles->links() }}
-            </div>
-
         @endif
 
-    </main>
+        <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[900px] text-left">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">タイトル</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">ステータス</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">更新日</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap text-right">操作</th>
+                    </tr>
+                    </thead>
 
+                    <tbody>
+                    @forelse ($articles as $article)
+                        <tr class="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition">
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">{{ $article->title }}</td>
+
+                            <td class="px-6 py-7 whitespace-nowrap">
+                                <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
+                                    公開中
+                                </span>
+                            </td>
+
+                            <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
+                                {{ optional($article->updated_at)->format('Y/m/d') }}
+                            </td>
+
+                            <td class="px-6 py-7 text-right">
+                                <div class="flex items-center justify-end gap-3">
+                                    @if (Route::has('admin.articles.edit'))
+                                        <a href="{{ route('admin.articles.edit', $article) }}"
+                                           class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#111827] font-bold hover:bg-gray-100 transition whitespace-nowrap">
+                                            <i data-lucide="pencil" class="w-4 h-4"></i>編集
+                                        </a>
+                                    @endif
+
+                                    @if (Route::has('admin.articles.destroy'))
+                                        <form method="POST" action="{{ route('admin.articles.destroy', $article) }}" onsubmit="return confirm('この記事を削除しますか？');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 text-white font-bold hover:bg-red-600 transition whitespace-nowrap">
+                                                <i data-lucide="trash-2" class="w-4 h-4"></i>削除
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-6 py-16 text-center text-gray-500 font-bold">
+                                記事はまだ登録されていません。
+                            </td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        @if (method_exists($articles, 'links'))
+            <div class="mt-8">{{ $articles->links() }}</div>
+        @endif
+    </main>
 </div>
 
-<script>
-    lucide.createIcons();
-</script>
-
+<script>lucide.createIcons();</script>
 </body>
 </html>
