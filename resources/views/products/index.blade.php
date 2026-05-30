@@ -714,15 +714,35 @@
 
         </section>
 
-{{-- ShopSwiftでのお買い物：カルーセル確定版 --}}
+{{-- ShopSwiftでのお買い物：修正版 --}}
 <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
 
     <style>
+        .ss-benefit-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .ss-benefit-carousel {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .ss-benefit-card {
+            flex: 0 0 calc((100% - 24px) / 2);
+            width: calc((100% - 24px) / 2);
+        }
+
         .ss-benefit-card-inner {
             min-height: 340px;
+            background: rgba(248, 249, 250, 0.96);
         }
 
         @media (max-width: 767px) {
+            .ss-benefit-card {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+
             .ss-benefit-card-inner {
                 min-height: 320px;
             }
@@ -754,29 +774,25 @@
 
             <div class="relative max-w-6xl mx-auto">
 
-                {{-- 左ボタン：画像端寄せ --}}
+                {{-- 左ボタン --}}
                 <button
                     type="button"
                     id="ssBenefitPrev"
-                    class="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
                     aria-label="前へ"
                 >
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
 
-                {{-- カルーセル本体 --}}
-                <div
-                    id="ssBenefitCarousel"
-                    class="overflow-hidden px-16 sm:px-20"
-                >
+                {{-- カルーセル --}}
+                <div class="px-16 sm:px-20">
                     <div
-                        id="ssBenefitTrack"
-                        class="flex gap-6 transition-transform duration-500 ease-out"
-                        style="transform: translateX(0px);"
+                        id="ssBenefitCarousel"
+                        class="ss-benefit-carousel flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
                     >
 
-                        <div class="ss-benefit-card shrink-0">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                        <div class="ss-benefit-card snap-start shrink-0">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -791,8 +807,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card shrink-0">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                        <div class="ss-benefit-card snap-start shrink-0">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -807,8 +823,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card shrink-0">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                        <div class="ss-benefit-card snap-start shrink-0">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -823,8 +839,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card shrink-0">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                        <div class="ss-benefit-card snap-start shrink-0">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -839,8 +855,8 @@
                             </div>
                         </div>
 
-                        <div class="ss-benefit-card shrink-0">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                        <div class="ss-benefit-card snap-start shrink-0">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -858,11 +874,11 @@
                     </div>
                 </div>
 
-                {{-- 右ボタン：画像端寄せ --}}
+                {{-- 右ボタン --}}
                 <button
                     type="button"
                     id="ssBenefitNext"
-                    class="absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
                     aria-label="次へ"
                 >
                     <i data-lucide="chevron-right" class="w-6 h-6"></i>
