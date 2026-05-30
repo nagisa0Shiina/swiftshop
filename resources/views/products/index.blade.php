@@ -531,13 +531,13 @@
                         for a better everyday
                     </div>
 
-                    <h2 class="text-3xl sm:text-5xl font-bold leading-tight mb-5">
+                    <h2 class="text-3xl sm:text-5xl font-bold leading-tight mb-5 text-white">
                         ShopSwiftのこだわり
                     </h2>
 
-                    <div class="w-16 h-[2px] bg-[#b89a62] mb-6"></div>
+                    <div class="w-16 h-[2px] bg-[#b89a62] mb-6 "></div>
 
-                    <p class="text-gray-700 leading-8 max-w-xl">
+                    <p class="text-gray-700 leading-8 max-w-xl text-white">
                         毎日の暮らしに、心地よさとやさしさを。使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
                     </p>
 
