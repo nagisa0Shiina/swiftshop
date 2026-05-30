@@ -553,7 +553,7 @@
                 >
 
                     {{-- card 1 --}}
-                    <div class="benefit-card snap-start shrink-0 w-full md:w-[calc((100%-1.5rem)/2)]">
+                    <div class="benefit-card snap-start shrink-0 w-full md:w-[48%]">
                         <div class="h-full min-h-[250px] bg-white/92 backdrop-blur rounded-3xl p-7 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center mb-6">
                                 <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
@@ -570,7 +570,7 @@
                     </div>
 
                     {{-- card 2 --}}
-                    <div class="benefit-card snap-start shrink-0 w-full md:w-[calc((100%-1.5rem)/2)]">
+                    <div class="benefit-card snap-start shrink-0 w-full md:w-[48%]">
                         <div class="h-full min-h-[250px] bg-white/92 backdrop-blur rounded-3xl p-7 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center mb-6">
                                 <i data-lucide="refresh-cw" class="w-7 h-7 text-[#6f7f55]"></i>
@@ -587,7 +587,7 @@
                     </div>
 
                     {{-- card 3 --}}
-                    <div class="benefit-card snap-start shrink-0 w-full md:w-[calc((100%-1.5rem)/2)]">
+                    <div class="benefit-card snap-start shrink-0 w-full md:w-[48%]">
                         <div class="h-full min-h-[250px] bg-white/92 backdrop-blur rounded-3xl p-7 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center mb-6">
                                 <i data-lucide="lock-keyhole" class="w-7 h-7 text-[#6f7f55]"></i>
@@ -604,7 +604,7 @@
                     </div>
 
                     {{-- card 4 --}}
-                    <div class="benefit-card snap-start shrink-0 w-full md:w-[calc((100%-1.5rem)/2)]">
+                    <div class="benefit-card snap-start shrink-0 w-full md:w-[48%]">
                         <div class="h-full min-h-[250px] bg-white/92 backdrop-blur rounded-3xl p-7 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center mb-6">
                                 <i data-lucide="user-round" class="w-7 h-7 text-[#6f7f55]"></i>
@@ -621,7 +621,7 @@
                     </div>
 
                     {{-- card 5 --}}
-                    <div class="benefit-card snap-start shrink-0 w-full md:w-[calc((100%-1.5rem)/2)]">
+                   <div class="benefit-card snap-start shrink-0 w-full md:w-[48%]">
                         <div class="h-full min-h-[250px] bg-white/92 backdrop-blur rounded-3xl p-7 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center mb-6">
                                 <i data-lucide="gift" class="w-7 h-7 text-[#6f7f55]"></i>
