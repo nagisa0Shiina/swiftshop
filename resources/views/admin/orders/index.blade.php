@@ -3,495 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>注文管理 | ShopSwift Admin</title>
+    <title>商品管理 | ShopSwift</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        .admin-sidebar,
+        .admin-sidebar * {
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            word-break: keep-all !important;
+            overflow-wrap: normal !important;
+        }
+
+        .admin-sidebar a,
+        .admin-sidebar button {
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            white-space: nowrap !important;
+        }
+    </style>
 </head>
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
 <div class="min-h-screen lg:flex">
 
-    {{-- mobile header --}}
-    <header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white border-b border-white/10">
-        <div class="h-16 px-4 flex items-center justify-between">
-            <a href="{{ route('admin.dashboard') }}">
-                <div class="text-xl font-bold">ShopSwift</div>
-                <div class="text-[10px] text-gray-400">ADMIN PANEL</div>
-            </a>
+    {{-- PC Sidebar --}}
+    <aside class="admin-sidebar hidden lg:flex w-[300px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
 
-            <button type="button"
-                    id="menuButton"
-                    class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-
-        <nav id="mobileMenu" class="hidden px-4 pb-4 space-y-2 bg-[#070d16]">
-            <a href="{{ route('admin.dashboard') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                ダッシュボード
-            </a>
-
-            <a href="{{ route('admin.products.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="package" class="w-5 h-5"></i>
-                商品管理
-            </a>
-
-            <a href="{{ route('admin.orders.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10">
-                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                注文管理
-            </a>
-
-            <a href="{{ route('admin.shipping.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="truck" class="w-5 h-5"></i>
-                発送状況
-            </a>
-
-            <a href="{{ route('admin.payments.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>
-                決済状況
-            </a>
-
-            <form method="POST" action="{{ route('logout') }}" class="pt-2">
-                @csrf
-
-                <button type="submit"
-                        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-500/10">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
-                    ログアウト
-                </button>
-            </form>
-        </nav>
-    </header>
-
-    {{-- desktop sidebar --}}
-    <aside class="hidden lg:flex lg:flex-col w-64 shrink-0 bg-[#070d16] text-white min-h-screen">
-
-        <div class="h-20 px-8 flex items-center border-b border-white/10">
-            <a href="{{ route('admin.dashboard') }}">
-                <div class="text-2xl font-bold">ShopSwift</div>
-                <div class="text-xs text-gray-400">ADMIN PANEL</div>
+        <div class="px-8 py-8 border-b border-white/10">
+            <a href="{{ route('admin.dashboard') }}" class="block">
+                <div class="text-2xl font-bold leading-none whitespace-nowrap">
+                    ShopSwift
+                </div>
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50 whitespace-nowrap">
+                    ADMIN PANEL
+                </div>
             </a>
         </div>
 
-        <nav class="px-4 py-6 space-y-2 flex-1">
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
 
             <a href="{{ route('admin.dashboard') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                ダッシュボード
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
+               {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="package" class="w-5 h-5"></i>
-                商品管理
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
+               {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10">
-                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                注文管理
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
+               {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">注文管理</span>
             </a>
 
-            <a href="{{ route('admin.shipping.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="truck" class="w-5 h-5"></i>
-                発送状況
+            <a href="{{ route('admin.orders.index') }}"
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition text-white/80 hover:bg-white/10 hover:text-white">
+                <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">発送状況</span>
             </a>
 
-            <a href="{{ route('admin.payments.index') }}"
-               class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>
-                決済状況
+            <a href="{{ route('admin.orders.index') }}"
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition text-white/80 hover:bg-white/10 hover:text-white">
+                <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">決済状況</span>
             </a>
+
+            @if (Route::has('admin.articles.index'))
+                <a href="{{ route('admin.articles.index') }}"
+                   class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
+                   {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                    <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
+                    <span class="whitespace-nowrap">記事管理</span>
+                </a>
+            @endif
 
         </nav>
 
-        <div class="px-4 py-6 border-t border-white/10">
+        <div class="px-4 py-6 border-t border-white/10 space-y-2">
+
+            <a href="{{ route('products.index') }}"
+               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
+                <span class="whitespace-nowrap">サイトを見る</span>
+            </a>
+
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
                 <button type="submit"
-                        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-500/10">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
-                    ログアウト
+                        class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
+                    <span class="whitespace-nowrap">ログアウト</span>
                 </button>
             </form>
+
         </div>
 
     </aside>
 
-    {{-- main --}}
-    <main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8">
+    {{-- Mobile Header --}}
+    <header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white px-4 py-4 flex items-center justify-between">
+        <div>
+            <div class="text-xl font-bold">ShopSwift</div>
+            <div class="text-xs tracking-widest text-white/50">ADMIN PANEL</div>
+        </div>
 
-        <div class="mb-8">
+        <a href="{{ route('admin.dashboard') }}"
+           class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+        </a>
+    </header>
 
-            <h1 class="text-3xl sm:text-4xl font-bold mb-3">
-                注文管理
-            </h1>
+    {{-- Main --}}
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10 py-8 lg:py-10">
 
-            <p class="text-gray-500 text-sm sm:text-base">
-                注文内容・購入情報を確認できます
-            </p>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
+
+            <div>
+                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
+                    商品管理
+                </h1>
+
+                <p class="text-gray-500 mt-4 text-base sm:text-lg">
+                    商品の追加・編集・削除を行います
+                </p>
+            </div>
+
+            <a href="{{ route('admin.products.create') }}"
+               class="inline-flex items-center justify-center gap-3 bg-[#070d16] text-white rounded-2xl px-6 py-4 font-bold shadow-sm hover:bg-gray-800 transition whitespace-nowrap">
+                <i data-lucide="plus" class="w-5 h-5"></i>
+                新しい商品を追加
+            </a>
 
         </div>
 
         @if (session('success'))
-            <div class="mb-6 bg-green-100 text-green-700 px-5 py-4 rounded-xl">
+            <div class="mb-6 rounded-2xl bg-green-100 text-green-700 px-5 py-4 font-bold">
                 {{ session('success') }}
             </div>
         @endif
 
-        {{-- mobile order cards --}}
-        <div class="lg:hidden space-y-4">
-
-            @forelse ($orders as $order)
-
-                <div class="bg-white border border-gray-200 rounded-2xl p-5">
-
-                    <div class="flex items-start justify-between gap-4 mb-4">
-                        <div>
-                            <div class="text-sm text-gray-400 mb-1">
-                                注文番号
-                            </div>
-
-                            <div class="text-xl font-bold">
-                                #{{ $order->id }}
-                            </div>
-                        </div>
-
-                        <form method="POST"
-                              action="{{ route('admin.orders.destroy', $order) }}">
-                            @csrf
-                            @method('DELETE')
-
-                            <button type="submit"
-                                    onclick="return confirm('この注文を削除しますか？')"
-                                    class="inline-flex items-center gap-1 px-3 py-2 bg-red-500 text-white rounded-lg text-xs hover:bg-red-600">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                削除
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="space-y-4 text-sm">
-
-                        <div>
-                            <div class="text-gray-400 font-bold mb-1">
-                                注文者
-                            </div>
-
-                            <div class="font-bold">
-                                {{ $order->customer_name }}
-                            </div>
-
-                            <div class="text-gray-500 mt-1 break-words">
-                                {{ $order->customer_email }}
-                            </div>
-
-                            <div class="text-gray-500">
-                                {{ $order->phone }}
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-gray-400 font-bold mb-1">
-                                配送先
-                            </div>
-
-                            <div class="font-bold">
-                                〒{{ $order->postal_code }}
-                            </div>
-
-                            <div class="text-gray-600 mt-1 leading-relaxed">
-                                {{ $order->address }}
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="text-gray-400 font-bold mb-2">
-                                商品内容
-                            </div>
-
-                            <div class="space-y-2">
-                                @foreach ($order->items as $item)
-                                    <div class="border rounded-xl px-3 py-2 bg-gray-50">
-                                        <div class="font-bold">
-                                            {{ $item->product_name }}
-                                        </div>
-
-                                        <div class="text-xs text-gray-500 mt-1">
-                                            数量：{{ $item->quantity }} / ¥{{ number_format($item->price) }}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-3">
-
-                            <div class="bg-gray-50 rounded-xl p-3">
-                                <div class="text-gray-400 text-xs font-bold mb-1">
-                                    合計金額
-                                </div>
-
-                                <div class="font-bold">
-                                    ¥{{ number_format($order->total_amount) }}
-                                </div>
-                            </div>
-
-                            <div class="bg-gray-50 rounded-xl p-3">
-                                <div class="text-gray-400 text-xs font-bold mb-1">
-                                    購入日時
-                                </div>
-
-                                <div class="font-bold text-xs">
-                                    {{ $order->created_at->format('Y/m/d H:i') }}
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div>
-                            <div class="text-gray-400 font-bold mb-2">
-                                決済状況
-                            </div>
-
-                            @switch($order->payment_status)
-
-                                @case('paid')
-                                    <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
-                                        決済完了
-                                    </span>
-                                    @break
-
-                                @case('pending')
-                                    <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">
-                                        未決済
-                                    </span>
-                                    @break
-
-                                @case('refunded')
-                                    <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">
-                                        返金済み
-                                    </span>
-                                    @break
-
-                            @endswitch
-                        </div>
-
-                    </div>
-
-                </div>
-
-            @empty
-
-                <div class="bg-white border border-gray-200 rounded-2xl px-6 py-16 text-center text-gray-500">
-                    注文履歴がありません。
-                </div>
-
-            @endforelse
-
-        </div>
-
-        {{-- desktop table --}}
-        <div class="hidden lg:block bg-white border border-gray-200 rounded-2xl overflow-hidden">
+        <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
 
             <div class="overflow-x-auto">
 
-                <table class="min-w-[1300px] w-full">
-
-                    <thead class="bg-gray-50 border-b">
-
-                        <tr class="text-left text-sm text-gray-500">
-
-                            <th class="px-6 py-4">
-                                注文番号
-                            </th>
-
-                            <th class="px-6 py-4">
-                                注文者
-                            </th>
-
-                            <th class="px-6 py-4">
-                                配送先
-                            </th>
-
-                            <th class="px-6 py-4">
-                                商品内容
-                            </th>
-
-                            <th class="px-6 py-4">
-                                合計金額
-                            </th>
-
-                            <th class="px-6 py-4">
-                                決済状況
-                            </th>
-
-                            <th class="px-6 py-4">
-                                購入日時
-                            </th>
-
-                            <th class="px-6 py-4 text-right">
-                                操作
-                            </th>
-
-                        </tr>
-
+                <table class="w-full min-w-[980px] text-left">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                    <tr>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">価格</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">在庫</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">ステータス</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">更新日</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap text-right">操作</th>
+                    </tr>
                     </thead>
 
                     <tbody>
+                    @forelse ($products as $product)
+                        <tr class="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition">
 
-                    @forelse ($orders as $order)
-
-                        <tr class="border-b hover:bg-gray-50">
-
-                            <td class="px-6 py-3 font-bold whitespace-nowrap align-middle">
-                                #{{ $order->id }}
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">
+                                {{ $product->name }}
                             </td>
 
-                            <td class="px-6 py-3 min-w-[220px] align-middle">
-
-                                <div class="font-bold">
-                                    {{ $order->customer_name }}
-                                </div>
-
-                                <div class="text-sm text-gray-500 mt-1">
-                                    {{ $order->customer_email }}
-                                </div>
-
-                                <div class="text-sm text-gray-500">
-                                    {{ $order->phone }}
-                                </div>
-
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">
+                                ¥{{ number_format($product->price) }}
                             </td>
 
-                            <td class="px-6 py-3 min-w-[260px] align-middle">
-
-                                <div class="text-sm font-bold">
-                                    〒{{ $order->postal_code }}
-                                </div>
-
-                                <div class="text-sm text-gray-600 mt-1 leading-relaxed">
-                                    {{ $order->address }}
-                                </div>
-
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">
+                                {{ $product->stock }}
                             </td>
 
-                            <td class="px-6 py-3 min-w-[260px] align-middle">
+                            <td class="px-6 py-7 whitespace-nowrap">
+                                @if (($product->stock ?? 0) > 0)
+                                    <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
+                                        公開中
+                                    </span>
+                                @else
+                                    <span class="inline-flex px-4 py-2 rounded-full bg-red-100 text-red-700 font-bold text-sm">
+                                        在庫切れ
+                                    </span>
+                                @endif
+                            </td>
 
-                                <div class="space-y-2">
+                            <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
+                                {{ optional($product->updated_at)->format('Y/m/d') }}
+                            </td>
 
-                                    @foreach ($order->items as $item)
+                            <td class="px-6 py-7">
+                                <div class="flex items-center justify-end gap-3">
 
-                                        <div class="border rounded-lg px-3 py-1.5 bg-gray-50">
+                                    <a href="{{ route('admin.products.edit', $product) }}"
+                                       class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#111827] font-bold hover:bg-gray-100 transition whitespace-nowrap">
+                                        <i data-lucide="pencil" class="w-4 h-4"></i>
+                                        編集
+                                    </a>
 
-                                            <div class="font-bold text-sm">
-                                                {{ $item->product_name }}
-                                            </div>
+                                    <form method="POST"
+                                          action="{{ route('admin.products.destroy', $product) }}"
+                                          onsubmit="return confirm('この商品を削除しますか？');">
+                                        @csrf
+                                        @method('DELETE')
 
-                                            <div class="text-xs text-gray-500">
-                                                数量：{{ $item->quantity }}
-                                            </div>
-
-                                            <div class="text-xs text-gray-500">
-                                                ¥{{ number_format($item->price) }}
-                                            </div>
-
-                                        </div>
-
-                                    @endforeach
+                                        <button type="submit"
+                                                class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 text-white font-bold hover:bg-red-600 transition whitespace-nowrap">
+                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                            削除
+                                        </button>
+                                    </form>
 
                                 </div>
-
-                            </td>
-
-                            <td class="px-6 py-3 font-bold whitespace-nowrap align-middle">
-                                ¥{{ number_format($order->total_amount) }}
-                            </td>
-
-                            <td class="px-6 py-3 whitespace-nowrap align-middle">
-
-                                @switch($order->payment_status)
-
-                                    @case('paid')
-                                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
-                                            決済完了
-                                        </span>
-                                        @break
-
-                                    @case('pending')
-                                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">
-                                            未決済
-                                        </span>
-                                        @break
-
-                                    @case('refunded')
-                                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">
-                                            返金済み
-                                        </span>
-                                        @break
-
-                                @endswitch
-
-                            </td>
-
-                            <td class="px-6 py-3 text-sm text-gray-500 whitespace-nowrap align-middle">
-                                {{ $order->created_at->format('Y/m/d H:i') }}
-                            </td>
-
-                            <td class="px-6 py-3 text-right whitespace-nowrap align-middle">
-
-                                <form method="POST"
-                                      action="{{ route('admin.orders.destroy', $order) }}">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit"
-                                            onclick="return confirm('この注文を削除しますか？')"
-                                            class="inline-flex items-center gap-1 px-4 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600">
-                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                        削除
-                                    </button>
-
-                                </form>
-
                             </td>
 
                         </tr>
-
                     @empty
-
                         <tr>
-                            <td colspan="8"
-                                class="px-6 py-16 text-center text-gray-500">
-                                注文履歴がありません。
+                            <td colspan="6" class="px-6 py-16 text-center text-gray-500 font-bold">
+                                商品はまだ登録されていません。
                             </td>
                         </tr>
-
                     @endforelse
-
                     </tbody>
-
                 </table>
 
             </div>
 
-        </div>
+        </section>
 
-        <div class="mt-8 overflow-x-auto">
-            {{ $orders->links() }}
-        </div>
+        @if (method_exists($products, 'links'))
+            <div class="mt-8">
+                {{ $products->links() }}
+            </div>
+        @endif
 
     </main>
 
@@ -499,16 +255,6 @@
 
 <script>
     lucide.createIcons();
-
-    const menuButton = document.getElementById('menuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    if (menuButton && mobileMenu) {
-        menuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            lucide.createIcons();
-        });
-    }
 </script>
 
 </body>
