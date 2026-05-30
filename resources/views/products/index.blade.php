@@ -494,7 +494,7 @@
                 <div class="text-5xl mb-4">📦</div>
                 <p class="font-bold text-lg mb-2">人気商品がまだ登録されていません</p>
                 <p class="text-gray-500 text-sm mb-6">
-                    管理画面の商品追加・編集で「人気商品としてトップページに表示する」にチェックを入れてください。
+                    {{-- 管理画面の商品追加・編集で「人気商品としてトップページに表示する」にチェックを入れてください。 --}}
                 </p>
 
                 <a href="{{ route('products.all') }}"
