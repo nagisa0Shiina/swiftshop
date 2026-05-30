@@ -843,6 +843,7 @@
     }
 
     <script>
+    l<script>
     lucide.createIcons();
 
     const benefitTrack = document.getElementById('benefitTrack');
@@ -850,43 +851,49 @@
     const benefitNext = document.getElementById('benefitNext');
 
     if (benefitTrack && benefitPrev && benefitNext) {
-        let benefitIndex = 0;
-        const benefitSlides = benefitTrack.querySelectorAll('.benefit-slide');
+        const slides = benefitTrack.querySelectorAll('.benefit-slide');
+        let index = 0;
 
-        const getVisibleCount = () => {
+        function visibleCount() {
             return window.innerWidth >= 768 ? 2 : 1;
-        };
+        }
 
-        const updateBenefitCarousel = () => {
-            const visibleCount = getVisibleCount();
-            const slideWidth = 100 / visibleCount;
-            const maxIndex = benefitSlides.length - visibleCount;
+        function maxIndex() {
+            return slides.length - visibleCount();
+        }
 
-            if (benefitIndex > maxIndex) {
-                benefitIndex = 0;
+        function updateCarousel() {
+            const count = visibleCount();
+            const movePercent = 100 / count;
+
+            if (index > maxIndex()) {
+                index = 0;
             }
 
-            if (benefitIndex < 0) {
-                benefitIndex = maxIndex;
+            if (index < 0) {
+                index = maxIndex();
             }
 
-            benefitTrack.style.transform = `translateX(-${benefitIndex * slideWidth}%)`;
-        };
+            benefitTrack.style.transform = `translateX(-${index * movePercent}%)`;
+        }
 
-        benefitNext.addEventListener('click', () => {
-            benefitIndex++;
-            updateBenefitCarousel();
+        benefitNext.addEventListener('click', function () {
+            index++;
+            updateCarousel();
         });
 
-        benefitPrev.addEventListener('click', () => {
-            benefitIndex--;
-            updateBenefitCarousel();
+        benefitPrev.addEventListener('click', function () {
+            index--;
+            updateCarousel();
         });
 
-        window.addEventListener('resize', updateBenefitCarousel);
+        window.addEventListener('resize', function () {
+            updateCarousel();
+        });
 
-        updateBenefitCarousel();
+        updateCarousel();
     }
+</script>
 </script>
 </script>
 
