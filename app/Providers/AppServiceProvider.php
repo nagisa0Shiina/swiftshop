@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
      
              });
 
-
+                
               /*
         |--------------------------------------------------------------------------
         | パスワード再設定URLを生成
