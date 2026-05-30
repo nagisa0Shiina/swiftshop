@@ -50,7 +50,7 @@ class AppServiceProvider extends ServiceProvider
                      'verification.verify',
                      now()->addMinutes(Config::get('auth.verification.expire', 60)),
                      [
-                         'id' => $notifiable->getKet(),
+                         'id' => $notifiable->getKey(),
                          'hash' => sha1($notifiable->getEmailForverification()),
                      ]
                  );
