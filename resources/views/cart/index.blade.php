@@ -216,7 +216,7 @@
                                             value="{{ $item->quantity }}"
                                             min="1"
                                             max="{{ max($item->product->stock, 1) }}"
-                                            class="w-full h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
+                                            class="w-2xl h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
                                             @if ($isUnavailable)
                                                 disabled
                                             @endif
