@@ -50,11 +50,11 @@
                 <span>注文管理</span>
             </a>
 
-                            <a href="{{ route('admin.shipping.index') }}"
+            <a href="{{ route('admin.shipping.index') }}"
                     class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                        <i data-lucide="truck"></i>
-                        <span>発送状況</span>
-</a>
+            <i data-lucide="truck"></i>
+                <span>発送状況</span>
+                            </a>
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
                 <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
