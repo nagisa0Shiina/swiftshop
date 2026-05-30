@@ -511,7 +511,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
         {{-- ShopSwiftのこだわり：画像全面背景 --}}
-        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-8">
+        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-8 my-8">
 
             <img
                 src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&q=80"
@@ -537,7 +537,7 @@
 
                     <div class="w-16 h-[2px] bg-[#b89a62] mb-6 "></div>
 
-                    <p class="text-gray-700 leading-8 max-w-xl text-white">
+                    <p class="text-gray-700 leading-8 max-w-xl text-gray-300">
                         毎日の暮らしに、心地よさとやさしさを。使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
                     </p>
 
@@ -594,7 +594,7 @@
         </section>
 
         {{-- はじめての方へ --}}
-        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-8>
+        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-8 my-8>
 
             <div class="mb-10">
 
@@ -715,7 +715,7 @@
         </section>
 
         {{-- ShopSwiftでのお買い物 --}}
-        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white py-8">
+        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8">
 
             <div class="grid grid-cols-1 lg:grid-cols-12">
 
