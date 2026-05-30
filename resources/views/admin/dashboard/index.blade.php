@@ -11,108 +11,109 @@
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-{{-- PC Sidebar --}}
-<aside class="fixed left-0 top-0 z-50 hidden lg:flex h-screen w-64 flex-col bg-[#070d16] text-white">
+<div class="min-h-screen lg:flex">
 
-    <div class="px-8 py-8 border-b border-white/10">
-        <a href="{{ route('admin.dashboard') }}" class="block">
-            <div class="text-2xl font-bold leading-none">
-                ShopSwift
-            </div>
-            <div class="mt-2 text-xs tracking-widest text-white/50">
-                ADMIN PANEL
-            </div>
-        </a>
-    </div>
+    {{-- Sidebar --}}
+    <aside class="hidden lg:flex lg:w-72 lg:shrink-0 min-h-screen bg-[#070d16] text-white flex-col">
 
-    <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-
-        <a href="{{ route('admin.dashboard') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition
-           {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-            <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
-            <span>ダッシュボード</span>
-        </a>
-
-        <a href="{{ route('admin.products.index') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition
-           {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-            <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
-            <span>商品管理</span>
-        </a>
-
-        <a href="{{ route('admin.orders.index') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition
-           {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-            <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-            <span>注文管理</span>
-        </a>
-
-        <a href="{{ route('admin.orders.index') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
-            <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
-            <span>発送状況</span>
-        </a>
-
-        <a href="{{ route('admin.orders.index') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
-            <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
-            <span>決済状況</span>
-        </a>
-
-        @if (Route::has('admin.articles.index'))
-            <a href="{{ route('admin.articles.index') }}"
-               class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap transition
-               {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
-                <span>記事管理</span>
+        <div class="px-8 py-8 border-b border-white/10">
+            <a href="{{ route('admin.dashboard') }}" class="block">
+                <div class="text-2xl font-bold leading-none">
+                    ShopSwift
+                </div>
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
+                    ADMIN PANEL
+                </div>
             </a>
-        @endif
+        </div>
 
-    </nav>
+        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
 
-    <div class="px-4 py-6 border-t border-white/10 space-y-2">
+            <a href="{{ route('admin.dashboard') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
+               {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
+                <span>ダッシュボード</span>
+            </a>
+
+            <a href="{{ route('admin.products.index') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
+               {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
+                <span>商品管理</span>
+            </a>
+
+            <a href="{{ route('admin.orders.index') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
+               {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
+                <span>注文管理</span>
+            </a>
+
+            <a href="{{ route('admin.orders.index') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
+                <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
+                <span>発送状況</span>
+            </a>
+
+            <a href="{{ route('admin.orders.index') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
+                <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
+                <span>決済状況</span>
+            </a>
+
+            @if (Route::has('admin.articles.index'))
+                <a href="{{ route('admin.articles.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
+                   {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
+                    <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
+                    <span>記事管理</span>
+                </a>
+            @endif
+
+        </nav>
+
+        <div class="px-4 py-6 border-t border-white/10 space-y-2">
+
+            <a href="{{ route('products.index') }}"
+               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
+                <span>サイトを見る</span>
+            </a>
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                        class="w-full flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
+                    <span>ログアウト</span>
+                </button>
+            </form>
+
+        </div>
+
+    </aside>
+
+    {{-- Mobile Header --}}
+    <header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white px-4 py-4 flex items-center justify-between">
+        <div>
+            <div class="text-xl font-bold">ShopSwift</div>
+            <div class="text-xs tracking-widest text-white/50">ADMIN PANEL</div>
+        </div>
 
         <a href="{{ route('products.index') }}"
-           class="flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-            <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
-            <span>サイトを見る</span>
+           class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
+            <i data-lucide="external-link" class="w-5 h-5"></i>
         </a>
+    </header>
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button type="submit"
-                    class="w-full flex items-center gap-3 rounded-2xl px-4 py-4 text-sm font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
-                <span>ログアウト</span>
-            </button>
-        </form>
+    {{-- Main --}}
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
 
-    </div>
-
-</aside>
-
-{{-- Mobile Header --}}
-<header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white px-4 py-4 flex items-center justify-between">
-    <div>
-        <div class="text-xl font-bold">ShopSwift</div>
-        <div class="text-xs tracking-widest text-white/50">ADMIN PANEL</div>
-    </div>
-
-    <a href="{{ route('products.index') }}"
-       class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
-        <i data-lucide="external-link" class="w-5 h-5"></i>
-    </a>
-</header>
-
-<div class="min-h-screen lg:ml-64">
-
-    <main class="px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
-
-        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-8">
+        <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6 mb-8">
 
             <div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                     ダッシュボード
                 </h1>
 
@@ -122,7 +123,7 @@
             </div>
 
             <a href="{{ route('products.index') }}"
-               class="hidden lg:inline-flex items-center justify-center gap-3 bg-white border border-gray-200 rounded-3xl px-8 py-6 font-bold shadow-sm hover:bg-gray-50">
+               class="hidden lg:inline-flex items-center justify-center gap-3 bg-white border border-gray-200 rounded-3xl px-8 py-6 font-bold shadow-sm hover:bg-gray-50 shrink-0">
                 <i data-lucide="external-link" class="w-5 h-5"></i>
                 サイトを見る
             </a>
@@ -132,13 +133,13 @@
         {{-- Stats --}}
         <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-5 mb-8">
 
-            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm">
+            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
                 <div class="flex items-start justify-between mb-8">
                     <div class="text-gray-500 font-bold">本日の売上</div>
-                    <div class="w-7 h-7 rounded-full bg-green-100"></div>
+                    <div class="w-7 h-7 rounded-full bg-green-100 shrink-0"></div>
                 </div>
 
-                <div class="text-4xl lg:text-5xl font-bold">
+                <div class="text-4xl lg:text-5xl font-bold break-words">
                     ¥{{ number_format($todaySales ?? 0) }}
                 </div>
 
@@ -147,21 +148,21 @@
                 </div>
             </div>
 
-            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm">
+            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
                 <div class="flex items-start justify-between mb-8">
                     <div class="text-gray-500 font-bold">総売上</div>
-                    <i data-lucide="wallet-cards" class="w-7 h-7 text-blue-500"></i>
+                    <i data-lucide="wallet-cards" class="w-7 h-7 text-blue-500 shrink-0"></i>
                 </div>
 
-                <div class="text-4xl lg:text-5xl font-bold">
+                <div class="text-4xl lg:text-5xl font-bold break-words">
                     ¥{{ number_format($totalSales ?? 0) }}
                 </div>
             </div>
 
-            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm">
+            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
                 <div class="flex items-start justify-between mb-8">
                     <div class="text-gray-500 font-bold">注文数</div>
-                    <i data-lucide="shopping-bag" class="w-7 h-7 text-purple-500"></i>
+                    <i data-lucide="shopping-bag" class="w-7 h-7 text-purple-500 shrink-0"></i>
                 </div>
 
                 <div class="text-4xl lg:text-5xl font-bold">
@@ -169,10 +170,10 @@
                 </div>
             </div>
 
-            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm">
+            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
                 <div class="flex items-start justify-between mb-8">
                     <div class="text-gray-500 font-bold">商品数</div>
-                    <i data-lucide="package" class="w-7 h-7 text-orange-500"></i>
+                    <i data-lucide="package" class="w-7 h-7 text-orange-500 shrink-0"></i>
                 </div>
 
                 <div class="text-4xl lg:text-5xl font-bold">
@@ -180,10 +181,10 @@
                 </div>
             </div>
 
-            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm">
+            <div class="bg-white border border-gray-200 rounded-3xl p-7 shadow-sm min-w-0">
                 <div class="flex items-start justify-between mb-8">
                     <div class="text-gray-500 font-bold">在庫切れ</div>
-                    <i data-lucide="triangle-alert" class="w-7 h-7 text-red-500"></i>
+                    <i data-lucide="triangle-alert" class="w-7 h-7 text-red-500 shrink-0"></i>
                 </div>
 
                 <div class="text-4xl lg:text-5xl font-bold">
@@ -196,7 +197,7 @@
         <section class="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
             {{-- Recent Orders --}}
-            <div class="xl:col-span-2 bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+            <div class="xl:col-span-2 bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden min-w-0">
 
                 <div class="px-6 py-6 border-b border-gray-200">
                     <h2 class="text-3xl font-bold">
@@ -263,7 +264,7 @@
             </div>
 
             {{-- Ranking --}}
-            <div class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+            <div class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden min-w-0">
 
                 <div class="px-6 py-6 border-b border-gray-200">
                     <h2 class="text-3xl font-bold">
