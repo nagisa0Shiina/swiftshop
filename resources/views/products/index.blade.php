@@ -514,7 +514,7 @@
         <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-8 my-8">
 
             <img
-                src="https://images.unsplash.com/photo-1585128792020-803d29415281?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+                src="https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="ShopSwiftのこだわり"
                 class="absolute inset-0 w-full h-full object-cover"
             >
