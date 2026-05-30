@@ -761,6 +761,25 @@
         <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/25 to-white/65"></div>
 
         <div class="relative z-10 px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
+            {{-- 左ボタン：カード外・画像端 --}}
+            <button
+                type="button"
+                id="ssBenefitPrev"
+                class="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                aria-label="前へ"
+            >
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+
+            {{-- 右ボタン：カード外・画像端 --}}
+            <button
+                type="button"
+                id="ssBenefitNext"
+                class="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                aria-label="次へ"
+            >
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
 
             <div class="text-center mb-10">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4">
@@ -774,15 +793,6 @@
 
             <div class="relative max-w-6xl mx-auto">
 
-                {{-- 左ボタン --}}
-                <button
-                    type="button"
-                    id="ssBenefitPrev"
-                    class="absolute left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
-                    aria-label="前へ"
-                >
-                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                </button>
 
                 {{-- カルーセル --}}
                 <div class="px-16 sm:px-20">
