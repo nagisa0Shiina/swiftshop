@@ -216,7 +216,7 @@
                                             value="{{ $item->quantity }}"
                                             min="1"
                                             max="{{ max($item->product->stock, 1) }}"
-                                            class="w-2xl h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
+                                            class="w-4xl h-11 border rounded-xl text-center text-sm {{ $isUnavailable ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : '' }}"
                                             @if ($isUnavailable)
                                                 disabled
                                             @endif
@@ -225,7 +225,7 @@
                                         <button type="submit"
                                                 class="w-20 h-11 rounded-xl text-sm font-bold
                                                     {{ $isUnavailable
-                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                                        ? 'bg-gray-300 text-gray-500 cursor-not-allowed py-2 px-3'
                                                         : 'bg-[#070d16] text-white hover:bg-gray-800'
                                                     }}"
                                                 @if ($isUnavailable)
