@@ -505,7 +505,216 @@
         @endif
     </section>
 
-{{-- ShopSwiftでのお買い物：確定版カルーセル --}}
+{{-- ShopSwift visual contents --}}
+<section class="bg-white py-16 sm:py-20 overflow-hidden">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+        {{-- ShopSwiftのこだわり：画像全面背景 --}}
+        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-6 my-8">
+
+            <img
+                src="https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="ShopSwiftのこだわり"
+                class="absolute inset-0 w-full h-full object-cover"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/35"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-white/95 via-transparent to-transparent"></div>
+
+            <div class="relative z-10 min-h-[640px] p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
+
+                <div class="max-w-2xl">
+
+                    <div class="inline-flex items-center gap-2 text-[#7a8b5f] font-bold text-sm mb-5">
+                        <i data-lucide="leaf" class="w-5 h-5"></i>
+                        for a better everyday
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-bold leading-tight mb-5 ">
+                        ShopSwiftのこだわり
+                    </h2>
+
+                    <div class="w-16 h-[2px] bg-[#b89a62] mb-6 "></div>
+
+                    <p class="text-gray-700 leading-8 max-w-xl text-gray-300">
+                        毎日の暮らしに、心地よさとやさしさを。使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
+                    </p>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+
+                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6">
+                        <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-5">
+                            <i data-lucide="armchair" class="w-8 h-8 text-[#6f7f55]"></i>
+                        </div>
+
+                        <h3 class="text-lg font-bold mb-3">
+                            長く使えるデザイン
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-7">
+                            飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
+                        </p>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6 md:translate-y-6">
+                        <div class="w-16 h-16 rounded-full bg-[#f1e8d9] flex items-center justify-center mb-5">
+                            <i data-lucide="sprout" class="w-8 h-8 text-[#9a7b45]"></i>
+                        </div>
+
+                        <h3 class="text-lg font-bold mb-3">
+                            環境にやさしい選択
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-7">
+                            素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
+                        </p>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6">
+                        <div class="w-16 h-16 rounded-full bg-[#f2d9ca] flex items-center justify-center mb-5">
+                            <i data-lucide="headphones" class="w-8 h-8 text-[#a26345]"></i>
+                        </div>
+
+                        <h3 class="text-lg font-bold mb-3">
+                            安心のサポート
+                        </h3>
+
+                        <p class="text-gray-600 text-sm leading-7">
+                            ご購入前のご相談からアフターサポートまで、丁寧に対応。安心してお買い物いただけます。
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {{-- はじめての方へ --}}
+        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-6 my-8>
+
+            <div class="mb-10">
+
+                <div class="text-[#c88d6c] italic font-bold mb-4">
+                    Welcome!
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-bold mb-5">
+                    はじめての方へ
+                </h2>
+
+                <div class="w-12 h-[2px] bg-[#b89a62] mb-6"></div>
+
+                <p class="text-gray-600 leading-8">
+                    かんたん3ステップでお買い物が完了します。
+                </p>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                {{-- step 1 --}}
+                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-10px]">
+
+                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#8c9a6b] text-white flex items-center justify-center font-bold text-lg">
+                        1
+                    </div>
+
+                    <div class="h-56 bg-gray-100 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
+                            alt="商品を選ぶ"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-5">
+                            <i data-lucide="search" class="w-8 h-8 text-[#6f7f55]"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            商品を選ぶ
+                        </h3>
+
+                        <p class="text-gray-500 text-sm leading-7">
+                            豊富なカテゴリから、お好みの商品をお選びください。気になる商品はお気に入りにも追加できます。
+                        </p>
+                    </div>
+
+                </div>
+
+                {{-- step 2 --}}
+                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[18px]">
+
+                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#d4835f] text-white flex items-center justify-center font-bold text-lg">
+                        2
+                    </div>
+
+                    <div class="h-56 bg-gray-100 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+                            alt="カートに入れる"
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-[#f2d9ca] flex items-center justify-center mb-5">
+                            <i data-lucide="shopping-cart" class="w-8 h-8 text-[#a26345]"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            カートに入れる
+                        </h3>
+
+                        <p class="text-gray-500 text-sm leading-7">
+                            気になる商品をカートに入れて、数量や合計金額を確認しながら購入手続きへ進めます。
+                        </p>
+                    </div>
+
+                </div>
+
+                {{-- step 3：届いた荷物の画像 --}}
+                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-6px]">
+
+                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold text-lg">
+                        3
+                    </div>
+
+                    <div class="h-56 bg-gray-100 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1614018453562-77f6180ce036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="届いた荷物"
+                            class="w-full h-full object-cover"
+                            {{-- onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1614018453562-77f6180ce036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';" --}}
+                        >
+                    </div>
+
+                    <div class="p-6">
+                        <div class="w-16 h-16 rounded-full bg-[#f1e8d9] flex items-center justify-center mb-5">
+                            <i data-lucide="package-check" class="w-8 h-8 text-[#9a7b45]"></i>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            ご注文完了
+                        </h3>
+
+                        <p class="text-gray-500 text-sm leading-7">
+                            決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+ {{-- ShopSwiftでのお買い物：確定版カルーセル --}}
 <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
 
     <style>
@@ -567,11 +776,11 @@
             <div class="relative max-w-6xl mx-auto">
 
                 <button
-                type="button"
-                id="ssBenefitPrev"
-                class="absolute -left-10 sm:-left-14 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#f3f4f6]/95 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
-                aria-label="前へ"
-            >
+                    type="button"
+                    id="ssBenefitPrev"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
+                    aria-label="前へ"
+                >
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
                 </button>
 
@@ -580,7 +789,7 @@
                     <div id="ssBenefitTrack" class="ss-benefit-track">
 
                         <div class="ss-benefit-card">
-                           <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -596,7 +805,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                           <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -612,7 +821,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -628,7 +837,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -644,7 +853,7 @@
                         </div>
 
                         <div class="ss-benefit-card">
-                            <div class="ss-benefit-card-inner bg-[#f8f9fa]/95 backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner bg-white/92 backdrop-blur-md rounded-3xl p-8 border border-white shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -664,11 +873,13 @@
                 </div>
 
                 <button
-                type="button"
-                id="ssBenefitNext"
-                class="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
-                aria-label="次へ"
+                    type="button"
+                    id="ssBenefitNext"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow flex items-center justify-center hover:bg-gray-50"
+                    aria-label="次へ"
                 >
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
 
             </div>
 
@@ -867,8 +1078,7 @@
         }, 2500);
     }
 
-
-   const ssBenefitTrack = document.getElementById('ssBenefitTrack');
+        const ssBenefitTrack = document.getElementById('ssBenefitTrack');
     const ssBenefitPrev = document.getElementById('ssBenefitPrev');
     const ssBenefitNext = document.getElementById('ssBenefitNext');
 
