@@ -505,27 +505,18 @@
         @endif
     </section>
 
-{{-- ShopSwift broken grid contents --}}
+{{-- ShopSwift broken grid contents - fixed --}}
 <section class="bg-white py-14 sm:py-20 overflow-hidden">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
 
         {{-- ShopSwiftのこだわり --}}
         <div class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#fbf7f1]">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 min-h-[420px]">
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-0">
 
-                {{-- left image --}}
-                <div class="lg:col-span-2 h-64 lg:h-auto overflow-hidden">
-                    <img
-                        src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80"
-                        alt="ShopSwiftのこだわり"
-                        class="w-full h-full object-cover"
-                    >
-                </div>
-
-                {{-- center text --}}
-                <div class="lg:col-span-4 px-6 sm:px-10 py-10 sm:py-14 flex flex-col justify-center">
+                {{-- text area --}}
+                <div class="xl:col-span-5 p-6 sm:p-10 lg:p-14 flex flex-col justify-center">
 
                     <div class="inline-flex items-center gap-2 text-[#7a8b5f] mb-5">
                         <i data-lucide="leaf" class="w-6 h-6"></i>
@@ -535,60 +526,78 @@
                     </div>
 
                     <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-                        ShopSwiftの<br class="hidden sm:block">こだわり
+                        ShopSwiftのこだわり
                     </h2>
 
                     <div class="w-16 h-[2px] bg-[#b89a62] mb-6"></div>
 
-                    <p class="text-gray-600 leading-8">
+                    <p class="text-gray-600 leading-8 text-base sm:text-lg max-w-xl">
                         毎日の暮らしに、心地よさとやさしさを。使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
                     </p>
 
                 </div>
 
+                {{-- image area --}}
+                <div class="xl:col-span-3 p-6 sm:p-10 xl:py-14 xl:pl-0">
+                    <div class="h-64 sm:h-80 xl:h-full min-h-[320px] rounded-3xl overflow-hidden bg-[#eee7dc]">
+                        <img
+                            src="{{ asset('images/shop-lifestyle.jpg') }}"
+                            alt="暮らしのイメージ"
+                            class="w-full h-full object-cover"
+                            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-gray-400&quot;>Lifestyle</div>';"
+                        >
+                    </div>
+                </div>
+
                 {{-- cards --}}
-                <div class="lg:col-span-6 px-6 sm:px-8 py-8 sm:py-12 grid grid-cols-1 sm:grid-cols-3 gap-5 items-center">
+                <div class="xl:col-span-4 p-6 sm:p-10 xl:py-14 grid grid-cols-1 gap-5">
 
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-7 lg:translate-y-[-18px]">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-[#eef0e4] flex items-center justify-center mb-5">
-                            <i data-lucide="armchair" class="w-8 h-8 text-[#6f7f55]"></i>
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex items-start gap-5 xl:translate-x-[-20px]">
+                        <div class="w-14 h-14 rounded-full bg-[#eef0e4] flex items-center justify-center shrink-0">
+                            <i data-lucide="armchair" class="w-7 h-7 text-[#6f7f55]"></i>
                         </div>
 
-                        <h3 class="font-bold text-lg text-center mb-4">
-                            長く使えるデザイン
-                        </h3>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">
+                                長く使えるデザイン
+                            </h3>
 
-                        <p class="text-gray-500 text-sm leading-7 text-center">
-                            飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
-                        </p>
+                            <p class="text-gray-500 text-sm leading-7">
+                                飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-7 lg:translate-y-[22px]">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-[#f1e8d9] flex items-center justify-center mb-5">
-                            <i data-lucide="sprout" class="w-8 h-8 text-[#9a7b45]"></i>
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex items-start gap-5 xl:translate-x-[18px]">
+                        <div class="w-14 h-14 rounded-full bg-[#f1e8d9] flex items-center justify-center shrink-0">
+                            <i data-lucide="sprout" class="w-7 h-7 text-[#9a7b45]"></i>
                         </div>
 
-                        <h3 class="font-bold text-lg text-center mb-4">
-                            環境にやさしい選択
-                        </h3>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">
+                                環境にやさしい選択
+                            </h3>
 
-                        <p class="text-gray-500 text-sm leading-7 text-center">
-                            素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
-                        </p>
+                            <p class="text-gray-500 text-sm leading-7">
+                                素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 sm:p-7 lg:translate-y-[-10px]">
-                        <div class="w-16 h-16 mx-auto rounded-full bg-[#f2d9ca] flex items-center justify-center mb-5">
-                            <i data-lucide="headphones" class="w-8 h-8 text-[#a26345]"></i>
+                    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm p-6 flex items-start gap-5 xl:translate-x-[-8px]">
+                        <div class="w-14 h-14 rounded-full bg-[#f2d9ca] flex items-center justify-center shrink-0">
+                            <i data-lucide="headphones" class="w-7 h-7 text-[#a26345]"></i>
                         </div>
 
-                        <h3 class="font-bold text-lg text-center mb-4">
-                            安心のサポート
-                        </h3>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">
+                                安心のサポート
+                            </h3>
 
-                        <p class="text-gray-500 text-sm leading-7 text-center">
-                            ご購入前のご相談からアフターサポートまで、丁寧に対応。安心してお買い物いただけます。
-                        </p>
+                            <p class="text-gray-500 text-sm leading-7">
+                                ご購入前のご相談からアフターサポートまで、丁寧に対応。安心してお買い物いただけます。
+                            </p>
+                        </div>
                     </div>
 
                 </div>
@@ -600,9 +609,9 @@
         {{-- はじめての方へ --}}
         <div class="relative overflow-hidden rounded-[2rem] bg-[#f4eee6] border border-[#eadfce] px-5 sm:px-8 lg:px-10 py-12 sm:py-16">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
 
-                <div class="lg:col-span-3">
+                <div class="lg:col-span-3 lg:sticky lg:top-28">
 
                     <div class="text-[#c88d6c] italic font-bold mb-4">
                         Welcome!
@@ -622,17 +631,18 @@
 
                 <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
 
-                    <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-sm lg:translate-y-[-12px]">
+                    <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-sm lg:translate-y-[-10px]">
 
                         <div class="absolute -top-4 left-5 w-11 h-11 rounded-full bg-[#8c9a6b] text-white flex items-center justify-center font-bold text-lg">
                             1
                         </div>
 
-                        <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-gray-100 mb-5">
+                        <div class="h-48 sm:h-56 md:h-44 lg:h-48 rounded-2xl overflow-hidden bg-[#eee7dc] mb-5">
                             <img
-                                src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
+                                src="{{ asset('images/step-select.jpg') }}"
                                 alt="商品を選ぶ"
                                 class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-gray-400&quot;>商品を選ぶ</div>';"
                             >
                         </div>
 
@@ -656,11 +666,12 @@
                             2
                         </div>
 
-                        <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-gray-100 mb-5">
+                        <div class="h-48 sm:h-56 md:h-44 lg:h-48 rounded-2xl overflow-hidden bg-[#eee7dc] mb-5">
                             <img
-                                src="https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80"
+                                src="{{ asset('images/step-cart.jpg') }}"
                                 alt="カートに入れる"
                                 class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-gray-400&quot;>カートに入れる</div>';"
                             >
                         </div>
 
@@ -678,17 +689,18 @@
 
                     </div>
 
-                    <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-sm lg:translate-y-[-8px]">
+                    <div class="relative bg-white rounded-3xl p-5 sm:p-6 border border-gray-100 shadow-sm lg:translate-y-[-6px]">
 
                         <div class="absolute -top-4 left-5 w-11 h-11 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold text-lg">
                             3
                         </div>
 
-                        <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-gray-100 mb-5">
+                        <div class="h-48 sm:h-56 md:h-44 lg:h-48 rounded-2xl overflow-hidden bg-[#eee7dc] mb-5">
                             <img
-                                src="https://images.unsplash.com/photo-1605902711622-cfb43c4437d2?auto=format&fit=crop&w=900&q=80"
+                                src="{{ asset('images/step-complete.jpg') }}"
                                 alt="ご注文完了"
                                 class="w-full h-full object-cover"
+                                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center text-gray-400&quot;>ご注文完了</div>';"
                             >
                         </div>
 
@@ -735,13 +747,13 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
-                        <div class="bg-white/70 backdrop-blur rounded-3xl p-6 border border-white">
+                        <div class="bg-white/75 rounded-3xl p-6 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
 
                             <h3 class="font-bold mb-3">
-                                3,000円以上で送料無料
+                                5,000円以上で送料無料
                             </h3>
 
                             <p class="text-gray-600 text-sm leading-7">
@@ -749,7 +761,7 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/70 backdrop-blur rounded-3xl p-6 border border-white">
+                        <div class="bg-white/75 rounded-3xl p-6 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="refresh-cw" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
@@ -763,7 +775,7 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/70 backdrop-blur rounded-3xl p-6 border border-white">
+                        <div class="bg-white/75 rounded-3xl p-6 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="lock-keyhole" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
@@ -777,7 +789,7 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/70 backdrop-blur rounded-3xl p-6 border border-white">
+                        <div class="bg-white/75 rounded-3xl p-6 border border-white shadow-sm">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="user-round" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
@@ -791,7 +803,7 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/70 backdrop-blur rounded-3xl p-6 border border-white sm:col-span-2 xl:col-span-1">
+                        <div class="bg-white/75 rounded-3xl p-6 border border-white shadow-sm sm:col-span-2 xl:col-span-1">
                             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
                                 <i data-lucide="gift" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
@@ -809,15 +821,16 @@
 
                 </div>
 
-                <div class="lg:col-span-5 relative min-h-[360px] bg-[#f7f3ee]">
+                <div class="lg:col-span-5 relative min-h-[420px] bg-[#f7f3ee]">
 
                     <img
-                        src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80"
+                        src="{{ asset('images/shop-cta.jpg') }}"
                         alt="心地よい暮らしのアイテム"
                         class="absolute inset-0 w-full h-full object-cover opacity-70"
+                        onerror="this.style.display='none';"
                     >
 
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#f7f3ee]/90 via-[#f7f3ee]/60 to-transparent"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#f7f3ee]/95 via-[#f7f3ee]/75 to-[#f7f3ee]/20"></div>
 
                     <div class="relative z-10 h-full flex flex-col justify-center px-6 sm:px-10 py-12">
 
@@ -835,7 +848,7 @@
                             </a>
 
                             <a href="{{ route('articles.index') }}"
-                               class="inline-flex w-full items-center justify-center gap-2 bg-white/80 border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-white transition">
+                               class="inline-flex w-full items-center justify-center gap-2 bg-white/85 border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-white transition">
                                 記事一覧を見る
                                 <i data-lucide="newspaper" class="w-5 h-5"></i>
                             </a>
