@@ -719,7 +719,7 @@
               <img
                         src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="心地よい暮らし"
-                        class="absolute inset-0 w-full h-full object-cover"
+                        class="absolute inset-0 w-full h-full object-cover contrast-50 "
                     >
 
             <div class="grid grid-cols-1 lg:grid-cols-12 relative">
@@ -740,7 +740,7 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
 
-                        <div class=" backdrop-blur rounded-3xl p-6  shadow-sm bg-white/60 bg-white">
+                        <div class=" backdrop-blur rounded-3xl p-6  shadow-sm">
                             <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
