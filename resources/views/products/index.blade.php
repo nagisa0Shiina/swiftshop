@@ -714,151 +714,172 @@
 
         </section>
 
-        {{-- ShopSwiftでのお買い物 --}}
-        <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8 relative py-6">
-              <img
-                        src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="心地よい暮らし"
-                        class="absolute inset-0 w-full h-full object-cover contrast-50 "
-                    >
+        {{-- ShopSwiftでのお買い物：カルーセル版 --}}
+<section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white">
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 relative">
+    <div
+        class="relative min-h-[620px] bg-cover bg-center"
+        style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80');"
+    >
 
-                <div class="lg:col-span-7 bg-[#eef0e4] p-6 sm:p-10 lg:p-14">
+        <div class="absolute inset-0 bg-[#f7f3ee]/75 backdrop-blur-[1px]"></div>
 
-                    <div class="mb-10">
-                        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">
-                            ShopSwiftでのお買い物
-                        </h2>
+        <div class="relative z-10 px-5 sm:px-8 lg:px-10 py-12 sm:py-16">
 
-                        <div class="w-12 h-[2px] bg-[#8c9a6b] mb-5"></div>
+            <div class="max-w-4xl mx-auto text-center mb-10">
 
-                        <p class="text-gray-800 leading-8 text-center">
-                            安心してご利用いただけるサービスを整えています。
-                        </p>
-                    </div>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                    ShopSwiftでのお買い物
+                </h2>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
-
-                        <div class=" backdrop-blur rounded-3xl p-6  shadow-sm">
-                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
-                                <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
-                            </div>
-
-                            <h3 class="font-bold mb-3">
-                                3,000円以上で送料無料
-                            </h3>
-
-                            <p class="text-gray-800 text-sm leading-7">
-                                一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。
-                            </p>
-                        </div>
-
-                 
-                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
-                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
-                                <i data-lucide="refresh-cw" class="w-7 h-7 text-[#6f7f55]"></i>
-                            </div>
-
-                            <h3 class="font-bold mb-3">
-                                返品・交換のご相談OK
-                            </h3>
-
-                            <p class="text-gray-600 text-sm leading-7 text-black-600">
-                                商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。
-                            </p>
-                        </div>
-
-                        
-                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
-                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
-                                <i data-lucide="lock-keyhole" class="w-7 h-7 text-[#6f7f55]"></i>
-                            </div>
-
-                            <h3 class="font-bold mb-3">
-                                安全な決済
-                            </h3>
-
-                            <p class="text-gray-800 text-sm leading-7 text-black-600">
-                                Stripe決済に対応。カード情報を安全に扱い、安心してお買い物できます。
-                            </p>
-                        </div>
-
-                        
-                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
-                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
-                                <i data-lucide="user-round" class="w-7 h-7 text-[#6f7f55]"></i>
-                            </div>
-
-                            <h3 class="font-bold mb-3">
-                                会員限定の便利機能
-                            </h3>
-
-                            <p class="text-gray-800 text-sm leading-7 text-black-600">
-                                注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。
-                            </p>
-                        </div>
-
-                       
-                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
-                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
-                                <i data-lucide="gift" class="w-7 h-7 text-[#6f7f55]"></i>
-                            </div>
-
-                            <h3 class="font-bold mb-3">
-                                ギフトにも対応
-                            </h3>
-
-                            <p class="text-gray-800 text-sm leading-7 text-black-600">
-                                大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="lg:col-span-5 relative min-h-[420px]">
-
-                  
-
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#f7f3ee]/95 via-[#f7f3ee]/75 to-[#f7f3ee]/30"></div>
-
-                    <div class="relative z-10 h-full flex flex-col justify-center p-6 sm:p-10 lg:p-14">
-
-                        <h2 class="text-2xl sm:text-3xl font-bold leading-relaxed mb-6 text-center">
-                            心地よい暮らしのアイテムを、<br class="hidden sm:block">
-                            見つけてみませんか？
-                        </h2>
-
-                        <div class="space-y-3 max-w-sm">
-
-                            <a href="{{ route('products.all') }}"
-                               class="inline-flex w-full items-center justify-center gap-2 bg-[#070d16] text-white px-6 py-4 rounded-2xl font-bold hover:bg-gray-800 transition">
-                                商品一覧を見る
-                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                            </a>
-
-                            <a href="{{ route('articles.index') }}"
-                               class="inline-flex w-full items-center justify-center gap-2 bg-white/90 border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-white transition">
-                                記事一覧を見る
-                                <i data-lucide="newspaper" class="w-5 h-5"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <p class="text-gray-600 leading-8">
+                    安心してご利用いただけるサービスを整えています。
+                </p>
 
             </div>
 
-        </section>
+            <div class="relative">
+
+                {{-- prev --}}
+                <button
+                    type="button"
+                    id="benefitPrev"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    aria-label="前へ"
+                >
+                    <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+
+                {{-- carousel viewport --}}
+                <div class="overflow-hidden mx-12">
+
+                    <div
+                        id="benefitTrack"
+                        class="flex transition-transform duration-500 ease-out"
+                    >
+
+                        {{-- card 1 --}}
+                        <div class="benefit-slide shrink-0 w-full md:w-1/2 px-3">
+                            <div class="h-full bg-white/82 backdrop-blur-md rounded-3xl p-7 sm:p-8 border border-white shadow-sm">
+                                <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6">
+                                    <i data-lucide="truck" class="w-7 h-7 text-[#6f7f55]"></i>
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-4">
+                                    3,000円以上で送料無料
+                                </h3>
+
+                                <p class="text-gray-600 leading-8">
+                                    一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。
+                                </p>
+                            </div>
+                        </div>
+
+                        {{-- card 2 --}}
+                        <div class="benefit-slide shrink-0 w-full md:w-1/2 px-3">
+                            <div class="h-full bg-white/82 backdrop-blur-md rounded-3xl p-7 sm:p-8 border border-white shadow-sm">
+                                <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6">
+                                    <i data-lucide="refresh-cw" class="w-7 h-7 text-[#6f7f55]"></i>
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-4">
+                                    返品・交換のご相談OK
+                                </h3>
+
+                                <p class="text-gray-600 leading-8">
+                                    商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。
+                                </p>
+                            </div>
+                        </div>
+
+                        {{-- card 3 --}}
+                        <div class="benefit-slide shrink-0 w-full md:w-1/2 px-3">
+                            <div class="h-full bg-white/82 backdrop-blur-md rounded-3xl p-7 sm:p-8 border border-white shadow-sm">
+                                <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6">
+                                    <i data-lucide="lock-keyhole" class="w-7 h-7 text-[#6f7f55]"></i>
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-4">
+                                    安全な決済
+                                </h3>
+
+                                <p class="text-gray-600 leading-8">
+                                    Stripe決済に対応。カード情報を安全に扱い、安心してお買い物できます。
+                                </p>
+                            </div>
+                        </div>
+
+                        {{-- card 4 --}}
+                        <div class="benefit-slide shrink-0 w-full md:w-1/2 px-3">
+                            <div class="h-full bg-white/82 backdrop-blur-md rounded-3xl p-7 sm:p-8 border border-white shadow-sm">
+                                <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6">
+                                    <i data-lucide="user-round" class="w-7 h-7 text-[#6f7f55]"></i>
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-4">
+                                    会員限定の便利機能
+                                </h3>
+
+                                <p class="text-gray-600 leading-8">
+                                    注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。
+                                </p>
+                            </div>
+                        </div>
+
+                        {{-- card 5 --}}
+                        <div class="benefit-slide shrink-0 w-full md:w-1/2 px-3">
+                            <div class="h-full bg-white/82 backdrop-blur-md rounded-3xl p-7 sm:p-8 border border-white shadow-sm">
+                                <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-6">
+                                    <i data-lucide="gift" class="w-7 h-7 text-[#6f7f55]"></i>
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-4">
+                                    ギフトにも対応
+                                </h3>
+
+                                <p class="text-gray-600 leading-8">
+                                    大切な方への贈り物にも選びやすい、暮らしに馴染むアイテムを揃えています。
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {{-- next --}}
+                <button
+                    type="button"
+                    id="benefitNext"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    aria-label="次へ"
+                >
+                    <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
+
+            </div>
+
+            <div class="mt-10 max-w-xl mx-auto space-y-3">
+
+                <a href="{{ route('products.all') }}"
+                   class="inline-flex w-full items-center justify-center gap-2 bg-[#070d16] text-white px-6 py-4 rounded-2xl font-bold hover:bg-gray-800 transition">
+                    商品一覧を見る
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+
+                <a href="{{ route('articles.index') }}"
+                   class="inline-flex w-full items-center justify-center gap-2 bg-white/90 border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-white transition">
+                    記事一覧を見る
+                    <i data-lucide="newspaper" class="w-5 h-5"></i>
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
-
 </main>
 
 <footer class="border-t bg-white">
@@ -1032,6 +1053,53 @@
             }, 400);
         }, 2500);
     }
+
+    <script>
+    lucide.createIcons();
+
+    const benefitTrack = document.getElementById('benefitTrack');
+    const benefitPrev = document.getElementById('benefitPrev');
+    const benefitNext = document.getElementById('benefitNext');
+
+    if (benefitTrack && benefitPrev && benefitNext) {
+        let benefitIndex = 0;
+        const benefitSlides = benefitTrack.querySelectorAll('.benefit-slide');
+
+        const getVisibleCount = () => {
+            return window.innerWidth >= 768 ? 2 : 1;
+        };
+
+        const updateBenefitCarousel = () => {
+            const visibleCount = getVisibleCount();
+            const slideWidth = 100 / visibleCount;
+            const maxIndex = benefitSlides.length - visibleCount;
+
+            if (benefitIndex > maxIndex) {
+                benefitIndex = 0;
+            }
+
+            if (benefitIndex < 0) {
+                benefitIndex = maxIndex;
+            }
+
+            benefitTrack.style.transform = `translateX(-${benefitIndex * slideWidth}%)`;
+        };
+
+        benefitNext.addEventListener('click', () => {
+            benefitIndex++;
+            updateBenefitCarousel();
+        });
+
+        benefitPrev.addEventListener('click', () => {
+            benefitIndex--;
+            updateBenefitCarousel();
+        });
+
+        window.addEventListener('resize', updateBenefitCarousel);
+
+        updateBenefitCarousel();
+    }
+</script>
 </script>
 
 </body>
