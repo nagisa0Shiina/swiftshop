@@ -9,46 +9,84 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            width: 300px;
+            min-width: 300px;
+            max-width: 300px;
+            flex: 0 0 300px;
+            min-height: 100vh;
+            background: #070d16;
+            color: #ffffff;
+        }
+
+        .admin-main {
+            flex: 1;
+            min-width: 0;
+        }
+
         .admin-sidebar,
         .admin-sidebar *,
         .admin-sidebar a,
         .admin-sidebar span,
-        .admin-sidebar button {
+        .admin-sidebar button,
+        .admin-sidebar div,
+        .admin-sidebar nav {
             writing-mode: horizontal-tb !important;
             text-orientation: mixed !important;
             word-break: keep-all !important;
             overflow-wrap: normal !important;
             white-space: nowrap !important;
+            letter-spacing: normal !important;
         }
 
-        .admin-sidebar a,
-        .admin-sidebar button {
+        .admin-nav-link,
+        .admin-nav-button {
+            width: 100% !important;
             display: flex !important;
             flex-direction: row !important;
             align-items: center !important;
             justify-content: flex-start !important;
-            width: 100% !important;
+            gap: 16px !important;
+            writing-mode: horizontal-tb !important;
+            white-space: nowrap !important;
         }
 
-        .admin-sidebar svg {
+        .admin-nav-link svg,
+        .admin-nav-button svg {
             flex-shrink: 0 !important;
+        }
+
+        @media (max-width: 1023px) {
+            .admin-layout {
+                display: block;
+            }
+
+            .admin-sidebar {
+                display: none;
+            }
         }
     </style>
 </head>
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="min-h-screen lg:flex">
+<div class="admin-layout">
 
     {{-- PC Sidebar --}}
-    <aside class="admin-sidebar hidden lg:flex w-[300px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
+    <aside class="admin-sidebar hidden lg:flex flex-col">
 
         <div class="px-8 py-8 border-b border-white/10">
             <a href="{{ route('admin.dashboard') }}" class="block">
                 <div class="text-2xl font-bold leading-none">
                     ShopSwift
                 </div>
-                <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
+
+                <div class="mt-3 text-xs text-white/50">
                     ADMIN PANEL
                 </div>
             </a>
@@ -57,37 +95,37 @@
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
 
             <a href="{{ route('admin.dashboard') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                 <span>ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="package" class="w-5 h-5"></i>
                 <span>商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="clipboard-list" class="w-5 h-5"></i>
                 <span>注文管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="truck" class="w-5 h-5"></i>
                 <span>発送状況</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="credit-card" class="w-5 h-5"></i>
                 <span>決済状況</span>
             </a>
 
             <a href="{{ route('admin.articles.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
                 <i data-lucide="newspaper" class="w-5 h-5"></i>
                 <span>記事管理</span>
             </a>
@@ -97,15 +135,16 @@
         <div class="px-4 py-6 border-t border-white/10 space-y-2">
 
             <a href="{{ route('products.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="external-link" class="w-5 h-5"></i>
                 <span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
+
                 <button type="submit"
-                        class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                        class="admin-nav-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
                     <i data-lucide="log-out" class="w-5 h-5"></i>
                     <span>ログアウト</span>
                 </button>
@@ -129,7 +168,7 @@
     </header>
 
     {{-- Main --}}
-    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+    <main class="admin-main px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
 
@@ -139,7 +178,7 @@
                 </h1>
 
                 <p class="text-gray-500 mt-4 text-base sm:text-lg">
-                    記事の作成・編集・削除を管理できます
+                    お知らせ・ブログ記事を管理できます
                 </p>
             </div>
 
@@ -168,8 +207,8 @@
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">タイトル</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">ステータス</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">更新日</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">状態</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">作成日</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap text-right">操作</th>
                     </tr>
                     </thead>
@@ -179,18 +218,36 @@
 
                         <tr class="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition">
 
-                            <td class="px-6 py-7 font-bold whitespace-nowrap">
-                                {{ $article->title }}
+                            <td class="px-6 py-7">
+                                <div class="font-bold whitespace-nowrap">
+                                    {{ $article->title }}
+                                </div>
+
+                                @if (!empty($article->body))
+                                    <div class="text-gray-500 text-sm mt-2 max-w-md truncate">
+                                        {{ $article->body }}
+                                    </div>
+                                @elseif (!empty($article->content))
+                                    <div class="text-gray-500 text-sm mt-2 max-w-md truncate">
+                                        {{ $article->content }}
+                                    </div>
+                                @endif
                             </td>
 
                             <td class="px-6 py-7 whitespace-nowrap">
-                                <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
-                                    公開中
-                                </span>
+                                @if (($article->is_published ?? false) || ($article->status ?? '') === 'published')
+                                    <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
+                                        公開中
+                                    </span>
+                                @else
+                                    <span class="inline-flex px-4 py-2 rounded-full bg-gray-100 text-gray-700 font-bold text-sm">
+                                        非公開
+                                    </span>
+                                @endif
                             </td>
 
                             <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
-                                {{ optional($article->updated_at)->format('Y/m/d') }}
+                                {{ optional($article->created_at)->format('Y/m/d H:i') }}
                             </td>
 
                             <td class="px-6 py-7">
