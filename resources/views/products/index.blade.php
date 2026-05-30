@@ -734,7 +734,7 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background: rgba(248, 249, 250, 0.96);
+            background: rgba(248, 249, 250, 0.40);
         }
 
         @media (max-width: 767px) {
@@ -802,7 +802,7 @@
                     >
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/90 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
