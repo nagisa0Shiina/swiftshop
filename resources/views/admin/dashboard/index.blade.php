@@ -11,10 +11,10 @@
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="min-h-screen">
+<div class="min-h-screen lg:flex">
 
     {{-- PC Sidebar --}}
-    <aside class="fixed left-0 top-0 z-50 hidden lg:flex h-screen w-[300px] flex-col bg-[#070d16] text-white">
+    <aside class="hidden lg:flex w-[280px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
 
         <div class="px-8 py-8 border-b border-white/10">
             <a href="{{ route('admin.dashboard') }}" class="block">
@@ -33,33 +33,33 @@
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">ダッシュボード</span>
+                <span>ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">商品管理</span>
+                <span>商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                 <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">注文管理</span>
+                <span>注文管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
                 <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">発送状況</span>
+                <span>発送状況</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition text-white/80 hover:bg-white/10 hover:text-white">
                 <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">決済状況</span>
+                <span>決済状況</span>
             </a>
 
             @if (Route::has('admin.articles.index'))
@@ -67,7 +67,7 @@
                    class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap transition
                    {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
                     <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
-                    <span class="whitespace-nowrap">記事管理</span>
+                    <span>記事管理</span>
                 </a>
             @endif
 
@@ -78,7 +78,7 @@
             <a href="{{ route('products.index') }}"
                class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
                 <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">サイトを見る</span>
+                <span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
@@ -86,7 +86,7 @@
                 <button type="submit"
                         class="w-full flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
                     <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
-                    <span class="whitespace-nowrap">ログアウト</span>
+                    <span>ログアウト</span>
                 </button>
             </form>
 
@@ -107,8 +107,8 @@
         </a>
     </header>
 
-    {{-- Main --}}
-    <main class="min-h-screen lg:ml-[300px] px-4 sm:px-6 lg:px-8 xl:px-10 py-8 lg:py-10 overflow-x-hidden">
+    {{-- Main Content --}}
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10 py-8 lg:py-10">
 
         <div class="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6 mb-8">
 
