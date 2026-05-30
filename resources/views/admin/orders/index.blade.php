@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品管理 | ShopSwift</title>
+    <title>注文管理 | ShopSwift</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         .admin-sidebar,
-        .admin-sidebar * {
+        .admin-sidebar *,
+        .admin-sidebar a,
+        .admin-sidebar span,
+        .admin-sidebar button {
             writing-mode: horizontal-tb !important;
             text-orientation: mixed !important;
             word-break: keep-all !important;
             overflow-wrap: normal !important;
+            white-space: nowrap !important;
         }
 
         .admin-sidebar a,
@@ -23,7 +27,11 @@
             flex-direction: row !important;
             align-items: center !important;
             justify-content: flex-start !important;
-            white-space: nowrap !important;
+            width: 100% !important;
+        }
+
+        .admin-sidebar svg {
+            flex-shrink: 0 !important;
         }
     </style>
 </head>
@@ -32,7 +40,6 @@
 
 <div class="min-h-screen lg:flex">
 
-    {{-- PC Sidebar --}}
     <aside class="admin-sidebar hidden lg:flex w-[300px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
 
         <div class="px-8 py-8 border-b border-white/10">
@@ -49,44 +56,40 @@
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
 
             <a href="{{ route('admin.dashboard') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
-               {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">ダッシュボード</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span>ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
-               {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                <i data-lucide="package" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">商品管理</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="package" class="w-5 h-5"></i>
+                <span>商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
-               {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">注文管理</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
+                <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                <span>注文管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition text-white/80 hover:bg-white/10 hover:text-white">
-                <i data-lucide="truck" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">発送状況</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="truck" class="w-5 h-5"></i>
+                <span>発送状況</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition text-white/80 hover:bg-white/10 hover:text-white">
-                <i data-lucide="credit-card" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">決済状況</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="credit-card" class="w-5 h-5"></i>
+                <span>決済状況</span>
             </a>
 
             @if (Route::has('admin.articles.index'))
                 <a href="{{ route('admin.articles.index') }}"
-                   class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold transition
-                   {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }}">
-                    <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i>
-                    <span class="whitespace-nowrap">記事管理</span>
+                   class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="newspaper" class="w-5 h-5"></i>
+                    <span>記事管理</span>
                 </a>
             @endif
 
@@ -95,17 +98,17 @@
         <div class="px-4 py-6 border-t border-white/10 space-y-2">
 
             <a href="{{ route('products.index') }}"
-               class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i>
-                <span class="whitespace-nowrap">サイトを見る</span>
+               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link" class="w-5 h-5"></i>
+                <span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
-                        class="w-full gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i>
-                    <span class="whitespace-nowrap">ログアウト</span>
+                        class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                    <span>ログアウト</span>
                 </button>
             </form>
 
@@ -113,40 +116,16 @@
 
     </aside>
 
-    {{-- Mobile Header --}}
-    <header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white px-4 py-4 flex items-center justify-between">
-        <div>
-            <div class="text-xl font-bold">ShopSwift</div>
-            <div class="text-xs tracking-widest text-white/50">ADMIN PANEL</div>
-        </div>
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
 
-        <a href="{{ route('admin.dashboard') }}"
-           class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
-            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-        </a>
-    </header>
+        <div class="mb-8">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">
+                注文管理
+            </h1>
 
-    {{-- Main --}}
-    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10 py-8 lg:py-10">
-
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
-
-            <div>
-                <h1 class="text-4xl sm:text-5xl font-bold tracking-tight leading-tight">
-                    商品管理
-                </h1>
-
-                <p class="text-gray-500 mt-4 text-base sm:text-lg">
-                    商品の追加・編集・削除を行います
-                </p>
-            </div>
-
-            <a href="{{ route('admin.products.create') }}"
-               class="inline-flex items-center justify-center gap-3 bg-[#070d16] text-white rounded-2xl px-6 py-4 font-bold shadow-sm hover:bg-gray-800 transition whitespace-nowrap">
-                <i data-lucide="plus" class="w-5 h-5"></i>
-                新しい商品を追加
-            </a>
-
+            <p class="text-gray-500 mt-4 text-base sm:text-lg">
+                注文内容・発送状況・決済状況を確認できます
+            </p>
         </div>
 
         @if (session('success'))
@@ -158,94 +137,96 @@
         <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
 
             <div class="overflow-x-auto">
+                <table class="w-full min-w-[1100px] text-left">
 
-                <table class="w-full min-w-[980px] text-left">
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">価格</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">在庫</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">ステータス</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">更新日</th>
-                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap text-right">操作</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">決済状況</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">発送状況</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文日時</th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    @forelse ($products as $product)
+                    @forelse ($orders as $order)
+
+                        @php
+                            $paymentStatus = $order->payment_status ?? $order->status ?? '';
+                            $shippingStatus = $order->shipping_status ?? '';
+
+                            $paymentLabel = match ($paymentStatus) {
+                                'paid' => '決済完了',
+                                'unpaid' => '未決済',
+                                'pending' => '決済待ち',
+                                'failed' => '決済失敗',
+                                'refunded' => '返金済み',
+                                default => $paymentStatus ? $paymentStatus : '未決済',
+                            };
+
+                            $shippingLabel = match ($shippingStatus) {
+                                'pending' => '発送準備中',
+                                'preparing' => '発送準備中',
+                                'shipping' => '発送中',
+                                'shipped' => '発送済み',
+                                'completed' => '配送完了',
+                                'delivered' => '配送完了',
+                                'cancelled' => 'キャンセル',
+                                default => $shippingStatus ? $shippingStatus : '発送準備中',
+                            };
+                        @endphp
+
                         <tr class="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition">
 
                             <td class="px-6 py-7 font-bold whitespace-nowrap">
-                                {{ $product->name }}
+                                #{{ $order->id }}
                             </td>
 
                             <td class="px-6 py-7 font-bold whitespace-nowrap">
-                                ¥{{ number_format($product->price) }}
+                                {{ $order->user->name ?? $order->name ?? '不明' }}
                             </td>
 
                             <td class="px-6 py-7 font-bold whitespace-nowrap">
-                                {{ $product->stock }}
+                                ¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}
                             </td>
 
                             <td class="px-6 py-7 whitespace-nowrap">
-                                @if (($product->stock ?? 0) > 0)
-                                    <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
-                                        公開中
-                                    </span>
-                                @else
-                                    <span class="inline-flex px-4 py-2 rounded-full bg-red-100 text-red-700 font-bold text-sm">
-                                        在庫切れ
-                                    </span>
-                                @endif
+                                <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">
+                                    {{ $paymentLabel }}
+                                </span>
+                            </td>
+
+                            <td class="px-6 py-7 whitespace-nowrap">
+                                <span class="inline-flex px-4 py-2 rounded-full bg-blue-100 text-blue-700 font-bold text-sm">
+                                    {{ $shippingLabel }}
+                                </span>
                             </td>
 
                             <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
-                                {{ optional($product->updated_at)->format('Y/m/d') }}
-                            </td>
-
-                            <td class="px-6 py-7">
-                                <div class="flex items-center justify-end gap-3">
-
-                                    <a href="{{ route('admin.products.edit', $product) }}"
-                                       class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-gray-300 bg-white text-[#111827] font-bold hover:bg-gray-100 transition whitespace-nowrap">
-                                        <i data-lucide="pencil" class="w-4 h-4"></i>
-                                        編集
-                                    </a>
-
-                                    <form method="POST"
-                                          action="{{ route('admin.products.destroy', $product) }}"
-                                          onsubmit="return confirm('この商品を削除しますか？');">
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit"
-                                                class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-red-500 text-white font-bold hover:bg-red-600 transition whitespace-nowrap">
-                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                            削除
-                                        </button>
-                                    </form>
-
-                                </div>
+                                {{ optional($order->created_at)->format('Y/m/d H:i') }}
                             </td>
 
                         </tr>
+
                     @empty
                         <tr>
                             <td colspan="6" class="px-6 py-16 text-center text-gray-500 font-bold">
-                                商品はまだ登録されていません。
+                                注文はまだありません。
                             </td>
                         </tr>
                     @endforelse
                     </tbody>
-                </table>
 
+                </table>
             </div>
 
         </section>
 
-        @if (method_exists($products, 'links'))
+        @if (method_exists($orders, 'links'))
             <div class="mt-8">
-                {{ $products->links() }}
+                {{ $orders->links() }}
             </div>
         @endif
 
