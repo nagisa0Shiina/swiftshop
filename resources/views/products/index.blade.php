@@ -727,7 +727,7 @@
                 <div class="lg:col-span-7 bg-[#eef0e4] p-6 sm:p-10 lg:p-14">
 
                     <div class="mb-10">
-                        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">
                             ShopSwiftでのお買い物
                         </h2>
 
@@ -754,8 +754,9 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/80 rounded-3xl p-6 border border-white shadow-sm bg-white">
-                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
+                 
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
+                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="refresh-cw" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
 
@@ -768,8 +769,9 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/80 rounded-3xl p-6 border border-white shadow-sm bg-white">
-                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
+                        
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
+                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="lock-keyhole" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
 
@@ -782,8 +784,9 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/80 rounded-3xl p-6 border border-white shadow-sm bg-white">
-                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
+                        
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
+                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="user-round" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
 
@@ -796,8 +799,9 @@
                             </p>
                         </div>
 
-                        <div class="bg-white/80 rounded-3xl p-6 border border-white shadow-sm sm:col-span-2 xl:col-span-1 bg-white">
-                            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center mb-5">
+                       
+                        <div class="bg-white/60  backdrop-blur rounded-3xl p-6  shadow-sm ">
+                            <div class="w-14 h-14 rounded-full  flex items-center justify-center mb-5">
                                 <i data-lucide="gift" class="w-7 h-7 text-[#6f7f55]"></i>
                             </div>
 
@@ -822,7 +826,7 @@
 
                     <div class="relative z-10 h-full flex flex-col justify-center p-6 sm:p-10 lg:p-14">
 
-                        <h2 class="text-2xl sm:text-3xl font-bold leading-relaxed mb-6">
+                        <h2 class="text-2xl sm:text-3xl font-bold leading-relaxed mb-6 text-center">
                             心地よい暮らしのアイテムを、<br class="hidden sm:block">
                             見つけてみませんか？
                         </h2>
