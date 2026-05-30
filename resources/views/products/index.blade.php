@@ -778,7 +778,7 @@
                 <button
                     type="button"
                     id="ssBenefitPrev"
-                    class="absolute left-0 right-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                    class="absolute left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6] border border-gray-200 shadow flex items-center justify-center hover:bg-white"
                     aria-label="前へ"
                 >
                     <i data-lucide="chevron-left" class="w-6 h-6"></i>
