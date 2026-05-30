@@ -124,7 +124,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings/password', [PasswordController::class, 'edit'])
         ->name('password.edit');
 
-    Route::post('/settings/password', [PasswordController::class, 'update'])
+    Route::post('/settings/password', [PasswordController::class, 'settings'])
         ->middleware('throttle:5,1')
         ->name('password.settings');
 
