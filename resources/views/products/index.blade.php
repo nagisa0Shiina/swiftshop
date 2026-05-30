@@ -734,7 +734,8 @@
 
         .ss-benefit-card-inner {
             min-height: 340px;
-            background: rgba(248, 249, 250, 0.00);
+            background-color: rgba(248, 249, 250, 0.78);
+            backdrop-filter: blur(20px);
         }
 
         @media (max-width: 767px) {
@@ -802,7 +803,7 @@
                     >
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -818,7 +819,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="refresh-cw" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -834,7 +835,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="lock-keyhole" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -850,7 +851,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="user-round" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
@@ -866,7 +867,7 @@
                         </div>
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 shadow-sm">
+                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
                                 <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-8">
                                     <i data-lucide="gift" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
