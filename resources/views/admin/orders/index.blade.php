@@ -73,17 +73,25 @@
                 <span>注文管理</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="truck" class="w-5 h-5"></i>
-                <span>発送状況</span>
-            </a>
+            <a href="{{ route('admin.shipping.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                    <i data-lucide="truck" class="w-5 h-5"></i>
+                    <span>発送状況</span>
+                </a>
 
-            <a href="{{ route('admin.orders.index') }}"
-               class="gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>
-                <span>決済状況</span>
-            </a>
+                @if (Route::has('admin.payments.index'))
+                    <a href="{{ route('admin.payments.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @else
+                    <a href="{{ route('admin.orders.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @endif
 
             @if (Route::has('admin.articles.index'))
                 <a href="{{ route('admin.articles.index') }}"
