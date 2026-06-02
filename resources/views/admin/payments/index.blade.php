@@ -72,8 +72,7 @@
         </div>
     </aside>
 
-
-    {{-- Mobile Header --}}
+ {{-- Mobile Header --}}
     <header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
         <div>
             <div class="text-2xl font-bold leading-none">ShopSwift</div>
@@ -179,6 +178,7 @@
 
         </aside>
     </div>
+
 
     <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
         <div class="mb-8">
