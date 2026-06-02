@@ -760,8 +760,7 @@
             class="absolute inset-0 w-full h-full object-cover"
         >
 
-        {{-- <div class="absolute inset-0 bg-black/20"></div> --}}
-        {{-- <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/25 to-white/65"></div> --}}
+       
 
         <div class="relative z-10 px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
             {{-- 左ボタン：カード外・画像端 --}}
@@ -804,7 +803,7 @@
                         class="ss-benefit-carousel flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
                     >
 
-                        <div class="ss-benefit-card snap-start shrink-0">
+                        <div class="ss-benefit-card snap-start shrink-0 w-[82vw] sm:w-[560px] lg:w-[620px]">
                             <div class="ss-benefit-card-inner min-h-[380px] bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
