@@ -797,7 +797,7 @@
 
 
                 {{-- カルーセル --}}
-                <div class="sm:px-4 lg:px-8">
+                <div class="sm:px-4 lg:px-16">
                     <div
                         id="ssBenefitCarousel"
                         class="ss-benefit-carousel flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory"
