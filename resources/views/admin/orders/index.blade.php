@@ -256,30 +256,14 @@
 <script>
     lucide.createIcons();
 
-    const adminMenuOpen = document.getElementById('adminMenuOpen');
-    const adminMenuClose = document.getElementById('adminMenuClose');
-    const adminMobileMenu = document.getElementById('adminMobileMenu');
-    const adminMobileOverlay = document.getElementById('adminMobileOverlay');
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    if (adminMenuOpen && adminMobileMenu) {
-        adminMenuOpen.addEventListener('click', () => {
-            adminMobileMenu.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            lucide.createIcons();
         });
-    }
-
-    function closeAdminMenu() {
-        if (!adminMobileMenu) return;
-        adminMobileMenu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-    }
-
-    if (adminMenuClose) {
-        adminMenuClose.addEventListener('click', closeAdminMenu);
-    }
-
-    if (adminMobileOverlay) {
-        adminMobileOverlay.addEventListener('click', closeAdminMenu);
     }
 </script>
 
