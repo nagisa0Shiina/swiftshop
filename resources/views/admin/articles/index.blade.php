@@ -38,9 +38,11 @@
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>注文管理
             </a>
 
-            <a href="{{ route('admin.shipping.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="truck" class="w-5 h-5"></i>発送状況
-            </a>
+                    <a href="{{ route('admin.shipping.index') }}"
+            class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="truck"></i>
+                <span>発送状況</span>
+</a>
 
             <a href="{{ route('admin.payments.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
                 <i data-lucide="credit-card" class="w-5 h-5"></i>決済状況

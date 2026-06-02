@@ -54,14 +54,14 @@ Route::get('/articles', [ArticleController::class, 'index'])
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])
     ->name('articles.show');
 
-Route::view('/articles/morning-routine', 'articles.morning-routine')
-    ->name('articles.morning-routine');
+// Route::view('/articles/morning-routine', 'articles.morning-routine')
+//     ->name('articles.morning-routine');
 
-Route::view('/articles/aroma-humidifier', 'articles.aroma-humidifier')
-    ->name('articles.aroma-humidifier');
+// Route::view('/articles/aroma-humidifier', 'articles.aroma-humidifier')
+//     ->name('articles.aroma-humidifier');
 
-Route::view('/articles/free-shipping', 'articles.free-shipping')
-    ->name('articles.free-shipping');
+// Route::view('/articles/free-shipping', 'articles.free-shipping')
+//     ->name('articles.free-shipping');
 
 /*
 |--------------------------------------------------------------------------

@@ -9,143 +9,233 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        .admin-layout {
+        body {
+            margin: 0;
+            background: #f5f6f7;
+            color: #111827;
+            overflow-x: hidden;
+        }
+
+        .admin-page {
+            min-height: 100vh;
             display: flex;
-            min-height: 100vh;
+            align-items: stretch;
         }
 
-        .admin-sidebar {
-            width: 300px;
-            min-width: 300px;
-            max-width: 300px;
-            flex: 0 0 300px;
-            min-height: 100vh;
-            background: #070d16;
-            color: #ffffff;
-        }
-
-        .admin-main {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .admin-sidebar,
-        .admin-sidebar *,
-        .admin-sidebar a,
-        .admin-sidebar span,
-        .admin-sidebar button,
-        .admin-sidebar div,
-        .admin-sidebar nav {
+        .admin-sidebar-fixed {
+            width: 300px !important;
+            min-width: 300px !important;
+            max-width: 300px !important;
+            flex: 0 0 300px !important;
+            min-height: 100vh !important;
+            background: #070d16 !important;
+            color: #ffffff !important;
+            display: flex !important;
+            flex-direction: column !important;
             writing-mode: horizontal-tb !important;
             text-orientation: mixed !important;
+        }
+
+        .admin-sidebar-fixed,
+        .admin-sidebar-fixed *,
+        .admin-sidebar-fixed a,
+        .admin-sidebar-fixed span,
+        .admin-sidebar-fixed div,
+        .admin-sidebar-fixed nav,
+        .admin-sidebar-fixed button,
+        .admin-sidebar-fixed form {
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            white-space: nowrap !important;
             word-break: keep-all !important;
             overflow-wrap: normal !important;
-            white-space: nowrap !important;
+            line-break: auto !important;
             letter-spacing: normal !important;
         }
 
-        .admin-nav-link,
-        .admin-nav-button {
+        .admin-sidebar-logo {
+            padding: 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-sidebar-logo a {
+            display: block !important;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .admin-sidebar-title {
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 800;
+        }
+
+        .admin-sidebar-subtitle {
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.25em !important;
+        }
+
+        .admin-sidebar-nav {
+            flex: 1;
+            padding: 24px 16px;
+            overflow-y: auto;
+        }
+
+        .admin-sidebar-bottom {
+            padding: 24px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-sidebar-link,
+        .admin-sidebar-button {
             width: 100% !important;
             display: flex !important;
             flex-direction: row !important;
             align-items: center !important;
             justify-content: flex-start !important;
             gap: 16px !important;
+            padding: 16px 20px !important;
+            margin-bottom: 8px !important;
+            border-radius: 16px !important;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+            text-decoration: none !important;
+            border: none !important;
+            cursor: pointer;
+            box-sizing: border-box !important;
+        }
+
+        .admin-sidebar-link svg,
+        .admin-sidebar-button svg {
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            flex-shrink: 0 !important;
+        }
+
+        .admin-sidebar-link span,
+        .admin-sidebar-button span {
+            display: inline-block !important;
             writing-mode: horizontal-tb !important;
             white-space: nowrap !important;
         }
 
-        .admin-nav-link svg,
-        .admin-nav-button svg {
-            flex-shrink: 0 !important;
+        .admin-sidebar-link-normal,
+        .admin-sidebar-button {
+            color: rgba(255, 255, 255, 0.8) !important;
+            background: transparent !important;
+        }
+
+        .admin-sidebar-link-normal:hover,
+        .admin-sidebar-button:hover {
+            color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .admin-sidebar-link-active {
+            color: #070d16 !important;
+            background: #ffffff !important;
+        }
+
+        .admin-main {
+            flex: 1;
+            min-width: 0;
+            padding: 40px;
+        }
+
+        .admin-mobile-header {
+            display: none;
         }
 
         @media (max-width: 1023px) {
-            .admin-layout {
+            .admin-page {
                 display: block;
             }
 
-            .admin-sidebar {
-                display: none;
+            .admin-sidebar-fixed {
+                display: none !important;
+            }
+
+            .admin-mobile-header {
+                display: flex;
+                position: sticky;
+                top: 0;
+                z-index: 40;
+                background: #070d16;
+                color: #ffffff;
+                padding: 16px;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .admin-main {
+                padding: 32px 16px;
             }
         }
     </style>
 </head>
 
-<body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
+<body>
 
-<div class="admin-layout">
+<div class="admin-page">
 
-    {{-- PC Sidebar --}}
-    <aside class="admin-sidebar hidden lg:flex flex-col">
+    <aside class="admin-sidebar-fixed">
 
-        <div class="px-8 py-8 border-b border-white/10">
-            <a href="{{ route('admin.dashboard') }}" class="block">
-                <div class="text-2xl font-bold leading-none">
-                    ShopSwift
-                </div>
-
-                <div class="mt-3 text-xs text-white/50">
-                    ADMIN PANEL
-                </div>
+        <div class="admin-sidebar-logo">
+            <a href="{{ route('admin.dashboard') }}">
+                <div class="admin-sidebar-title">ShopSwift</div>
+                <div class="admin-sidebar-subtitle">ADMIN PANEL</div>
             </a>
         </div>
 
-        <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+        <nav class="admin-sidebar-nav">
 
-            <a href="{{ route('admin.dashboard') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+            <a href="{{ route('admin.dashboard') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="layout-dashboard"></i>
                 <span>ダッシュボード</span>
             </a>
 
-            <a href="{{ route('admin.products.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="package" class="w-5 h-5"></i>
+            <a href="{{ route('admin.products.index') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="package"></i>
                 <span>商品管理</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+            <a href="{{ route('admin.orders.index') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="clipboard-list"></i>
                 <span>注文管理</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="truck" class="w-5 h-5"></i>
+            <a href="{{ route('admin.orders.index') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="truck"></i>
                 <span>発送状況</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>
+            <a href="{{ route('admin.orders.index') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="credit-card"></i>
                 <span>決済状況</span>
             </a>
 
-            <a href="{{ route('admin.articles.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
-                <i data-lucide="newspaper" class="w-5 h-5"></i>
+            <a href="{{ route('admin.articles.index') }}" class="admin-sidebar-link admin-sidebar-link-active">
+                <i data-lucide="newspaper"></i>
                 <span>記事管理</span>
             </a>
 
         </nav>
 
-        <div class="px-4 py-6 border-t border-white/10 space-y-2">
+        <div class="admin-sidebar-bottom">
 
-            <a href="{{ route('products.index') }}"
-               class="admin-nav-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="external-link" class="w-5 h-5"></i>
+            <a href="{{ route('products.index') }}" class="admin-sidebar-link admin-sidebar-link-normal">
+                <i data-lucide="external-link"></i>
                 <span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
-                <button type="submit"
-                        class="admin-nav-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                <button type="submit" class="admin-sidebar-button">
+                    <i data-lucide="log-out"></i>
                     <span>ログアウト</span>
                 </button>
             </form>
@@ -154,8 +244,7 @@
 
     </aside>
 
-    {{-- Mobile Header --}}
-    <header class="lg:hidden sticky top-0 z-40 bg-[#070d16] text-white px-4 py-4 flex items-center justify-between">
+    <header class="admin-mobile-header">
         <div>
             <div class="text-xl font-bold">ShopSwift</div>
             <div class="text-xs tracking-widest text-white/50">ADMIN PANEL</div>
@@ -167,8 +256,7 @@
         </a>
     </header>
 
-    {{-- Main --}}
-    <main class="admin-main px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+    <main class="admin-main">
 
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
 
