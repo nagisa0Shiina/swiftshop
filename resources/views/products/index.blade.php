@@ -760,7 +760,7 @@
             class="absolute inset-0 w-full h-full object-cover"
         >
 
-        <div class="absolute inset-0 bg-black/20"></div>
+        {{-- <div class="absolute inset-0 bg-black/20"></div> --}}
         {{-- <div class="absolute inset-0 bg-gradient-to-b from-white/55 via-white/25 to-white/65"></div> --}}
 
         <div class="relative z-10 px-5 sm:px-8 lg:px-12 py-12 sm:py-16">
