@@ -128,6 +128,11 @@
                     <i data-lucide="layout-grid" class="w-5 h-5"></i>
                     全商品を見る
                 </a>
+                <a href="{{ route('contact.index') }}"
+                   class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    お問い合わせ
+                </a>
             </nav>
 
             <div class="border-t border-gray-100 mt-8 pt-6">
