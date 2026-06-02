@@ -515,8 +515,9 @@
                                     人気商品
                                 </span>
 
-                                @if ($product->image_path)
-                                    <img src="{{ asset('storage/' . $product->image_path) }}"
+                                @if ($product->image)
+                                    <img src="{{ asset('storage/' . $product->image
+                                    ) }}"
                                          alt="{{ $product->name }}"
                                          class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
                                 @else
