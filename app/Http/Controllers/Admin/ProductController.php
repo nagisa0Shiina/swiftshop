@@ -41,6 +41,15 @@ class ProductController extends Controller
             'image' => ['required', 'image', 'max:2048'],
             'is_active' => ['nullable', 'boolean'],
             'is_featured' => ['nullable', 'boolean'],
+        ], [
+        'name.required' => '商品名を入力してください。',
+        'price.required' => '価格を入力してください。',
+        'price.integer.required' => '価格を入力してください。',
+        'stock.required' => '在庫数を入力してください。',
+        'stock.integer.required' => '在庫数は整数で入力してください。',
+        'image.required' => '画像ファイルを選択してください。',
+        'image.mimes' => '画像は jpg / jpeg / png / webp のいずれかを選択してください。',
+        'image.max' => '画像サイズは2MB以内にしてください。',  
         ]);
 
         $imagePath = null;
@@ -86,37 +95,44 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'category' => ['nullable', 'string', 'max:255'],
-            'price' => ['required', 'integer', 'min:0'],
-            'stock' => ['required', 'integer', 'min:0'],
-            'image' => ['required','nullable', 'image', 'max:2048'],
-            'is_active' => ['nullable', 'boolean'],
-            'is_featured' => ['nullable', 'boolean'],
-        ]);
+          $validated = $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'description' => ['nullable', 'string'],
+        'price' => ['required', 'integer', 'min:0'],
+        'stock' => ['required', 'integer', 'min:0'],
+        'imagePath' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+    ], [
+        'name.required' => '商品名を入力してください。',
+        'price.required' => '価格を入力してください。',
+        'price.integer' => '価格は整数で入力してください。',
+        'stock.required' => '在庫数を入力してください。',
+        'stock.integer' => '在庫数は整数で入力してください。',
+        'imagePath.image' => '画像ファイルを選択してください。',
+        'imagePath.mimes' => '画像は jpg / jpeg / png / webp のいずれかを選択してください。',
+        'imagePath.max' => '画像サイズは2MB以内にしてください。',
+    ]);
 
-        $imagePath = $product->image_path;
 
-        if ($request->hasFile('image')) {
-            if ($product->image_path) {
-                Storage::disk('public')->delete($product->image_path);
-            }
+    $data = [
+        'name' => $validated['name'],
+        'description' => $validated['description'] ?? null,
+        'price' => $validated['price'],
+        'stock' => $validated['stock'],
 
-            $imagePath = $request->file('image')->store('product_images', 'public');
-        }
+    ];
 
-        $product->update([
-            'name' => $validated['name'],
-            'description' => $validated['description'],
-            'category' => $validated['category'] ?? null,
-            'price' => $validated['price'],
-            'stock' => $validated['stock'],
-            'image_path' => $imagePath,
-            'is_active' => $request->boolean('is_active'),
-            'is_featured' => $request->boolean('is_featured'),
-        ]);
+    if($request->hasFile('imagePath')) {
+    if(!empty($product->image_path) && Storage::disk('public')->exists($product->image_path)){
+        Storage::disk('public')->delete($product->image_path);
+    }
+        
+         $data['image_path'] = $request->file('imagePath')->store('product_images', 'public');
+    }
+    
+
+
+    $product->update($data);
+    
 
         return redirect()
             ->route('admin.products.index')
