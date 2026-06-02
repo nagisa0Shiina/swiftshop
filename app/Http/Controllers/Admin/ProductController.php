@@ -64,7 +64,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'category' => $validated['category'] ?? null,
-            'image_path' => $imagePath,
+            'image' => $imagePath,
             'is_active' => $request->boolean('is_active'),
             'is_featured' => $request->boolean('is_featured'),
         ]);
@@ -107,9 +107,9 @@ class ProductController extends Controller
         'price.integer' => '価格は整数で入力してください。',
         'stock.required' => '在庫数を入力してください。',
         'stock.integer' => '在庫数は整数で入力してください。',
-        'imagePath.image' => '画像ファイルを選択してください。',
-        'imagePath.mimes' => '画像は jpg / jpeg / png / webp のいずれかを選択してください。',
-        'imagePath.max' => '画像サイズは2MB以内にしてください。',
+        'image.image' => '画像ファイルを選択してください。',
+        'image.mimes' => '画像は jpg / jpeg / png / webp のいずれかを選択してください。',
+        'image.max' => '画像サイズは2MB以内にしてください。',
     ]);
 
 
@@ -126,7 +126,7 @@ class ProductController extends Controller
         Storage::disk('public')->delete($product->image_path);
     }
         
-         $data['image_path'] = $request->file('imagePath')->store('product_images', 'public');
+         $data['image'] = $request->file('image')->store('product_images', 'public');
     }
     
 
