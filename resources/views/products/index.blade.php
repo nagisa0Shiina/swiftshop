@@ -805,7 +805,7 @@
                     >
 
                         <div class="ss-benefit-card snap-start shrink-0">
-                            <div class="ss-benefit-card-inner backdrop-blur-md rounded-3xl p-8 border border-white/80 blur shadow-sm">
+                            <<div class="ss-benefit-card-inner min-h-[340px] bg-white/90 backdrop-blur-sm rounded-3xl p-8 border border-white/80 shadow-sm">
                                 <div class="w-16 h-16 rounded-full  flex items-center justify-center mb-8">
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
