@@ -88,8 +88,8 @@
         人気商品
     </a>
 
-    <a href="{{ route('products.index') }}#journal" class="hover:text-gray-500">
-        Journal
+    <a href="{{ route('articles.index') }}#journal" class="hover:text-gray-500">
+        記事一覧
     </a>
 
     <a href="{{ route('contact.index') }}" class="hover:text-gray-500">
