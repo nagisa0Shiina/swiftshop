@@ -229,7 +229,7 @@
                     </a>
 
                     <a href="{{ route('orders.index') }}"
-                       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827]   font-bold">
+                       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-[#070d16] text-white  font-bold">
                         <span>注文履歴</span>
                         <i data-lucide="receipt-text" class="w-5 h-5"></i>
                     </a>
