@@ -143,29 +143,34 @@
         </nav>
 
         <div class="px-4 py-6 border-t border-white/10 space-y-2">
-
-            <a href="{{ route('products.index') }}"
-               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="external-link"></i>
-                <span>サイトを見る</span>
+            <a href="{{ route('products.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i><span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-
-                <button type="submit"
-                        class="admin-sidebar-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="log-out"></i>
-                    <span>ログアウト</span>
+                <button type="submit" class="w-full flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i><span>ログアウト</span>
                 </button>
             </form>
-
         </div>
-
     </aside>
 
+ {{-- Mobile Header --}}
+    <header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
+        <div>
+            <div class="text-2xl font-bold leading-none">ShopSwift</div>
+            <div class="mt-2 text-xs tracking-[0.25em] text-white/50">ADMIN PANEL</div>
+        </div>
 
-     {{-- Mobile Drawer --}}
+        <button type="button"
+                id="adminMenuOpen"
+                class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
+            <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+    </header>
+
+    {{-- Mobile Drawer --}}
     <div id="adminMobileMenu"
          class="fixed inset-0 z-[999] hidden lg:hidden">
 
@@ -257,6 +262,7 @@
 
         </aside>
     </div>
+
 
 
     <main class="admin-main px-4 sm:px-6 lg:px-10 py-8 lg:py-10">

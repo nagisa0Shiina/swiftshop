@@ -20,68 +20,91 @@
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="min-h-screen flex">
+<div class="admin-layout">
 
-    <aside class="hidden lg:flex w-[300px] shrink-0 min-h-screen flex-col bg-[#070d16] text-white">
+    {{-- PC Sidebar --}}
+    <aside class="admin-sidebar hidden lg:flex">
+
         <div class="px-8 py-8 border-b border-white/10">
-            <a href="{{ route('admin.dashboard') }}" class="block">
-                <div class="text-2xl font-bold leading-none whitespace-nowrap">ShopSwift</div>
-                <div class="mt-3 text-xs tracking-[0.25em] text-white/50 whitespace-nowrap">ADMIN PANEL</div>
+            <a href="{{ route('admin.dashboard') }}" class="block text-white">
+                <div class="text-2xl font-bold leading-none">
+                    ShopSwift
+                </div>
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
+                    ADMIN PANEL
+                </div>
             </a>
         </div>
 
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-            <a href="{{ route('admin.dashboard') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="layout-dashboard" class="w-5 h-5 shrink-0"></i><span>ダッシュボード</span>
+
+            <a href="{{ route('admin.dashboard') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold bg-white text-[#070d16] transition">
+                <i data-lucide="layout-dashboard"></i>
+                <span>ダッシュボード</span>
             </a>
 
-            <a href="{{ route('admin.products.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap bg-white text-[#070d16] transition">
-                <i data-lucide="package" class="w-5 h-5 shrink-0"></i><span>商品管理</span>
+            <a href="{{ route('admin.products.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="package"></i>
+                <span>商品管理</span>
             </a>
 
-            <a href="{{ route('admin.orders.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="clipboard-list" class="w-5 h-5 shrink-0"></i><span>注文管理</span>
+            <a href="{{ route('admin.orders.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="clipboard-list"></i>
+                <span>注文管理</span>
             </a>
-        <a href="{{ route('admin.shipping.index') }}"
-                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                    <i data-lucide="truck" class="w-5 h-5"></i>
-                    <span>発送状況</span>
+
+            <a href="{{ route('admin.shipping.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="truck"></i>
+                <span>発送状況</span>
+            </a>
+
+            @if (Route::has('admin.payments.index'))
+                <a href="{{ route('admin.payments.index') }}"
+                   class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="credit-card"></i>
+                    <span>決済状況</span>
                 </a>
-
-                @if (Route::has('admin.payments.index'))
-                    <a href="{{ route('admin.payments.index') }}"
-                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                        <i data-lucide="credit-card" class="w-5 h-5"></i>
-                        <span>決済状況</span>
-                    </a>
-                @else
-                    <a href="{{ route('admin.orders.index') }}"
-                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                        <i data-lucide="credit-card" class="w-5 h-5"></i>
-                        <span>決済状況</span>
-                    </a>
-                @endif  
-
-            @if (Route::has('admin.articles.index'))
-                <a href="{{ route('admin.articles.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="newspaper" class="w-5 h-5 shrink-0"></i><span>記事管理</span>
+            @else
+                <a href="{{ route('admin.orders.index') }}"
+                   class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="credit-card"></i>
+                    <span>決済状況</span>
                 </a>
             @endif
+
+            <a href="{{ route('admin.articles.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="newspaper"></i>
+                <span>記事管理</span>
+            </a>
+
         </nav>
 
         <div class="px-4 py-6 border-t border-white/10 space-y-2">
-            <a href="{{ route('products.index') }}" class="flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="external-link" class="w-5 h-5 shrink-0"></i><span>サイトを見る</span>
+
+            <a href="{{ route('products.index') }}"
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link"></i>
+                <span>サイトを見る</span>
             </a>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
-                <button type="submit" class="w-full flex flex-row items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold whitespace-nowrap text-white/80 hover:bg-white/10 hover:text-white transition">
-                    <i data-lucide="log-out" class="w-5 h-5 shrink-0"></i><span>ログアウト</span>
+
+                <button type="submit"
+                        class="admin-sidebar-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out"></i>
+                    <span>ログアウト</span>
                 </button>
             </form>
+
         </div>
 
+    </aside>
 
     {{-- Mobile Header --}}
     <header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
@@ -189,6 +212,7 @@
 
         </aside>
     </div>
+
 
     <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 mb-8">
