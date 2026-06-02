@@ -100,7 +100,7 @@ class ProductController extends Controller
         'description' => ['nullable', 'string'],
         'price' => ['required', 'integer', 'min:0'],
         'stock' => ['required', 'integer', 'min:0'],
-        'imagePath' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+        'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
     ], [
         'name.required' => '商品名を入力してください。',
         'price.required' => '価格を入力してください。',
