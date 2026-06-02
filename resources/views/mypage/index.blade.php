@@ -117,7 +117,7 @@
                     カート
                 </a>
 
-                <a href="{{ route('password.edit') }}"
+                <a href="{{ route('password.update') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50">
                     <i data-lucide="lock-keyhole" class="w-5 h-5"></i>
                     パスワード変更
