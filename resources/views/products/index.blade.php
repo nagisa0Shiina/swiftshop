@@ -870,7 +870,7 @@
     <div class="relative overflow-hidden min-h-[620px]">
 
         <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=80"
+            src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="ShopSwiftでのお買い物"
             class="absolute inset-0 w-full h-full object-cover"
         >
