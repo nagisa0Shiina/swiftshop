@@ -93,7 +93,7 @@
                    accept="image/*"
                    class="w-full border rounded-xl px-4 py-3">
             <p class="text-sm text-gray-500 mt-2">
-                jpg / png / webp など。最大2MB。
+                jpg / png / webp など。最大5MB。
             </p>
         </div>
 
