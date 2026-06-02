@@ -168,14 +168,22 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-sm">
+                <div class="flex items-center justify-between">
+                    <label for="remember" class="inline-flex items-center gap-2 cursor-pointer">
+                        <input
+                            id="remember"
+                            type="checkbox"
+                            name="remember"
+                            value="1"
+                            class="rounded border-gray-300 text-[#070d16] shadow-sm focus:ring-[#070d16]"
+                            {{ old('remember') ? 'checked' : '' }}
+                        >
 
-                    <label class="flex items-center gap-2 text-gray-500">
-                        <input type="checkbox"
-                               name="remember"
-                               class="rounded border-gray-300"
-                               @checked(old('remember'))>
-                        ログイン状態を保持
+                        <span class="text-sm font-bold text-gray-600">
+                            ログイン状態を保持する
+                        </span>
                     </label>
+                </div>
 
                     <a href="{{ route('password.request') }}"
                        class="font-bold text-[#111827] hover:underline">
