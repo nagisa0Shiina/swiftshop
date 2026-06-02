@@ -56,7 +56,7 @@
     </a>
 
     <a href="{{ route('products.all') }}"
-       class="bg-[#070d16] text-white px-5 py-3 rounded-full hover:bg-gray-800">
+       class="hover:text-gray-500">
         全商品を見る
     </a>
 
@@ -68,7 +68,7 @@
         Journal
     </a>
 
-    <a href="{{ route('contact.index') }}" class="hover:text-gray-500">
+    <a href="{{ route('contact.index') }}" class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
         お問い合わせ
     </a>
 
