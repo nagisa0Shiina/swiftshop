@@ -895,12 +895,12 @@
                     商品一覧を見る
                     <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
-
+{{-- 
                 <a href="{{ route('articles.index') }}"
                    class="inline-flex items-center justify-center gap-2 bg-white/50 border border-gray-200 px-6 py-4 rounded-2xl font-bold hover:bg-white transition">
                     記事一覧を見る
                     <i data-lucide="newspaper" class="w-5 h-5"></i>
-                </a>
+                </a> --}}
 
             </div>
 
