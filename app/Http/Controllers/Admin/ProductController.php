@@ -103,7 +103,7 @@ class ProductController extends Controller
             'price' => ['required', 'integer', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
             'category' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'is_active' => ['nullable', 'boolean'],
             'is_featured' => ['nullable', 'boolean'],
         ], [
@@ -114,7 +114,7 @@ class ProductController extends Controller
             'stock.integer' => '在庫数は整数で入力してください。',
             'image.image' => '画像ファイルを選択してください。',
             'image.mimes' => '画像は jpg / jpeg / png / webp のいずれかを選択してください。',
-            'image.max' => '画像サイズは2MB以内にしてください。',
+            'image.max' => '画像サイズは5MB以内にしてください。',
         ]);
 
         $data = [
