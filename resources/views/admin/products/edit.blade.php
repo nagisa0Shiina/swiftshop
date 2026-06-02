@@ -123,8 +123,8 @@
             <div>
                 <label class="block font-bold mb-2">現在の画像</label>
 
-                @if ($product->image)
-                    <img src="{{ asset('storage/' . $product->image) }}"
+                @if ($product->image_path)
+                    <img src="{{ asset('storage/' . $product->image_path) }}"
                          alt="{{ $product->name }}"
                          class="w-40 h-40 object-cover rounded-xl border mb-4">
                 @else
