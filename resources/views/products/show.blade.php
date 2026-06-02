@@ -450,7 +450,7 @@
         <div>
             <div class="bg-[#f4eee6] rounded-3xl min-h-[280px] sm:min-h-[380px] md:min-h-[560px] flex items-center justify-center overflow-hidden">
                 @if ($product->image_path)
-                    <img src="{{ asset('storage/' . $product->image_path) }}"
+                    <img src="{{ asset('storage/' . $product->image) }}"
                          alt="{{ $product->name }}"
                          class="w-full h-full object-cover">
                 @else
