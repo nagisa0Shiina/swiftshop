@@ -229,7 +229,7 @@
                                             お気に入り
                                         </span>
 
-                                        @if ($product->image)
+                                        @if ($product->image_path)
                                             <img src="{{ asset('storage/' . $product->image_path) }}"
                                                  alt="{{ $product->name }}"
                                                  class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
