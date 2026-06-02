@@ -182,7 +182,7 @@
         <nav class="flex-1 px-6 py-7 space-y-2 overflow-y-auto">
 
             <a href="{{ route('products.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-[#070d16] text-white font-bold">
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4  font-bold">
                 <span>ホーム</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </a>
@@ -200,7 +200,7 @@
             </a>
 
             <a href="{{ route('articles.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-[#070d16] text-white  font-bold">
                 <span>Journal</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </a>
