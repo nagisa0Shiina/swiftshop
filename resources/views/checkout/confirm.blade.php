@@ -395,71 +395,97 @@
 
                     <div class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-8 lg:sticky lg:top-6">
 
-                        <h2 class="text-2xl font-bold mb-8">
-                            注文サマリー
-                        </h2>
+                                                <h2 class="text-2xl font-bold mb-8">
+                                注文サマリー
+                            </h2>
 
-                        <div class="space-y-5 text-base sm:text-lg">
+                            @php
+                                $freeShippingThreshold = 10000;
+                                $shippingBaseFee = 220;
 
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">
-                                    商品小計
-                                </span>
+                                $calculatedSubtotal = $cartItems->sum(function ($cartItem) {
+                                    return $cartItem->product->price * $cartItem->quantity;
+                                });
 
-                                <span class="font-bold">
-                                    ¥{{ number_format($subtotal) }}
-                                </span>
+                                $subtotal = $calculatedSubtotal;
+                                $shippingFee = $subtotal >= $freeShippingThreshold ? 0 : $shippingBaseFee;
+                                $total = $subtotal + $shippingFee;
+                                $remainingForFreeShipping = max($freeShippingThreshold - $subtotal, 0);
+                            @endphp
+
+                            <div class="mb-6 rounded-2xl border-2 border-[#070d16] bg-[#f8f4ef] px-5 py-4">
+                                <div class="text-sm font-bold text-gray-500 mb-1">
+                                    送料ルール
+                                </div>
+
+                                <div class="text-lg font-bold text-[#070d16]">
+                                    ¥10,000以上で送料無料 / 未満は送料¥220
+                                </div>
                             </div>
 
-                            <div class="flex justify-between">
-                                <span class="text-gray-500">
-                                    送料
-                                </span>
+                            <div class="space-y-5 text-base sm:text-lg">
 
-                                <span class="font-bold">
-                                    @if ($shippingFee > 0)
-                                        ¥{{ number_format($shippingFee) }}
-                                    @else
-                                        無料
-                                    @endif
-                                </span>
-                            </div>
+                                <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                                    <span class="text-gray-500">
+                                        商品小計
+                                    </span>
 
-                            <div class="rounded-2xl px-4 py-4 {{ $shippingFee > 0 ? 'bg-orange-50 text-orange-700' : 'bg-green-50 text-green-700' }}">
+                                    <span class="font-bold">
+                                        ¥{{ number_format($subtotal) }}
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-between items-center border-b border-gray-100 pb-4">
+                                    <span class="text-gray-500">
+                                        送料
+                                    </span>
+
+                                    <span class="font-bold {{ $shippingFee > 0 ? 'text-orange-600' : 'text-green-600' }}">
+                                        @if ($shippingFee > 0)
+                                            ¥{{ number_format($shippingFee) }}
+                                        @else
+                                            無料
+                                        @endif
+                                    </span>
+                                </div>
+
                                 @if ($shippingFee > 0)
-                                    <div class="font-bold">
-                                        あと ¥{{ number_format($remainingForFreeShipping) }} で送料無料
-                                    </div>
+                                    <div class="rounded-2xl bg-orange-50 border border-orange-200 px-5 py-4 text-orange-700">
+                                        <div class="font-bold">
+                                            あと ¥{{ number_format($remainingForFreeShipping) }} で送料無料
+                                        </div>
 
-                                    <div class="text-sm mt-1">
-                                        ¥{{ number_format($freeShippingThreshold) }}以上のご注文で送料無料になります。
+                                        <div class="text-sm mt-1 leading-6">
+                                            商品小計が ¥{{ number_format($freeShippingThreshold) }} 以上になると、送料¥220が無料になります。
+                                        </div>
                                     </div>
                                 @else
-                                    <div class="font-bold">
-                                        送料無料が適用されています
-                                    </div>
+                                    <div class="rounded-2xl bg-green-50 border border-green-200 px-5 py-4 text-green-700">
+                                        <div class="font-bold">
+                                            送料無料が適用されています
+                                        </div>
 
-                                    <div class="text-sm mt-1">
-                                        ¥{{ number_format($freeShippingThreshold) }}以上のご注文のため、送料は無料です。
+                                        <div class="text-sm mt-1 leading-6">
+                                            商品小計が ¥{{ number_format($freeShippingThreshold) }} 以上のため、送料は無料です。
+                                        </div>
                                     </div>
                                 @endif
+
                             </div>
 
-                        </div>
+                            <div class="border-t my-8"></div>
 
-                        <div class="border-t my-8"></div>
+                            <div class="flex justify-between items-center mb-10">
 
-                        <div class="flex justify-between items-center mb-10">
+                                <span class="text-xl sm:text-2xl font-bold">
+                                    合計
+                                </span>
 
-                            <span class="text-xl sm:text-2xl font-bold">
-                                合計
-                            </span>
+                                <span class="text-3xl sm:text-4xl font-bold">
+                                    ¥{{ number_format($total) }}
+                                </span>
 
-                            <span class="text-3xl sm:text-4xl font-bold">
-                                ¥{{ number_format($total) }}
-                            </span>
-
-                        </div>
+                            </div>
 
                         {{-- 配送先 --}}
                         <div class="border border-gray-200 rounded-2xl p-5 sm:p-6 mb-8">
