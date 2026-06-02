@@ -929,7 +929,7 @@
                                 </h3>
 
                                 <p class="text-gray-600 leading-8 text-base whitespace-normal break-words [writing-mode:horizontal-tb]">
-                                    一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
+                                    10,000円以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
                                 </p>
                             </div>
                         </div>
