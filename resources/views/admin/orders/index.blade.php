@@ -122,9 +122,6 @@
 
         </div>
 
-    </aside>
-
-
     {{-- Mobile Header --}}
     <header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
         <div>
@@ -352,6 +349,32 @@
 
 <script>
     lucide.createIcons();
+
+    const adminMenuOpen = document.getElementById('adminMenuOpen');
+    const adminMenuClose = document.getElementById('adminMenuClose');
+    const adminMobileMenu = document.getElementById('adminMobileMenu');
+    const adminMobileOverlay = document.getElementById('adminMobileOverlay');
+
+    if (adminMenuOpen && adminMobileMenu) {
+        adminMenuOpen.addEventListener('click', () => {
+            adminMobileMenu.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        });
+    }
+
+    function closeAdminMenu() {
+        if (!adminMobileMenu) return;
+        adminMobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    if (adminMenuClose) {
+        adminMenuClose.addEventListener('click', closeAdminMenu);
+    }
+
+    if (adminMobileOverlay) {
+        adminMobileOverlay.addEventListener('click', closeAdminMenu);
+    }
 </script>
 
 </body>
