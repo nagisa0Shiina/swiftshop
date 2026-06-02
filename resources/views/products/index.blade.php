@@ -399,7 +399,7 @@
             <i data-lucide="truck" class="w-8 h-8 shrink-0"></i>
             <div>
                 <div class="font-bold mb-2">送料無料</div>
-                <p class="text-sm text-gray-500 leading-relaxed">¥10,000以上のご注文で送料無料。</p>
+                <p class="text-sm text-gray-500 leading-relaxed">¥10,000以上のご注文で送料無料。通常¥220</p>
             </div>
         </div>
     </section>
@@ -925,7 +925,7 @@
                                 </div>
 
                                 <h3 class="text-2xl font-bold mb-5 whitespace-normal break-words [writing-mode:horizontal-tb]">
-                                    3,000円以上で送料無料
+                                    10,000円以上で送料無料 通常¥220
                                 </h3>
 
                                 <p class="text-gray-600 leading-8 text-base whitespace-normal break-words [writing-mode:horizontal-tb]">
@@ -944,7 +944,7 @@
                                     返品・交換のご相談OK
                                 </h3>
 
-                                <p class="text-gray-400  leading-8 text-base">
+                                <p class="text-gray-600  leading-8 text-base">
                                     商品到着後の不安にも対応。必要に応じて返品・交換のご相談を承ります。安心してお買い物いただけます。
                                 </p>
                             </div>
@@ -960,7 +960,7 @@
                                     安全な決済
                                 </h3>
 
-                                <p class="text-gray-400  leading-8 text-base">
+                                <p class="text-gray-600  leading-8 text-base">
                                     Stripe決済に対応。カード情報を安全に扱い、スムーズにお支払いできます。購入後は注文履歴から確認できます。
                                 </p>
                             </div>
@@ -976,7 +976,7 @@
                                     会員限定の便利機能
                                 </h3>
 
-                                <p class="text-gray-400 leading-8 text-base">
+                                <p class="text-gray-600 leading-8 text-base">
                                     注文履歴・カート・お気に入りなど、会員向けの便利な機能を利用できます。欲しい商品を管理しやすくなります。
                                 </p>
                             </div>
