@@ -62,7 +62,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'category' => $validated['category'] ?? null,
-            'image' => $imagePath,
+            'image_path' => $imagePath,
             'is_active' => $request->boolean('is_active'),
             'is_featured' => $request->boolean('is_featured'),
         ]);
@@ -90,6 +90,10 @@ class ProductController extends Controller
 
     /**
      * 商品更新
+     *
+     * 編集時：
+     * - 画像を選ばない場合：既存画像を維持
+     * - 新しい画像を選んだ場合：古い画像を削除して差し替え
      */
     public function update(Request $request, Product $product)
     {
@@ -123,23 +127,12 @@ class ProductController extends Controller
             'is_featured' => $request->boolean('is_featured'),
         ];
 
-        /*
-        |--------------------------------------------------------------------------
-        | 編集時の画像更新
-        |--------------------------------------------------------------------------
-        | 画像なし更新:
-        |   既存画像をそのまま維持
-        |
-        | 新しい画像あり:
-        |   古い画像を削除して、新しい画像パスを image カラムへ保存
-        |--------------------------------------------------------------------------
-        */
         if ($request->hasFile('image')) {
-            if (!empty($product->image) && Storage::disk('public')->exists($product->image)) {
-                Storage::disk('public')->delete($product->image);
+            if (!empty($product->image_path) && Storage::disk('public')->exists($product->image_path)) {
+                Storage::disk('public')->delete($product->image_path);
             }
 
-            $data['image'] = $request->file('image')->store('product_images', 'public');
+            $data['image_path'] = $request->file('image')->store('product_images', 'public');
         }
 
         $product->update($data);
@@ -169,8 +162,8 @@ class ProductController extends Controller
                 ->with('success', '商品を販売停止にしました。');
         }
 
-        if (!empty($product->image) && Storage::disk('public')->exists($product->image)) {
-            Storage::disk('public')->delete($product->image);
+        if (!empty($product->image_path) && Storage::disk('public')->exists($product->image_path)) {
+            Storage::disk('public')->delete($product->image_path);
         }
 
         $product->delete();
