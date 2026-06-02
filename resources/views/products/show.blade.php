@@ -449,7 +449,7 @@
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 items-start mb-16 md:mb-24 scroll-reveal">
         <div>
             <div class="bg-[#f4eee6] rounded-3xl min-h-[280px] sm:min-h-[380px] md:min-h-[560px] flex items-center justify-center overflow-hidden">
-                @if ($product->image_path)
+                @if ($product->image)
                     <img src="{{ asset('storage/' . $product->image) }}"
                          alt="{{ $product->name }}"
                          class="w-full h-full object-cover">
