@@ -121,7 +121,7 @@ class ProductController extends Controller
 
     ];
 
-    if($request->hasFile('imagePath')) {
+    if($request->hasFile('image')) {
     if(!empty($product->image_path) && Storage::disk('public')->exists($product->image_path)){
         Storage::disk('public')->delete($product->image_path);
     }

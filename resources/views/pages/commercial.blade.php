@@ -487,6 +487,61 @@
 
 <script>
     lucide.createIcons();
+       const siteMenuOpen = document.getElementById('siteMenuOpen');
+    const siteMenuClose = document.getElementById('siteMenuClose');
+    const siteMobileMenu = document.getElementById('siteMobileMenu');
+    const siteMobileOverlay = document.getElementById('siteMobileOverlay');
+    const siteMobilePanel = document.getElementById('siteMobilePanel');
+
+    function openSiteMenu() {
+        if (!siteMobileMenu || !siteMobileOverlay || !siteMobilePanel) return;
+
+        siteMobileMenu.classList.remove('pointer-events-none');
+        document.body.classList.add('overflow-hidden');
+
+        requestAnimationFrame(() => {
+            siteMobileOverlay.classList.remove('bg-black/0');
+            siteMobileOverlay.classList.add('bg-black/45');
+
+            siteMobilePanel.classList.remove('translate-x-full');
+            siteMobilePanel.classList.add('translate-x-0');
+        });
+    }
+
+    function closeSiteMenu() {
+        if (!siteMobileMenu || !siteMobileOverlay || !siteMobilePanel) return;
+
+        siteMobileOverlay.classList.remove('bg-black/45');
+        siteMobileOverlay.classList.add('bg-black/0');
+
+        siteMobilePanel.classList.remove('translate-x-0');
+        siteMobilePanel.classList.add('translate-x-full');
+
+        setTimeout(() => {
+            siteMobileMenu.classList.add('pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }, 500);
+    }
+
+    if (siteMenuOpen) {
+        siteMenuOpen.addEventListener('click', openSiteMenu);
+    }
+
+    if (siteMenuClose) {
+        siteMenuClose.addEventListener('click', closeSiteMenu);
+    }
+
+    if (siteMobileOverlay) {
+        siteMobileOverlay.addEventListener('click', closeSiteMenu);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeSiteMenu();
+        }
+    });
+
+
 </script>
 
 </body>
