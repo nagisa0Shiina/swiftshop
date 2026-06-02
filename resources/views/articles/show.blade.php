@@ -290,44 +290,47 @@
 
             </header>
 
-            <div class="rounded-3xl overflow-hidden bg-gray-100 mb-8 sm:mb-10 border border-gray-200">
+            <div class="w-full h-px bg-gray-200 mb-8 flex-shrink-0 flex items-center justify-center">
 
-                @if ($article->thumbnail_path)
-
-                    <img
-                        src="{{ asset('storage/' . $article->thumbnail_path) }}"
-                        alt="{{ $article->title }}"
-                        class="w-full max-h-[520px] object-cover"
-                    >
-
-                @else
-
-                    <div class="aspect-video flex items-center justify-center">
-                        <i data-lucide="newspaper" class="w-16 h-16 text-gray-300"></i>
-                    </div>
-
-                @endif
-
-            </div>
-
-            <div class="bg-white border border-gray-200 rounded-3xl p-5 sm:p-8">
-
-                <div class="prose max-w-none">
-
-                    @foreach (preg_split("/\r\n|\n|\r/", $article->body) as $paragraph)
-
-                        @if (trim($paragraph) !== '')
-
-                            <p class="text-base sm:text-lg leading-9 text-gray-700 mb-6 break-words">
-                                {{ $paragraph }}
-                            </p>
-
-                        @endif
-
-                    @endforeach
-
+                <div class="rounded-3xl overflow-hidden bg-gray-100 mb-8 sm:mb-10 border border-gray-200">
+    
+                    @if ($article->thumbnail_path)
+    
+                        <img
+                            src="{{ asset('storage/' . $article->thumbnail_path) }}"
+                            alt="{{ $article->title }}"
+                            class="w-full max-h-[520px] object-cover"
+                        >
+    
+                    @else
+    
+                        <div class="aspect-video flex items-center justify-center">
+                            <i data-lucide="newspaper" class="w-16 h-16 text-gray-300"></i>
+                        </div>
+    
+                    @endif
+    
                 </div>
-
+    
+                <div class="bg-white border border-gray-200 rounded-3xl p-5 sm:p-8">
+    
+                    <div class="prose max-w-none">
+    
+                        @foreach (preg_split("/\r\n|\n|\r/", $article->body) as $paragraph)
+    
+                            @if (trim($paragraph) !== '')
+    
+                                <p class="text-base sm:text-lg leading-9 text-gray-700 mb-6 break-words">
+                                    {{ $paragraph }}
+                                </p>
+    
+                            @endif
+    
+                        @endforeach
+    
+                    </div>
+    
+                </div>
             </div>
 
         </article>
