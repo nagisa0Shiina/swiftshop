@@ -780,7 +780,34 @@
 
 <script>
     lucide.createIcons();
-   const siteMenuOpen = document.getElementById('siteMenuOpen');
+  
+    /*
+    |--------------------------------------------------------------------------
+    | User dropdown
+    |--------------------------------------------------------------------------
+    */
+    const userMenuButton = document.getElementById('userMenuButton');
+    const userMenu = document.getElementById('userMenu');
+
+    if (userMenuButton && userMenu) {
+        userMenuButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!userMenu.contains(event.target) && !userMenuButton.contains(event.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mobile drawer
+    |--------------------------------------------------------------------------
+    */
+    const siteMenuOpen = document.getElementById('siteMenuOpen');
     const siteMenuClose = document.getElementById('siteMenuClose');
     const siteMobileMenu = document.getElementById('siteMobileMenu');
     const siteMobileOverlay = document.getElementById('siteMobileOverlay');
@@ -834,7 +861,67 @@
         }
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | Scroll reveal
+    |--------------------------------------------------------------------------
+    | これが無いと .scroll-reveal が opacity:0 のままで表示されない
+    |--------------------------------------------------------------------------
+    */
+    const revealTargets = document.querySelectorAll('.scroll-reveal');
 
+    if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12
+        });
+
+        revealTargets.forEach((target) => {
+            revealObserver.observe(target);
+        });
+    } else {
+        revealTargets.forEach((target) => {
+            target.classList.add('is-visible');
+        });
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Toast auto hide
+    |--------------------------------------------------------------------------
+    */
+    const cartToast = document.getElementById('cartToast');
+    const favoriteToast = document.getElementById('favorite');
+
+    if (cartToast) {
+        setTimeout(() => {
+            cartToast.style.opacity = '0';
+            cartToast.style.transform = 'translateY(-16px)';
+            cartToast.style.transition = 'opacity .3s ease, transform .3s ease';
+
+            setTimeout(() => {
+                cartToast.remove();
+            }, 300);
+        }, 2500);
+    }
+
+    if (favoriteToast) {
+        setTimeout(() => {
+            favoriteToast.style.opacity = '0';
+            favoriteToast.style.transform = 'translateY(-16px)';
+            favoriteToast.style.transition = 'opacity .3s ease, transform .3s ease';
+
+            setTimeout(() => {
+                favoriteToast.remove();
+            }, 300);
+        }, 2500);
+    }
 </script>
 
 </body>
