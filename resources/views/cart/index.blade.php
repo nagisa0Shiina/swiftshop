@@ -425,12 +425,12 @@
                 </h2>
 
                 <div class="mb-6 rounded-2xl border-2 border-[#070d16] bg-[#f8f4ef] px-5 py-4">
-                    <div class="text-sm font-bold text-gray-500 mb-1">
+                    {{-- <div class="text-sm font-bold text-gray-500 mb-1">
                         送料ルール
-                    </div>
+                    </div> --}}
 
                     <div class="text-lg font-bold text-[#070d16]">
-                        ¥10,000以上で送料無料 / 未満は送料¥220
+                        ¥10,000以上で送料無料 (通常送料¥220)
                     </div>
                 </div>
 
