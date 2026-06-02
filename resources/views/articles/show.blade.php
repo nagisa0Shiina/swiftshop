@@ -290,7 +290,7 @@
 
             </header>
 
-            <div class="flex justify-center items-center rounded-3xl overflow-hidden bg-gray-100 mb-8 sm:mb-10 border border-gray-200">
+            <div class="rounded-3xl overflow-hidden bg-gray-100 mb-8 sm:mb-10 border border-gray-200">
 
                 @if ($article->thumbnail_path)
 
