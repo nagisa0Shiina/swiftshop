@@ -297,15 +297,25 @@
             </div>
         </div>
 
-        @php
-            $todaySales = $todaySales ?? 0;
-            $totalSales = $totalSales ?? 0;
-            $ordersCount = $ordersCount ?? ($orders_count ?? 0);
-            $productsCount = $productsCount ?? ($products_count ?? 0);
-            $outOfStockCount = $outOfStockCount ?? ($out_of_stock_count ?? 0);
-            $latestOrders = $latestOrders ?? collect();
-            $popularProducts = $popularProducts ?? collect();
-        @endphp
+  @php
+    $todaySales = $todaySales ?? 0;
+    $totalSales = $totalSales ?? 0;
+    $ordersCount = $ordersCount ?? ($orders_count ?? 0);
+    $productsCount = $productsCount ?? ($products_count ?? 0);
+    $outOfStockCount = $outOfStockCount ?? ($out_of_stock_count ?? 0);
+
+    /*
+    |--------------------------------------------------------------------------
+    | 最近の注文
+    |--------------------------------------------------------------------------
+    | Controller側では $recentOrders を渡しているため、
+    | View側の表示用変数 $latestOrders に受け直す。
+    |--------------------------------------------------------------------------
+    */
+    $latestOrders = $latestOrders ?? $recentOrders ?? collect();
+
+    $popularProducts = $popularProducts ?? collect();
+@endphp
 
         <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-5 mb-8 lg:mb-10">
 
