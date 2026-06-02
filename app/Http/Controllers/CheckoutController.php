@@ -11,6 +11,21 @@ use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
+    private const FREE_SHIPPING_THRESHOLD = 10000;
+    private const SHIPPING_FEE = 220;
+
+    private function calculateSubtotal($cartItems): int
+    {
+        return (int) $cartItems->sum(function ($cartItem) {
+            return $cartItem->product->price * $cartItem->quantity;
+        });
+    }
+
+    private function calculateShippingFee(int $subtotal): int
+    {
+        return $subtotal >= self::FREE_SHIPPING_THRESHOLD ? 0 : self::SHIPPING_FEE;
+    }
+
     public function confirm(Request $request)
     {
         $cartItems = CartItem::with('product')
@@ -43,11 +58,18 @@ class CheckoutController extends Controller
             }
         }
 
-        $total = $cartItems->sum(function ($cartItem) {
-            return $cartItem->product->price * $cartItem->quantity;
-        });
+        $subtotal = $this->calculateSubtotal($cartItems);
+        $shippingFee = $this->calculateShippingFee($subtotal);
+        $total = $subtotal + $shippingFee;
+        $freeShippingThreshold = self::FREE_SHIPPING_THRESHOLD;
 
-        return view('checkout.confirm', compact('cartItems', 'total'));
+        return view('checkout.confirm', compact(
+            'cartItems',
+            'subtotal',
+            'shippingFee',
+            'total',
+            'freeShippingThreshold'
+        ));
     }
 
     public function store(Request $request)
@@ -72,18 +94,6 @@ class CheckoutController extends Controller
                     'regex:/^\d{3}-?\d{4}$/',
                 ],
 
-                /*
-                |--------------------------------------------------------------------------
-                | 電話番号
-                |--------------------------------------------------------------------------
-                | OK:
-                | 090-1234-5678
-                | 080-1234-5678
-                | 070-1234-5678
-                | 09012345678
-                | 08012345678
-                | 07012345678
-                */
                 'phone' => [
                     'required',
                     'regex:/^0[789]0-?\d{4}-?\d{4}$/',
@@ -167,9 +177,9 @@ class CheckoutController extends Controller
             }
         }
 
-        $total = $cartItems->sum(function ($cartItem) {
-            return $cartItem->product->price * $cartItem->quantity;
-        });
+        $subtotal = $this->calculateSubtotal($cartItems);
+        $shippingFee = $this->calculateShippingFee($subtotal);
+        $total = $subtotal + $shippingFee;
 
         $order = Order::create([
             'user_id' => $user->id,
@@ -209,6 +219,19 @@ class CheckoutController extends Controller
             ];
         }
 
+        if ($shippingFee > 0) {
+            $lineItems[] = [
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => '送料',
+                    ],
+                    'unit_amount' => $shippingFee,
+                ],
+                'quantity' => 1,
+            ];
+        }
+
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
@@ -218,6 +241,9 @@ class CheckoutController extends Controller
             'metadata' => [
                 'order_id' => $order->id,
                 'user_id' => $user->id,
+                'subtotal' => $subtotal,
+                'shipping_fee' => $shippingFee,
+                'total' => $total,
             ],
         ]);
 
