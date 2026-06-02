@@ -809,11 +809,11 @@
                                     <i data-lucide="truck" class="w-8 h-8 text-[#6f7f55]"></i>
                                 </div>
 
-                                <h3 class="text-2xl font-bold mb-5">
+                                <h3 class="text-2xl font-bold mb-5 whitespace-normal break-words [writing-mode:horizontal-tb]">
                                     3,000円以上で送料無料
                                 </h3>
 
-                                <p class="text-gray-400 leading-8 text-base">
+                                <p class="text-gray-600 leading-8 text-base whitespace-normal break-words [writing-mode:horizontal-tb]">
                                     一定金額以上のご注文で送料が無料に。まとめ買いにも便利です。毎日使うアイテムを気軽にまとめてお選びいただけます。
                                 </p>
                             </div>
