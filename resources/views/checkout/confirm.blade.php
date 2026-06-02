@@ -12,10 +12,18 @@
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
 @php
-    $subtotal = $subtotal ?? $total ?? 0;
-    $shippingFee = $shippingFee ?? 0;
-    $total = $total ?? ($subtotal + $shippingFee);
-    $freeShippingThreshold = $freeShippingThreshold ?? 10000;
+    $freeShippingThreshold = 10000;
+    $shippingBaseFee = 220;
+
+    $calculatedSubtotal = isset($cartItems)
+        ? $cartItems->sum(function ($cartItem) {
+            return $cartItem->product->price * $cartItem->quantity;
+        })
+        : 0;
+
+    $subtotal = $subtotal ?? $calculatedSubtotal;
+    $shippingFee = $subtotal >= $freeShippingThreshold ? 0 : $shippingBaseFee;
+    $total = $subtotal + $shippingFee;
     $remainingForFreeShipping = max($freeShippingThreshold - $subtotal, 0);
 @endphp
 
