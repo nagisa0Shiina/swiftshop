@@ -443,9 +443,9 @@
                                         class="bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden shrink-0"
                                         style="width:112px; height:96px; min-width:112px; max-width:112px;"
                                     >
-                                        @if ($item->product->image_path)
+                                        @if ($item->product->image)
                                             <img
-                                                src="{{ asset('storage/' . $item->product->image_path) }}"
+                                                src="{{ asset('storage/' . $item->product->image) }}"
                                                 alt="{{ $item->product->name }}"
                                                 class="{{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
                                                 style="width:112px; height:96px; min-width:112px; max-width:112px; max-height:96px; object-fit:cover; object-position:center; display:block;"
@@ -616,9 +616,9 @@
                                                     class="bg-gray-100 rounded-md flex items-center justify-center overflow-hidden shrink-0"
                                                     style="width:64px; height:64px; min-width:64px; max-width:64px;"
                                                 >
-                                                    @if ($item->product->image_path)
+                                                    @if ($item->product->image)
                                                         <img
-                                                            src="{{ asset('storage/' . $item->product->image_path) }}"
+                                                            src="{{ asset('storage/' . $item->product->image) }}"
                                                             alt="{{ $item->product->name }}"
                                                             class="{{ $isUnavailable ? 'opacity-40 grayscale' : '' }}"
                                                             style="width:64px; height:64px; min-width:64px; max-width:64px; max-height:64px; object-fit:cover; object-position:center; display:block;"
