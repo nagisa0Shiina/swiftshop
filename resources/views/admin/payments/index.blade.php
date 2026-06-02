@@ -271,7 +271,6 @@
     </aside>
 
 </div>
-</div>
     <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
         <div class="mb-8">
             <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">決済状況</h1>
