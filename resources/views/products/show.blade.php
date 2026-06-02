@@ -780,81 +780,61 @@
 
 <script>
     lucide.createIcons();
+   const siteMenuOpen = document.getElementById('siteMenuOpen');
+    const siteMenuClose = document.getElementById('siteMenuClose');
+    const siteMobileMenu = document.getElementById('siteMobileMenu');
+    const siteMobileOverlay = document.getElementById('siteMobileOverlay');
+    const siteMobilePanel = document.getElementById('siteMobilePanel');
 
-    const userMenuButton = document.getElementById('userMenuButton');
-    const userMenu = document.getElementById('userMenu');
+    function openSiteMenu() {
+        if (!siteMobileMenu || !siteMobileOverlay || !siteMobilePanel) return;
 
-    if (userMenuButton && userMenu) {
-        userMenuButton.addEventListener('click', function () {
-            userMenu.classList.toggle('hidden');
-        });
+        siteMobileMenu.classList.remove('pointer-events-none');
+        document.body.classList.add('overflow-hidden');
 
-        document.addEventListener('click', function (event) {
-            if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
-                userMenu.classList.add('hidden');
-            }
+        requestAnimationFrame(() => {
+            siteMobileOverlay.classList.remove('bg-black/0');
+            siteMobileOverlay.classList.add('bg-black/45');
+
+            siteMobilePanel.classList.remove('translate-x-full');
+            siteMobilePanel.classList.add('translate-x-0');
         });
     }
 
-    const revealElements = document.querySelectorAll('.scroll-reveal');
+    function closeSiteMenu() {
+        if (!siteMobileMenu || !siteMobileOverlay || !siteMobilePanel) return;
 
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, {
-        threshold: 0.12
-    });
+        siteMobileOverlay.classList.remove('bg-black/45');
+        siteMobileOverlay.classList.add('bg-black/0');
 
-    revealElements.forEach((element) => {
-        revealObserver.observe(element);
-    });
+        siteMobilePanel.classList.remove('translate-x-0');
+        siteMobilePanel.classList.add('translate-x-full');
 
-    document.querySelectorAll('form[action*="/cart"]').forEach((form) => {
-        form.addEventListener('submit', () => {
-            sessionStorage.setItem('scrollPosition', window.scrollY);
-        });
-    });
-
-    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-
-    if (savedScrollPosition !== null) {
-        window.scrollTo({
-            top: parseInt(savedScrollPosition),
-            behavior: 'instant'
-        });
-
-        sessionStorage.removeItem('scrollPosition');
-    }
-
-    const cartToast = document.getElementById('cartToast');
-
-    if (cartToast) {
         setTimeout(() => {
-            cartToast.style.opacity = '0';
-            cartToast.style.transform = 'translateY(-18px)';
-            cartToast.style.transition = '.4s';
-
-            setTimeout(() => {
-                cartToast.remove();
-            }, 400);
-        }, 2500);
+            siteMobileMenu.classList.add('pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }, 500);
     }
-        const favoriteActions = document.getElementById('favorite');
 
-    if (favoriteActions) {
-        setTimeout(() => {
-            favoriteActions.style.opacity = '0';
-            favoriteActions.style.transform = 'translateY(-18px)';
-            favoriteActions.style.transition = '.4s';
-
-            setTimeout(() => {
-                cartToast.remove();
-            }, 400);
-        }, 2500);
+    if (siteMenuOpen) {
+        siteMenuOpen.addEventListener('click', openSiteMenu);
     }
+
+    if (siteMenuClose) {
+        siteMenuClose.addEventListener('click', closeSiteMenu);
+    }
+
+    if (siteMobileOverlay) {
+        siteMobileOverlay.addEventListener('click', closeSiteMenu);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeSiteMenu();
+        }
+    });
+
+
 </script>
 
 </body>
