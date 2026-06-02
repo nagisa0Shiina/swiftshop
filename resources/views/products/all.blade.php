@@ -39,12 +39,12 @@
         {{-- PC Nav --}}
         <nav class="hidden lg:flex items-center gap-8 text-sm font-bold">
             <a href="{{ route('products.index') }}"
-               class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
+               class="hover:text-gray-500">
                 ホーム
             </a>
 
             <a href="{{ route('products.all') }}"
-               class="hover:text-gray-500">
+               class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
                 全商品を見る
             </a>
 
@@ -201,13 +201,13 @@
         <nav class="flex-1 px-6 py-7 space-y-2 overflow-y-auto">
 
             <a href="{{ route('products.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-[#070d16] text-white font-bold">
+               class="site-mobile-link flex items-center justify-between font-bold">
                 <span>ホーム</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </a>
 
             <a href="{{ route('products.all') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4  bg-[#070d16] text-white  font-bold">
                 <span>全商品を見る</span>
                 <i data-lucide="arrow-right" class="w-5 h-5"></i>
             </a>

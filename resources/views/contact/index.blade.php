@@ -53,12 +53,12 @@
         {{-- PC Nav --}}
         <nav class="hidden lg:flex items-center gap-8 text-sm font-bold">
             <a href="{{ route('products.index') }}"
-               class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
+               class="hover:text-gray-500 ">
                 ホーム
             </a>
 
             <a href="{{ route('products.all') }}"
-               class="hover:text-gray-500">
+               class="hover:text-gray-500 ">
                 全商品を見る
             </a>
 
@@ -73,7 +73,7 @@
             </a>
 
             <a href="{{ route('contact.index') }}"
-               class="hover:text-gray-500">
+               class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
                 お問い合わせ
             </a>
 
