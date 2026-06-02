@@ -8,12 +8,71 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <style>
-        aside, aside * {
+ <style>
+        .admin-layout {
+            min-height: 100vh;
+            display: flex;
+            align-items: stretch;
+            background: #f5f6f7;
+        }
+
+        .admin-sidebar {
+            width: 300px !important;
+            min-width: 300px !important;
+            max-width: 300px !important;
+            flex: 0 0 300px !important;
+            min-height: 100vh;
+            background: #070d16;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .admin-sidebar,
+        .admin-sidebar *,
+        .admin-sidebar a,
+        .admin-sidebar span,
+        .admin-sidebar button {
             writing-mode: horizontal-tb !important;
             text-orientation: mixed !important;
+            white-space: nowrap !important;
             word-break: keep-all !important;
             overflow-wrap: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        .admin-sidebar-link,
+        .admin-sidebar-button {
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 16px !important;
+            box-sizing: border-box !important;
+        }
+
+        .admin-sidebar-link svg,
+        .admin-sidebar-button svg {
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 20px !important;
+            flex-shrink: 0 !important;
+        }
+
+        @media (max-width: 1023px) {
+            .admin-layout {
+                display: block;
+            }
+
+            .admin-sidebar {
+                display: none !important;
+            }
         }
     </style>
 </head>
