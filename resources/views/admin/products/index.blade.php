@@ -91,13 +91,27 @@
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>注文管理
             </a>
 
-            <a href="{{ route('admin.shipping.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="truck" class="w-5 h-5"></i>発送状況
-            </a>
+          
+                <a href="{{ route('admin.shipping.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                    <i data-lucide="truck" class="w-5 h-5"></i>
+                    <span>発送状況</span>
+                </a>
 
-            <a href="{{ route('admin.payments.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>決済状況
-            </a>
+                @if (Route::has('admin.payments.index'))
+                    <a href="{{ route('admin.payments.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @else
+                    <a href="{{ route('admin.orders.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @endif
+
 
             <a href="{{ route('admin.articles.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10">
                 <i data-lucide="newspaper" class="w-5 h-5"></i>記事管理
@@ -207,30 +221,14 @@
 <script>
     lucide.createIcons();
 
-    const adminMenuOpen = document.getElementById('adminMenuOpen');
-    const adminMenuClose = document.getElementById('adminMenuClose');
-    const adminMobileMenu = document.getElementById('adminMobileMenu');
-    const adminMobileOverlay = document.getElementById('adminMobileOverlay');
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    if (adminMenuOpen && adminMobileMenu) {
-        adminMenuOpen.addEventListener('click', () => {
-            adminMobileMenu.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            lucide.createIcons();
         });
-    }
-
-    function closeAdminMenu() {
-        if (!adminMobileMenu) return;
-        adminMobileMenu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-    }
-
-    if (adminMenuClose) {
-        adminMenuClose.addEventListener('click', closeAdminMenu);
-    }
-
-    if (adminMobileOverlay) {
-        adminMobileOverlay.addEventListener('click', closeAdminMenu);
     }
 </script>
 

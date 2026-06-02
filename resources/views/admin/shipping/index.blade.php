@@ -151,13 +151,26 @@
                 <i data-lucide="shopping-bag" class="w-5 h-5"></i>注文管理
             </a>
 
-            <a href="{{ route('admin.shipping.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="truck" class="w-5 h-5"></i>発送状況
-            </a>
+           
+                <a href="{{ route('admin.shipping.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                    <i data-lucide="truck" class="w-5 h-5"></i>
+                    <span>発送状況</span>
+                </a>
 
-            <a href="{{ route('admin.payments.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/10">
-                <i data-lucide="credit-card" class="w-5 h-5"></i>決済状況
-            </a>
+                @if (Route::has('admin.payments.index'))
+                    <a href="{{ route('admin.payments.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @else
+                    <a href="{{ route('admin.orders.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @endif
 
             <a href="{{ route('admin.articles.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/10">
                 <i data-lucide="newspaper" class="w-5 h-5"></i>記事管理
