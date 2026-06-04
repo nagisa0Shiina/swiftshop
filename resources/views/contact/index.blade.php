@@ -78,6 +78,11 @@
             </a>
 
             @auth
+                              @if (auth()->user()->is_admin)
+                    <a href="{{ route('admin.dashboard') }}"
+                    class="hover:text-gray-500">
+                        管理画面
+                    </a>
                 <a href="{{ route('mypage') }}"
                    class="hover:text-gray-500">
                     マイページ
@@ -128,6 +133,11 @@
                         </div>
 
                         <div class="py-2 text-sm">
+                                              @if (auth()->user()->is_admin)
+                    <a href="{{ route('admin.dashboard') }}"
+                    class="hover:text-gray-500">
+                        管理画面
+                    </a>
                             <a href="{{ route('mypage') }}"
                                class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50">
                                 <i data-lucide="user" class="w-5 h-5"></i>
@@ -245,6 +255,11 @@
             </a>
 
             @auth
+                              @if (auth()->user()->is_admin)
+                    <a href="{{ route('admin.dashboard') }}"
+                    class="hover:text-gray-500">
+                        管理画面
+                    </a>
                 <div class="pt-5 mt-5 border-t border-gray-100 space-y-2">
                     <a href="{{ route('mypage') }}"
                        class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
