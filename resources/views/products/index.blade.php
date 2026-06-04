@@ -787,7 +787,7 @@
             <button
                 type="button"
                 id="ssBenefitPrev"
-                class="absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/70 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                class="absolute left-4 sm:left-8 lg:left-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/70 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
                 aria-label="前へ"
             >
                 <i data-lucide="chevron-left" class="w-6 h-6"></i>
@@ -797,7 +797,7 @@
             <button
                 type="button"
                 id="ssBenefitNext"
-                class="absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/70 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
+                class="absolute right-4 sm:right-8 lg:right-8 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-[#f3f4f6]/70 border border-gray-200 shadow flex items-center justify-center hover:bg-white"
                 aria-label="次へ"
             >
                 <i data-lucide="chevron-right" class="w-6 h-6"></i>
