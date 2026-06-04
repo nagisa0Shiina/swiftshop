@@ -78,11 +78,12 @@
             </a>
 
             @auth
-                              @if (auth()->user()->is_admin)
+                            @if (auth()->user()->is_admin)
                     <a href="{{ route('admin.dashboard') }}"
                     class="hover:text-gray-500">
                         管理画面
                     </a>
+                @endif
                 <a href="{{ route('mypage') }}"
                    class="hover:text-gray-500">
                     マイページ
@@ -255,11 +256,12 @@
             </a>
 
             @auth
-                              @if (auth()->user()->is_admin)
+                               @if (auth()->user()->is_admin)
                     <a href="{{ route('admin.dashboard') }}"
                     class="hover:text-gray-500">
                         管理画面
                     </a>
+                @endif
                 <div class="pt-5 mt-5 border-t border-gray-100 space-y-2">
                     <a href="{{ route('mypage') }}"
                        class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
