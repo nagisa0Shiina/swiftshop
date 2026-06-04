@@ -297,26 +297,18 @@
             </div>
         </div>
 
-  @php
-    $todaySales = $todaySales ?? 0;
-    $totalSales = $totalSales ?? 0;
-    $ordersCount = $ordersCount ?? ($orders_count ?? 0);
-    $productsCount = $productsCount ?? ($products_count ?? 0);
-    $outOfStockCount = $outOfStockCount ?? ($out_of_stock_count ?? 0);
+        @php
+            $todaySales = $todaySales ?? 0;
+            $totalSales = $totalSales ?? 0;
+            $ordersCount = $ordersCount ?? ($orders_count ?? 0);
+            $productsCount = $productsCount ?? ($products_count ?? 0);
+            $outOfStockCount = $outOfStockCount ?? ($out_of_stock_count ?? 0);
 
-    /*
-    |--------------------------------------------------------------------------
-    | 最近の注文
-    |--------------------------------------------------------------------------
-    | Controller側では $recentOrders を渡しているため、
-    | View側の表示用変数 $latestOrders に受け直す。
-    |--------------------------------------------------------------------------
-    */
-    $latestOrders = $latestOrders ?? $recentOrders ?? collect();
+            $latestOrders = $latestOrders ?? $recentOrders ?? collect();
+            $popularProducts = $popularProducts ?? collect();
+        @endphp
 
-    $popularProducts = $popularProducts ?? collect();
-@endphp
-
+        {{-- Stats --}}
         <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-5 mb-8 lg:mb-10">
 
             <div class="bg-white rounded-3xl border border-gray-200 shadow-sm p-7 min-h-[170px] relative overflow-hidden">
@@ -331,7 +323,7 @@
                 </div>
 
                 <p class="mt-4 text-gray-400 font-bold">
-                    {{ now()->format('Y/m/d') }}
+                    {{ now()->timezone('Asia/Tokyo')->format('Y/m/d') }}
                 </p>
             </div>
 
@@ -387,6 +379,7 @@
 
         <section class="grid grid-cols-1 xl:grid-cols-[1fr_420px] gap-6">
 
+            {{-- Recent Orders --}}
             <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
 
                 <div class="px-6 py-6 border-b border-gray-200">
@@ -396,14 +389,15 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full min-w-[820px] text-left">
+                    <table class="w-full min-w-[1060px] text-left">
                         <thead class="bg-gray-50 border-b border-gray-200">
                         <tr>
-                            <th class="px-6 py-5 text-gray-500 font-bold">注文番号</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">注文者</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">金額</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">状況</th>
-                            <th class="px-6 py-5 text-gray-500 font-bold">日時</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">状況</th>
+                            <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">日時</th>
                         </tr>
                         </thead>
 
@@ -417,8 +411,10 @@
                                 $paymentLabel = match ($paymentStatus) {
                                     'paid' => '決済完了',
                                     'unpaid' => '未決済',
+                                    'pending' => '決済待ち',
                                     'failed' => '決済失敗',
-                                    default => $paymentStatus ?: '決済完了',
+                                    'refunded' => '返金済み',
+                                    default => $paymentStatus ?: '決済待ち',
                                 };
 
                                 $shippingLabel = match ($shippingStatus) {
@@ -428,43 +424,90 @@
                                     'shipped' => '発送中',
                                     'completed' => '配送完了',
                                     'delivered' => '配送完了',
+                                    'cancelled' => 'キャンセル',
                                     default => $shippingStatus ?: '発送準備中',
+                                };
+
+                                $paymentClass = match ($paymentStatus) {
+                                    'paid' => 'bg-green-100 text-green-700',
+                                    'pending' => 'bg-yellow-100 text-yellow-700',
+                                    'unpaid' => 'bg-gray-100 text-gray-700',
+                                    'failed' => 'bg-red-100 text-red-700',
+                                    'refunded' => 'bg-purple-100 text-purple-700',
+                                    default => 'bg-yellow-100 text-yellow-700',
+                                };
+
+                                $shippingClass = match ($shippingStatus) {
+                                    'preparing', 'pending' => 'bg-blue-100 text-blue-700',
+                                    'shipping', 'shipped' => 'bg-orange-100 text-orange-700',
+                                    'completed', 'delivered' => 'bg-green-100 text-green-700',
+                                    'cancelled' => 'bg-red-100 text-red-700',
+                                    default => 'bg-blue-100 text-blue-700',
                                 };
                             @endphp
 
                             <tr class="border-b border-gray-100 last:border-b-0">
-                                <td class="px-6 py-7 font-bold">
+
+                                <td class="px-6 py-7 font-bold whitespace-nowrap">
                                     #{{ $order->id }}
                                 </td>
 
-                                <td class="px-6 py-7 font-bold">
-                                    {{ $order->user->name ?? $order->name ?? '不明' }}
+                                <td class="px-6 py-7 whitespace-nowrap">
+                                    <div class="font-bold">
+                                        {{ $order->user->name ?? $order->customer_name ?? $order->name ?? '不明' }}
+                                    </div>
+
+                                    <div class="text-sm text-gray-500 mt-1">
+                                        {{ $order->user->email ?? $order->customer_email ?? $order->email ?? '' }}
+                                    </div>
                                 </td>
 
-                                <td class="px-6 py-7 font-bold">
+                                <td class="px-6 py-7 min-w-[240px]">
+                                    @if ($order->items && $order->items->count() > 0)
+                                        <div class="space-y-2">
+                                            @foreach ($order->items as $item)
+                                                <div class="rounded-xl bg-gray-50 border border-gray-100 px-4 py-3">
+                                                    <div class="font-bold text-sm text-gray-800 leading-6">
+                                                        {{ $item->product_name ?? $item->product->name ?? '商品名なし' }}
+                                                    </div>
+
+                                                    <div class="mt-1 text-xs text-gray-500 font-bold">
+                                                        数量：{{ $item->quantity }}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <span class="text-gray-400 font-bold">
+                                            商品情報なし
+                                        </span>
+                                    @endif
+                                </td>
+
+                                <td class="px-6 py-7 font-bold whitespace-nowrap">
                                     ¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}
                                 </td>
 
                                 <td class="px-6 py-7">
                                     <div class="flex flex-col gap-2 items-start">
-                                        <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 text-sm font-bold">
+                                        <span class="inline-flex px-4 py-2 rounded-full {{ $paymentClass }} text-sm font-bold">
                                             {{ $paymentLabel }}
                                         </span>
 
-                                        <span class="inline-flex px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-bold">
+                                        <span class="inline-flex px-4 py-2 rounded-full {{ $shippingClass }} text-sm font-bold">
                                             {{ $shippingLabel }}
                                         </span>
                                     </div>
                                 </td>
 
                                 <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
-                                    {{ optional($order->created_at)->format('Y/m/d H:i') }}
+                                    {{ optional($order->created_at)->timezone('Asia/Tokyo')->format('Y/m/d H:i') }}
                                 </td>
                             </tr>
 
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-14 text-center text-gray-500 font-bold">
+                                <td colspan="6" class="px-6 py-14 text-center text-gray-500 font-bold">
                                     注文はまだありません。
                                 </td>
                             </tr>
@@ -476,6 +519,7 @@
 
             </div>
 
+            {{-- Popular Products --}}
             <div class="bg-white rounded-3xl border border-gray-200 shadow-sm overflow-hidden">
 
                 <div class="px-6 py-6 border-b border-gray-200">
@@ -486,26 +530,34 @@
 
                 <div class="p-6 space-y-5">
                     @forelse ($popularProducts as $index => $product)
-                        <div class="flex items-start justify-between gap-4">
-                            <div>
+                        <div class="flex items-start justify-between gap-4 rounded-2xl border border-gray-100 bg-gray-50 px-5 py-4">
+
+                            <div class="min-w-0">
                                 <div class="text-gray-400 font-bold">
                                     {{ $index + 1 }}位
                                 </div>
 
-                                <div class="mt-2 font-bold text-lg">
-                                    {{ $product->name ?? '商品名なし' }}
+                                <div class="mt-2 font-bold text-lg leading-7 break-words">
+                                    {{ $product->product_name ?? '商品名なし' }}
                                 </div>
                             </div>
 
-                            <div class="text-right font-bold">
-                                <div>
-                                    {{ $product->orders_count ?? $product->sold_count ?? 0 }}個
+                            <div class="text-right font-bold shrink-0">
+
+                                <div class="text-2xl">
+                                    {{ number_format($product->total_quantity ?? 0) }}個
                                 </div>
 
                                 <div class="text-gray-400 text-sm mt-1">
-                                    ¥{{ number_format($product->price ?? 0) }}
+                                    売上個数
                                 </div>
+
+                                <div class="text-gray-500 text-sm mt-3">
+                                    売上 ¥{{ number_format($product->total_sales ?? 0) }}
+                                </div>
+
                             </div>
+
                         </div>
                     @empty
                         <p class="text-gray-500 font-bold">

@@ -30,12 +30,18 @@ class DashboardController extends Controller
         $outOfStockCount = Product::where('stock', '<=', 0)
             ->count();
 
-            $recentOrders = Order::with('user')
+        // 最近の注文
+        // 商品名を表示するため items も読み込む
+        $recentOrders = Order::with([
+            'user',
+            'items',
+        ])
             ->latest()
             ->take(5)
             ->get();
 
-         // 人気商品ランキング
+        // 人気商品ランキング
+        // product_name ごとに売上個数と売上金額を集計
         $popularProducts = OrderItem::selectRaw('
                 product_name,
                 SUM(quantity) as total_quantity,
@@ -46,15 +52,14 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-
         return view('admin.dashboard.index', compact(
             'todaySales',
             'totalSales',
             'ordersCount',
             'productsCount',
             'outOfStockCount',
-             'recentOrders',
-              'popularProducts'
+            'recentOrders',
+            'popularProducts'
         ));
     }
 }
