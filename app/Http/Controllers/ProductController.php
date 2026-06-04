@@ -58,10 +58,26 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        abort_if(! $product->is_active, 404);
+       $relatedProducts = Product::where('id', '!=', $product->id)
+        ->where('is_active', true)
+        ->when($product->category, function ($query) use ($product) {
+            $query->where('category', $product->category);
+        })
+        ->latest()
+        ->take(4)
+        ->get();
 
-        $product->load('favorites');
+    if ($relatedProducts->count() < 4) {
+        $additionalProducts = Product::where('id', '!=', $product->id)
+            ->where('is_active', true)
+            ->whereNotIn('id', $relatedProducts->pluck('id'))
+            ->latest()
+            ->take(4 - $relatedProducts->count())
+            ->get();
 
-        return view('products.show', compact('product'));
+        $relatedProducts = $relatedProducts->concat($additionalProducts);
+    }
+
+    return view('products.show', compact('product', 'relatedProducts'));
     }
 }

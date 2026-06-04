@@ -14,6 +14,7 @@
 <div class="w-full max-w-[1500px] mx-auto bg-white min-h-screen sm:my-4 sm:border sm:border-gray-200 sm:rounded-xl sm:shadow-sm sm:overflow-hidden">
 
 <x-site-header />
+
     <main class="w-full max-w-full px-4 sm:px-8 py-8 overflow-x-hidden">
 
         <div class="mb-8">

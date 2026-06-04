@@ -286,64 +286,83 @@
         </div>
     </section>
 
-    <section class="mb-16 scroll-reveal">
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+@if (isset($relatedProducts) && $relatedProducts->count() > 0)
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="flex items-end justify-between gap-6 mb-8">
             <div>
-                <div class="text-gray-500 mb-2">ShopSwift Select</div>
-                <h2 class="text-3xl font-bold">
+                <p class="text-gray-500 font-bold mb-3">
+                    ShopSwift Select
+                </p>
+
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">
                     あわせて見たい商品
                 </h2>
             </div>
 
             <a href="{{ route('products.all') }}"
-               class="hidden md:flex items-center gap-2 font-bold">
+               class="hidden sm:inline-flex items-center gap-2 font-bold hover:text-gray-500 transition">
                 全商品一覧へ
-                <span>›</span>
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
             </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-7">
-            <a href="{{ route('products.all') }}"
-               class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <div class="h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">🪴</div>
-                <div class="p-5">
-                    <div class="text-sm text-gray-500 mb-2">ShopSwift Select</div>
-                    <h3 class="font-bold text-lg mb-2">暮らしになじむアイテム</h3>
-                    <p class="text-sm text-gray-500">全商品一覧からおすすめ商品をご覧ください。</p>
-                </div>
-            </a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            @foreach ($relatedProducts as $relatedProduct)
+                <a href="{{ route('products.show', $relatedProduct) }}"
+                   class="group bg-white border border-gray-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition">
 
-            <a href="{{ route('products.all') }}"
-               class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <div class="h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">☕</div>
-                <div class="p-5">
-                    <div class="text-sm text-gray-500 mb-2">Kitchen</div>
-                    <h3 class="font-bold text-lg mb-2">キッチンアイテム</h3>
-                    <p class="text-sm text-gray-500">毎日の時間を心地よく整えます。</p>
-                </div>
-            </a>
+                    <div class="aspect-[4/3] bg-[#f4eee6] overflow-hidden">
+                        @if ($relatedProduct->image_path)
+                            <img
+                                src="{{ asset('storage/' . $relatedProduct->image_path) }}"
+                                alt="{{ $relatedProduct->name }}"
+                                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                            >
+                        @else
+                            <div class="w-full h-full flex items-center justify-center text-gray-300">
+                                <i data-lucide="image" class="w-12 h-12"></i>
+                            </div>
+                        @endif
+                    </div>
 
-            <a href="{{ route('products.all') }}"
-               class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <div class="h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">🧺</div>
-                <div class="p-5">
-                    <div class="text-sm text-gray-500 mb-2">Storage</div>
-                    <h3 class="font-bold text-lg mb-2">収納アイテム</h3>
-                    <p class="text-sm text-gray-500">すっきりした暮らしに。</p>
-                </div>
-            </a>
+                    <div class="p-6">
+                        @if ($relatedProduct->category)
+                            <p class="text-sm text-gray-500 font-bold mb-2">
+                                {{ $relatedProduct->category }}
+                            </p>
+                        @endif
 
+                        <h3 class="text-lg font-bold leading-7 group-hover:text-[#b8946d] transition">
+                            {{ $relatedProduct->name }}
+                        </h3>
+
+                        <p class="mt-3 text-gray-500 text-sm leading-7 line-clamp-2">
+                            {{ $relatedProduct->description }}
+                        </p>
+
+                        <div class="mt-5 flex items-center justify-between gap-4">
+                            <div class="text-xl font-bold">
+                                ¥{{ number_format($relatedProduct->price) }}
+                            </div>
+
+                            <div class="w-10 h-10 rounded-full bg-[#070d16] text-white flex items-center justify-center group-hover:scale-110 transition">
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+
+        <div class="mt-8 sm:hidden">
             <a href="{{ route('products.all') }}"
-               class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-lg transition">
-                <div class="h-56 bg-[#f4eee6] flex items-center justify-center text-6xl">🕯️</div>
-                <div class="p-5">
-                    <div class="text-sm text-gray-500 mb-2">Relax</div>
-                    <h3 class="font-bold text-lg mb-2">リラックスアイテム</h3>
-                    <p class="text-sm text-gray-500">自分らしい時間を過ごすために。</p>
-                </div>
+               class="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#070d16] text-white px-6 py-4 font-bold">
+                全商品一覧へ
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
             </a>
         </div>
     </section>
+@endif
 
 </main>
 
