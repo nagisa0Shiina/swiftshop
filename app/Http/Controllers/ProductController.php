@@ -20,13 +20,14 @@ class ProductController extends Controller
             ->where('is_featured', true)
             ->when($keyword, function ($query, $keyword) {
                 $query->where(function ($q) use ($keyword) {
-                    $q->where('name', 'like', "%{$keyword}%")
-                        ->orWhere('description', 'like', "%{$keyword}%")
-                        ->orWhere('category', 'like', "%{$keyword}%");
+                    $q->where('name', 'like', '%' . $keyword . '%')
+                        ->orWhere('description', 'like', '%' . $keyword . '%')
+                        ->orWhere('category', 'like', '%' . $keyword . '%');
                 });
             })
             ->latest()
-            ->paginate(8);
+            ->paginate(8)
+            ->withQueryString();
 
         return view('products.index', compact('products', 'keyword'));
     }
@@ -42,13 +43,14 @@ class ProductController extends Controller
             ->where('is_active', true)
             ->when($keyword, function ($query, $keyword) {
                 $query->where(function ($q) use ($keyword) {
-                    $q->where('name', 'like', "%{$keyword}%")
-                        ->orWhere('description', 'like', "%{$keyword}%")
-                        ->orWhere('category', 'like', "%{$keyword}%");
+                    $q->where('name', 'like', '%' . $keyword . '%')
+                        ->orWhere('description', 'like', '%' . $keyword . '%')
+                        ->orWhere('category', 'like', '%' . $keyword . '%');
                 });
             })
             ->latest()
-            ->paginate(12);
+            ->paginate(12)
+            ->withQueryString();
 
         return view('products.all', compact('products', 'keyword'));
     }
@@ -58,26 +60,30 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-       $relatedProducts = Product::where('id', '!=', $product->id)
-        ->where('is_active', true)
-        ->when($product->category, function ($query) use ($product) {
-            $query->where('category', $product->category);
-        })
-        ->latest()
-        ->take(4)
-        ->get();
+        abort_unless($product->is_active, 404);
 
-    if ($relatedProducts->count() < 4) {
-        $additionalProducts = Product::where('id', '!=', $product->id)
+        $relatedProducts = Product::with('favorites')
+            ->where('id', '!=', $product->id)
             ->where('is_active', true)
-            ->whereNotIn('id', $relatedProducts->pluck('id'))
+            ->when($product->category, function ($query) use ($product) {
+                $query->where('category', $product->category);
+            })
             ->latest()
-            ->take(4 - $relatedProducts->count())
+            ->take(4)
             ->get();
 
-        $relatedProducts = $relatedProducts->concat($additionalProducts);
-    }
+        if ($relatedProducts->count() < 4) {
+            $additionalProducts = Product::with('favorites')
+                ->where('id', '!=', $product->id)
+                ->where('is_active', true)
+                ->whereNotIn('id', $relatedProducts->pluck('id'))
+                ->latest()
+                ->take(4 - $relatedProducts->count())
+                ->get();
 
-    return view('products.show', compact('product', 'relatedProducts'));
+            $relatedProducts = $relatedProducts->concat($additionalProducts);
+        }
+
+        return view('products.show', compact('product', 'relatedProducts'));
     }
 }
