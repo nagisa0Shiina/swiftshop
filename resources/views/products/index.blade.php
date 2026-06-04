@@ -620,7 +620,7 @@
             <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
                 <div class="relative">
                     <img
-                        src="{{ asset('images/home/step-select.jpg') }}"
+                        src="{{ asset('home/images/step-select.png') }}"
                         alt="商品を選ぶ"
                         class="w-24 h-24 rounded-2xl object-cover"
                     >
@@ -642,7 +642,7 @@
             <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
                 <div class="relative">
                     <img
-                        src="{{ asset('images/home/step-cart.jpg') }}"
+                        src="{{ asset('home/images/step-cart.png') }}"
                         alt="カートに入れる"
                         class="w-24 h-24 rounded-2xl object-cover"
                     >
@@ -664,7 +664,7 @@
             <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
                 <div class="relative">
                     <img
-                        src="{{ asset('images/home/step-complete.jpg') }}"
+                        src="{{ asset('home/images/step-complete.png') }}"
                         alt="ご注文完了"
                         class="w-24 h-24 rounded-2xl object-cover"
                     >
