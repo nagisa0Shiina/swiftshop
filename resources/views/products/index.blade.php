@@ -386,22 +386,22 @@
     </section>
 
 {{-- ShopSwift visual contents --}}
-<section class="bg-white py-16 sm:py-20 overflow-hidden">
+<section class=" bg-white py-16 sm:py-20 overflow-hidden">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
       {{-- ShopSwiftのこだわり --}}
 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
-    <div class="relative overflow-hidden rounded-[2rem] border border-[#e8dccb] bg-[#f8f4ef] shadow-sm">
+    <div class="relative overflow-hidden rounded-[2rem] border  border-[#e8dccb]  shadow-sm">
 
         {{-- 背景画像 --}}
         <div class="absolute inset-0">
             <img
                 src="{{ asset('home/images/commitment-bg.png') }}"
                 alt="ShopSwiftのこだわり"
-                class="w-full h-full object-cover opacity-55"
+                class="w-full h-full object-cover opacity-55 object-center block"
             >
-            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60"></div>
+            {{-- <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60"></div> --}}
         </div>
 
         <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 p-6 sm:p-8 md:p-12 lg:p-16">
@@ -419,7 +419,7 @@
 
                 <div class="w-16 h-[2px] bg-[#b8946d] my-7"></div>
 
-                <p class="text-gray-700 leading-loose text-base md:text-lg max-w-xl">
+                <p class="leading-loose text-base md:text-lg max-w-xl font-bold">
                     毎日の暮らしに、心地よさとやさしさを。<br class="hidden sm:block">
                     使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
                 </p>
@@ -527,18 +527,17 @@
                     </div>
 
                     <div class="pt-12 p-7">
-                        <div class="w-14 h-14 rounded-full bg-[#eef1df] flex items-center justify-center mb-5">
+                        <div class="w-full h-14 rounded-full flex items-center justify-center  mb-5 gap-4">
                             <i data-lucide="search" class="w-7 h-7 text-[#75885d]"></i>
+                            <h3 class="text-2xl font-bold text-[#111827]">
+                                商品を選ぶ
+                            </h3>
                         </div>
-
-                        <h3 class="text-2xl font-bold text-[#111827]">
-                            商品を選ぶ
-                        </h3>
-
                         <p class="mt-4 text-gray-600 leading-loose">
                             豊富なカテゴリから、お好みの商品をお選びください。気になる商品はお気に入りにも追加できます。
                         </p>
                     </div>
+                    
                 </div>
 
                 <div class="hidden lg:block absolute top-[105px] -right-6 text-[#b8946d] text-3xl">
@@ -562,13 +561,13 @@
                     </div>
 
                     <div class="pt-12 p-7">
-                        <div class="w-14 h-14 rounded-full bg-[#f6ded1] flex items-center justify-center mb-5">
+                        <div class="w-full h-14 rounded-full  flex items-center justify-center mb-5 gap-4">
                             <i data-lucide="shopping-cart" class="w-7 h-7 text-[#c27a52]"></i>
+                            <h3 class="text-2xl font-bold text-[#111827]">
+                                カートに入れる
+                            </h3>
                         </div>
 
-                        <h3 class="text-2xl font-bold text-[#111827]">
-                            カートに入れる
-                        </h3>
 
                         <p class="mt-4 text-gray-600 leading-loose">
                             気になる商品をカートに入れて、数量や合計金額を確認しながら購入手続きへ進めます。
@@ -597,13 +596,13 @@
                     </div>
 
                     <div class="pt-12 p-7">
-                        <div class="w-full h-14 rounded-full bg-[#f3eadb] flex items-center justify-center mb-5">
-                            <i data-lucide="package-check" class="w-7 h-7 text-[#a98244]"></i>
+                        <div class="w-full h-14 rounded-full  flex items-center justify-center mb-5 gap-4">
+                            <i data-lucide="package-check" class="w-7 h-7 text-[#a98244] text-xl"></i>
+                            <h3 class="text-2xl font-bold text-[#111827]">
+                                ご注文完了
+                            </h3>
                         </div>
 
-                        <h3 class="text-2xl font-bold text-[#111827]">
-                            ご注文完了
-                        </h3>
 
                         <p class="mt-4 text-gray-600 leading-loose">
                             決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
