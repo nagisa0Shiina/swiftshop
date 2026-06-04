@@ -363,12 +363,9 @@
         </div>
 
         <div class="min-h-[280px] sm:min-h-[360px] md:min-h-[500px] bg-[#f4eee6] rounded-3xl overflow-hidden flex items-center justify-center">
-            <div class="w-full h-full overflow-hidden rounded-none">
-                <img
-                    src="{{ asset('public/images/swift_lifestyle.png') }}"
-                    alt="ShopSwiftのミッション"
-                    class="w-full h-full object-cover"
-                >
+            <div class="text-center">
+                <div class="text-7xl sm:text-8xl md:text-9xl mb-6">🪴</div>
+                <div class="font-bold text-lg md:text-xl text-gray-700">Calm Lifestyle</div>
             </div>
         </div>
     </section>
@@ -409,13 +406,10 @@
 
     <section class="bg-[#f8f4ef] rounded-3xl overflow-hidden mb-12 md:mb-16 scroll-reveal">
         <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
-            <div class="w-full h-full overflow-hidden rounded-none">
-                <img
-                    src="{{ asset('public/images/Swift mission.png') }}"
-                    alt="ShopSwiftのミッション"
-                    class="w-full h-full object-cover"
-                >
-            </div>
+            <div class="p-6 sm:p-8 md:p-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6">
+                    ShopSwiftのミッション
+                </h2>
 
                 <div class="space-y-4 text-gray-700 leading-loose">
                     <p>私たちは、モノを通して「心地よい暮らし」を届けることを使命としています。</p>
@@ -433,13 +427,9 @@
 
     <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-24 scroll-reveal">
         <div class="bg-[#f7f1ea] rounded-3xl min-h-[240px] md:min-h-[280px] flex items-center justify-center">
-        <div class="w-full h-full overflow-hidden rounded-none">
-                <img
-                    src="{{ asset('public/images/Swift image office.png') }}"
-                    alt="ShopSwiftのミッション"
-                    class="w-full h-full object-cover"
-                >
-            </div>
+            <div class="text-7xl md:text-8xl">🪴</div>
+        </div>
+
         <div class="bg-white rounded-3xl border border-gray-100 p-6 md:p-8">
             <h2 class="text-2xl font-bold mb-6">取り扱いのこだわり</h2>
 
