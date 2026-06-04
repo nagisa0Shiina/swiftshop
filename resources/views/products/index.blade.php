@@ -678,33 +678,35 @@
                     </div>
 
                     {{-- step 3 --}}
-                    <div class="rounded-[1.75rem] bg-white border border-white shadow-sm overflow-hidden">
-                        <div class="relative">
-                            <img
-                                src="{{ asset('home/images/step-complete.png') }}"
-                                alt="ご注文完了"
-                                class="w-full h-44 object-cover z-0"
-                            >
+          <div class="relative rounded-[1.75rem] bg-white border border-white shadow-sm overflow-visible">
 
-                            <div class="absolute -top-3 -left-3 w-11 h-11 z-50 md:top-4 md:left-4 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
-                                3
-                            </div>
-                        </div>
+                <div class="relative rounded-t-[1.75rem] overflow-hidden">
+                    <img
+                        src="{{ asset('home/images/step-complete.png') }}"
+                        alt="ご注文完了"
+                        class="w-full h-44 object-cover block"
+                    >
 
-                        <div class="p-5">
-                            <div class="flex items-center gap-3 mb-3">
-                                <i data-lucide="package-check" class="w-6 h-6 text-[#a98244] shrink-0"></i>
-
-                                <h3 class="text-2xl font-bold text-[#111827] leading-snug">
-                                    ご注文完了
-                                </h3>
-                            </div>
-
-                            <p class="text-sm text-gray-600 leading-loose">
-                                決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
-                            </p>
-                        </div>
+                    <div class="absolute top-3 left-3 md:top-4 md:left-4 w-11 h-11 z-50 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
+                        3
                     </div>
+                </div>
+
+                <div class="p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <i data-lucide="package-check" class="w-6 h-6 text-[#a98244] shrink-0"></i>
+
+                        <h3 class="text-2xl font-bold text-[#111827] leading-snug">
+                            ご注文完了
+                        </h3>
+                    </div>
+
+                    <p class="text-sm text-gray-600 leading-loose">
+                        決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
+                    </p>
+                </div>
+
+            </div>
 
                 </div>
 
