@@ -390,209 +390,322 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
-        {{-- ShopSwiftのこだわり：画像全面背景 --}}
-        <section class="relative overflow-hidden rounded-[2rem] border border-[#eadfce] min-h-[640px] py-6 my-8">
+      {{-- ShopSwiftのこだわり --}}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+    <div class="relative overflow-hidden rounded-[2rem] border border-[#e8dccb] bg-[#f8f4ef] shadow-sm">
 
+        {{-- 背景画像 --}}
+        <div class="absolute inset-0">
             <img
-                src="https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?q=80&w=2106&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="{{ asset('images/home/commitment-bg.jpg') }}"
                 alt="ShopSwiftのこだわり"
-                class="absolute inset-0 w-full h-full object-cover"
+                class="w-full h-full object-cover opacity-55"
             >
+            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/60"></div>
+        </div>
 
-            <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/35"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-white/95 via-transparent to-transparent"></div>
+        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 p-6 sm:p-8 md:p-12 lg:p-16">
 
-            <div class="relative z-10 min-h-[640px] p-6 sm:p-10 lg:p-14 flex flex-col justify-between">
-
-                <div class="max-w-2xl">
-
-                    <div class="inline-flex items-center gap-2 text-[#7a8b5f] font-bold text-sm mb-5">
-                        <i data-lucide="leaf" class="w-5 h-5"></i>
-                        for a better everyday
-                    </div>
-
-                    <h2 class="text-3xl sm:text-5xl font-bold leading-tight mb-5 ">
-                        ShopSwiftのこだわり
-                    </h2>
-
-                    <div class="w-16 h-[2px] bg-[#b89a62] mb-6 "></div>
-
-                    <p class="text-gray-700 leading-8 max-w-xl text-gray-300">
-                        毎日の暮らしに、心地よさとやさしさを。使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
-                    </p>
-
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
-
-                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6">
-                        <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-5">
-                            <i data-lucide="armchair" class="w-8 h-8 text-[#6f7f55]"></i>
-                        </div>
-
-                        <h3 class="text-lg font-bold mb-3">
-                            長く使えるデザイン
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-7">
-                            飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
-                        </p>
-                    </div>
-
-                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6 md:translate-y-6">
-                        <div class="w-16 h-16 rounded-full bg-[#f1e8d9] flex items-center justify-center mb-5">
-                            <i data-lucide="sprout" class="w-8 h-8 text-[#9a7b45]"></i>
-                        </div>
-
-                        <h3 class="text-lg font-bold mb-3">
-                            環境にやさしい選択
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-7">
-                            素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
-                        </p>
-                    </div>
-
-                    <div class="bg-white/90 backdrop-blur rounded-3xl border border-white shadow-sm p-6">
-                        <div class="w-16 h-16 rounded-full bg-[#f2d9ca] flex items-center justify-center mb-5">
-                            <i data-lucide="headphones" class="w-8 h-8 text-[#a26345]"></i>
-                        </div>
-
-                        <h3 class="text-lg font-bold mb-3">
-                            安心のサポート
-                        </h3>
-
-                        <p class="text-gray-600 text-sm leading-7">
-                            ご購入前のご相談からアフターサポートまで、丁寧に対応。安心してお買い物いただけます。
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        {{-- はじめての方へ --}}
-        <section class="rounded-[2rem] border border-[#eadfce] bg-[#f4eee6] p-6 sm:p-10 lg:p-14" py-6 my-8>
-
-            <div class="mb-10">
-
-                <div class="text-[#c88d6c] italic font-bold mb-4">
-                    Welcome!
-                </div>
-
-                <h2 class="text-3xl sm:text-4xl font-bold mb-5">
-                    はじめての方へ
-                </h2>
-
-                <div class="w-12 h-[2px] bg-[#b89a62] mb-6"></div>
-
-                <p class="text-gray-600 leading-8">
-                    かんたん3ステップでお買い物が完了します。
+            {{-- 左側テキスト --}}
+            <div class="flex flex-col justify-center min-h-[360px] md:min-h-[460px]">
+                <p class="inline-flex items-center gap-2 text-sm md:text-base font-bold text-[#75885d] mb-5">
+                    <i data-lucide="leaf" class="w-5 h-5"></i>
+                    for a better everyday
                 </p>
 
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-[#111827]">
+                    ShopSwiftの<br class="sm:hidden">こだわり
+                </h2>
+
+                <div class="w-16 h-[2px] bg-[#b8946d] my-7"></div>
+
+                <p class="text-gray-700 leading-loose text-base md:text-lg max-w-xl">
+                    毎日の暮らしに、心地よさとやさしさを。<br class="hidden sm:block">
+                    使うたびに心が整うような、品質とデザインを大切にしたアイテムをお届けします。
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {{-- 右側カード --}}
+            <div class="bg-white/90 backdrop-blur-md rounded-[2rem] shadow-sm border border-white/80 p-5 sm:p-7 md:p-9">
+                <div class="divide-y divide-[#eadfce]">
 
-                {{-- step 1 --}}
-                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-10px]">
-
-                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#8c9a6b] text-white flex items-center justify-center font-bold text-lg">
-                        1
-                    </div>
-
-                    <div class="h-56 bg-gray-100 overflow-hidden">
-                        <img
-                            src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=900&q=80"
-                            alt="商品を選ぶ"
-                            class="w-full h-full object-cover"
-                        >
-                    </div>
-
-                    <div class="p-6">
-                        <div class="w-16 h-16 rounded-full bg-[#eef0e4] flex items-center justify-center mb-5">
-                            <i data-lucide="search" class="w-8 h-8 text-[#6f7f55]"></i>
+                    <div class="group flex items-center gap-5 py-5 md:py-7">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#eef1df] flex items-center justify-center shrink-0">
+                            <i data-lucide="armchair" class="w-8 h-8 md:w-9 md:h-9 text-[#75885d]"></i>
                         </div>
 
-                        <h3 class="text-xl font-bold mb-3">
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-[#111827]">
+                                長く使えるデザイン
+                            </h3>
+                            <p class="mt-2 text-sm md:text-base text-gray-600 leading-loose">
+                                飽きのこないシンプルなデザインと確かな品質で、長く愛用いただけるアイテムをお届けします。
+                            </p>
+                        </div>
+
+                        <i data-lucide="chevron-right" class="hidden sm:block w-6 h-6 text-[#b8946d] group-hover:translate-x-1 transition"></i>
+                    </div>
+
+                    <div class="group flex items-center gap-5 py-5 md:py-7">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#f3eadb] flex items-center justify-center shrink-0">
+                            <i data-lucide="sprout" class="w-8 h-8 md:w-9 md:h-9 text-[#a98244]"></i>
+                        </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-[#111827]">
+                                環境にやさしい選択
+                            </h3>
+                            <p class="mt-2 text-sm md:text-base text-gray-600 leading-loose">
+                                素材選びから梱包まで、環境への配慮を大切に。サステナブルな暮らしを応援します。
+                            </p>
+                        </div>
+
+                        <i data-lucide="chevron-right" class="hidden sm:block w-6 h-6 text-[#b8946d] group-hover:translate-x-1 transition"></i>
+                    </div>
+
+                    <div class="group flex items-center gap-5 py-5 md:py-7">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#f6ded1] flex items-center justify-center shrink-0">
+                            <i data-lucide="headphones" class="w-8 h-8 md:w-9 md:h-9 text-[#c27a52]"></i>
+                        </div>
+
+                        <div class="flex-1">
+                            <h3 class="text-xl md:text-2xl font-bold text-[#111827]">
+                                安心のサポート
+                            </h3>
+                            <p class="mt-2 text-sm md:text-base text-gray-600 leading-loose">
+                                ご購入前のご相談からアフターサポートまで、丁寧に対応します。
+                            </p>
+                        </div>
+
+                        <i data-lucide="chevron-right" class="hidden sm:block w-6 h-6 text-[#b8946d] group-hover:translate-x-1 transition"></i>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{{-- はじめての方へ --}}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+    <div class="rounded-[2rem] border border-[#e8dccb] bg-[#f8f1e8] p-6 sm:p-8 md:p-12 lg:p-16 overflow-hidden">
+
+        <div class="mb-10">
+            <p class="text-[#c27a52] italic font-bold mb-3">
+                Welcome!
+            </p>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111827]">
+                はじめての方へ
+            </h2>
+
+            <div class="w-14 h-[2px] bg-[#b8946d] my-6"></div>
+
+            <p class="text-gray-600 leading-loose text-base md:text-lg">
+                かんたん3ステップでお買い物が完了します。
+            </p>
+        </div>
+
+        {{-- PC / tablet --}}
+        <div class="hidden md:grid grid-cols-3 gap-6 lg:gap-8 items-start">
+
+            {{-- step 1 --}}
+            <div class="relative">
+                <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
+                    <div class="relative">
+                        <img
+                            src="{{ asset('images/home/step-select.jpg') }}"
+                            alt="商品を選ぶ"
+                            class="w-full h-52 lg:h-60 object-cover"
+                        >
+
+                        <div class="absolute -bottom-7 left-8 w-14 h-14 rounded-full bg-[#75885d] text-white flex items-center justify-center text-xl font-bold shadow-md">
+                            1
+                        </div>
+                    </div>
+
+                    <div class="pt-12 p-7">
+                        <div class="w-14 h-14 rounded-full bg-[#eef1df] flex items-center justify-center mb-5">
+                            <i data-lucide="search" class="w-7 h-7 text-[#75885d]"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-[#111827]">
                             商品を選ぶ
                         </h3>
 
-                        <p class="text-gray-500 text-sm leading-7">
+                        <p class="mt-4 text-gray-600 leading-loose">
                             豊富なカテゴリから、お好みの商品をお選びください。気になる商品はお気に入りにも追加できます。
                         </p>
                     </div>
-
                 </div>
 
-                {{-- step 2 --}}
-                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[18px]">
+                <div class="hidden lg:block absolute top-[105px] -right-6 text-[#b8946d] text-3xl">
+                    →
+                </div>
+            </div>
 
-                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#d4835f] text-white flex items-center justify-center font-bold text-lg">
-                        2
-                    </div>
-
-                    <div class="h-56 bg-gray-100 overflow-hidden">
+            {{-- step 2 --}}
+            <div class="relative">
+                <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
+                    <div class="relative">
                         <img
-                            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80"
+                            src="{{ asset('images/home/step-cart.jpg') }}"
                             alt="カートに入れる"
-                            class="w-full h-full object-cover"
+                            class="w-full h-52 lg:h-60 object-cover"
                         >
+
+                        <div class="absolute -bottom-7 left-8 w-14 h-14 rounded-full bg-[#c98962] text-white flex items-center justify-center text-xl font-bold shadow-md">
+                            2
+                        </div>
                     </div>
 
-                    <div class="p-6">
-                        <div class="w-16 h-16 rounded-full bg-[#f2d9ca] flex items-center justify-center mb-5">
-                            <i data-lucide="shopping-cart" class="w-8 h-8 text-[#a26345]"></i>
+                    <div class="pt-12 p-7">
+                        <div class="w-14 h-14 rounded-full bg-[#f6ded1] flex items-center justify-center mb-5">
+                            <i data-lucide="shopping-cart" class="w-7 h-7 text-[#c27a52]"></i>
                         </div>
 
-                        <h3 class="text-xl font-bold mb-3">
+                        <h3 class="text-2xl font-bold text-[#111827]">
                             カートに入れる
                         </h3>
 
-                        <p class="text-gray-500 text-sm leading-7">
+                        <p class="mt-4 text-gray-600 leading-loose">
                             気になる商品をカートに入れて、数量や合計金額を確認しながら購入手続きへ進めます。
                         </p>
                     </div>
-
                 </div>
 
-                {{-- step 3：届いた荷物の画像 --}}
-                <div class="relative bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden md:translate-y-[-6px]">
+                <div class="hidden lg:block absolute top-[105px] -right-6 text-[#b8946d] text-3xl">
+                    →
+                </div>
+            </div>
 
-                    <div class="absolute top-4 left-4 z-10 w-11 h-11 rounded-full bg-[#b89a62] text-white flex items-center justify-center font-bold text-lg">
-                        3
-                    </div>
-
-                    <div class="h-56 bg-gray-100 overflow-hidden">
+            {{-- step 3 --}}
+            <div>
+                <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
+                    <div class="relative">
                         <img
-                            src="https://images.unsplash.com/photo-1614018453562-77f6180ce036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="届いた荷物"
-                            class="w-full h-full object-cover"
-                            {{-- onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1614018453562-77f6180ce036?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';" --}}
+                            src="{{ asset('images/home/step-complete.jpg') }}"
+                            alt="ご注文完了"
+                            class="w-full h-52 lg:h-60 object-cover"
                         >
+
+                        <div class="absolute -bottom-7 left-8 w-14 h-14 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-xl font-bold shadow-md">
+                            3
+                        </div>
                     </div>
 
-                    <div class="p-6">
-                        <div class="w-16 h-16 rounded-full bg-[#f1e8d9] flex items-center justify-center mb-5">
-                            <i data-lucide="package-check" class="w-8 h-8 text-[#9a7b45]"></i>
+                    <div class="pt-12 p-7">
+                        <div class="w-14 h-14 rounded-full bg-[#f3eadb] flex items-center justify-center mb-5">
+                            <i data-lucide="package-check" class="w-7 h-7 text-[#a98244]"></i>
                         </div>
 
-                        <h3 class="text-xl font-bold mb-3">
+                        <h3 class="text-2xl font-bold text-[#111827]">
                             ご注文完了
                         </h3>
 
-                        <p class="text-gray-500 text-sm leading-7">
+                        <p class="mt-4 text-gray-600 leading-loose">
                             決済完了後は注文履歴から内容を確認できます。発送状況もわかりやすく表示します。
                         </p>
                     </div>
-
                 </div>
-
             </div>
 
-        </section>
+        </div>
+
+        {{-- mobile --}}
+        <div class="md:hidden space-y-5">
+
+            <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
+                <div class="relative">
+                    <img
+                        src="{{ asset('images/home/step-select.jpg') }}"
+                        alt="商品を選ぶ"
+                        class="w-24 h-24 rounded-2xl object-cover"
+                    >
+                    <div class="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-[#75885d] text-white flex items-center justify-center text-sm font-bold">
+                        1
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-[#111827]">
+                        商品を選ぶ
+                    </h3>
+                    <p class="mt-2 text-sm text-gray-600 leading-7">
+                        豊富なカテゴリから、お好みの商品をお選びください。
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
+                <div class="relative">
+                    <img
+                        src="{{ asset('images/home/step-cart.jpg') }}"
+                        alt="カートに入れる"
+                        class="w-24 h-24 rounded-2xl object-cover"
+                    >
+                    <div class="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-[#c98962] text-white flex items-center justify-center text-sm font-bold">
+                        2
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-[#111827]">
+                        カートに入れる
+                    </h3>
+                    <p class="mt-2 text-sm text-gray-600 leading-7">
+                        数量や合計金額を確認しながら購入手続きへ進めます。
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
+                <div class="relative">
+                    <img
+                        src="{{ asset('images/home/step-complete.jpg') }}"
+                        alt="ご注文完了"
+                        class="w-24 h-24 rounded-2xl object-cover"
+                    >
+                    <div class="absolute -top-2 -left-2 w-8 h-8 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-sm font-bold">
+                        3
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-[#111827]">
+                        ご注文完了
+                    </h3>
+                    <p class="mt-2 text-sm text-gray-600 leading-7">
+                        注文履歴から内容や発送状況を確認できます。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        {{-- support CTA --}}
+        <div class="mt-8 md:mt-12 max-w-4xl mx-auto rounded-3xl bg-white/85 border border-[#eadfce] px-5 py-5 md:px-8 md:py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-[#f3eadb] flex items-center justify-center shrink-0">
+                    <i data-lucide="headphones" class="w-6 h-6 text-[#a98244]"></i>
+                </div>
+
+                <p class="font-bold text-gray-700 text-center sm:text-left">
+                    ご不明な点はいつでもサポートいたします。
+                </p>
+            </div>
+
+            <a href="{{ route('contact.index') }}"
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-[#d8c5ad] px-8 py-3 font-bold text-[#111827] hover:bg-[#f8f4ef] transition">
+                お問い合わせはこちら
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
 
 {{-- ShopSwiftでのお買い物：修正版 --}}
 <section class="overflow-hidden rounded-[2rem] border border-[#dfe4d2] bg-white my-8">
