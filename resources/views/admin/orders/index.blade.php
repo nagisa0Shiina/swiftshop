@@ -300,6 +300,7 @@
                     <tr>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">決済状況</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">発送状況</th>

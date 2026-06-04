@@ -11,8 +11,9 @@
 
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
-<div class="w-full max-w-[1200px] mx-auto bg-white min-h-screen sm:my-4 sm:border sm:border-gray-200 sm:rounded-xl sm:shadow-sm sm:overflow-hidden">
+<div class="w-full max-w-[1300px] mx-auto bg-white min-h-screen sm:my-4 sm:border sm:border-gray-200 sm:rounded-xl sm:shadow-sm sm:overflow-hidden">
 <x-site-header />
+
     <main class="px-4 sm:px-8 py-10 sm:py-16">
 
         <div class="max-w-2xl mx-auto">
