@@ -93,11 +93,13 @@
             </div>
 
             <nav class="space-y-2 text-sm font-bold">
-                                  @if (auth()->user()->is_admin)
-                    <a href="{{ route('admin.dashboard') }}"
-                    class="hover:text-gray-500">
-                        管理画面
-                    </a>
+        @if (auth()->user()->is_admin)
+    <a href="{{ route('admin.dashboard') }}"
+       class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50">
+        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+        管理画面
+    </a>
+@endif
                 <a href="{{ route('mypage') }}"
                    class="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#f8f4ef]">
                     <i data-lucide="user" class="w-5 h-5"></i>
