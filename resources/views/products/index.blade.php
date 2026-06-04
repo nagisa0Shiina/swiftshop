@@ -596,8 +596,8 @@
                         </div>
                     </div>
 
-                    <div class="pt-12 p-7">
-                        <div class="w-14 h-14 rounded-full bg-[#f3eadb] flex items-center justify-center mb-5">
+                    <div class="pt-12 p-7 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-[#f3eadb]  mb-5">
                             <i data-lucide="package-check" class="w-7 h-7 text-[#a98244]"></i>
                         </div>
 
