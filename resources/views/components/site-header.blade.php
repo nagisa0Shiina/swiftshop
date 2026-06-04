@@ -55,7 +55,7 @@
         <div class="flex items-center gap-3 md:gap-5 shrink-0">
 
             {{-- PC Search --}}
-        <form method="GET"
+       <form method="GET"
       action="{{ route('products.all') }}"
       class="hidden md:flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 bg-white">
     <i data-lucide="search" class="w-5 h-5 text-gray-500"></i>
@@ -145,20 +145,20 @@
     </div>
 
     {{-- Mobile Search --}}
-    <div class="md:hidden px-4 pb-4">
-     <form method="GET"
-      action="{{ route('products.all') }}"
-      class="hidden md:flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2.5 bg-white">
-    <i data-lucide="search" class="w-5 h-5 text-gray-500"></i>
+  <div class="md:hidden px-4 pb-4">
+    <form method="GET"
+          action="{{ route('products.all') }}"
+          class="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-3 bg-white">
+        <i data-lucide="search" class="w-5 h-5 text-gray-500"></i>
 
-    <input
-        name="keyword"
-        value="{{ request('keyword') }}"
-        placeholder="商品を検索"
-        class="outline-none text-sm w-32 lg:w-44"
-    >
-</form>
-    </div>
+        <input
+            name="keyword"
+            value="{{ request('keyword') }}"
+            placeholder="商品を検索する"
+            class="outline-none text-sm w-full"
+        >
+    </form>
+</div>
 </header>
 
 {{-- Mobile Drawer --}}
