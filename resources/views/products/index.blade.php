@@ -583,7 +583,7 @@
 
             {{-- step 3 --}}
             <div>
-                <div class="relative rounded-[1.75rem] grid grid-cols-[120px_1fr] gap-4 bg-white shadow-sm border border-white overflow-hidden">
+                <div class="relative rounded-[1.75rem]  bg-white shadow-sm border border-white overflow-hidden">
                     <div class="relative">
                         <img
                             src="{{ asset('home/images/step-complete.png') }}"
