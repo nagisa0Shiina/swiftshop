@@ -679,11 +679,11 @@
 
                     {{-- step 3 --}}
                     <div class="rounded-[1.75rem] bg-white border border-white shadow-sm overflow-hidden">
-                        <div class="relative z-10">
+                        <div class="relative">
                             <img
                                 src="{{ asset('home/images/step-complete.png') }}"
                                 alt="ご注文完了"
-                                class="w-full h-44 object-cover"
+                                class="w-full h-44 object-cover z-0"
                             >
 
                             <div class="absolute -top-3 -left-3 w-11 h-11 z-50 md:top-4 md:left-4 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
