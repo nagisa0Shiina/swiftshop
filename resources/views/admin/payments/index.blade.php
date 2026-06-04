@@ -8,7 +8,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://unpkg.com/lucide@latest"></script>
 
- <style>
+    <style>
         .admin-layout {
             min-height: 100vh;
             display: flex;
@@ -80,169 +80,64 @@
 <body class="bg-[#f5f6f7] text-[#111827] overflow-x-hidden">
 
 <div class="min-h-screen lg:flex">
-{{-- PC Sidebar --}}
-<aside class="admin-sidebar hidden lg:flex">
 
-    <div class="px-8 py-8 border-b border-white/10">
-        <a href="{{ route('admin.dashboard') }}" class="block text-white">
-            <div class="text-2xl font-bold leading-none">
-                ShopSwift
-            </div>
-            <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
-                ADMIN PANEL
-            </div>
-        </a>
-    </div>
+    {{-- PC Sidebar --}}
+    <aside class="admin-sidebar hidden lg:flex">
 
-    <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-
-        <a href="{{ route('admin.dashboard') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-            <i data-lucide="layout-dashboard"></i>
-            <span>ダッシュボード</span>
-        </a>
-
-        <a href="{{ route('admin.products.index') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-            <i data-lucide="package"></i>
-            <span>商品管理</span>
-        </a>
-
-        <a href="{{ route('admin.orders.index') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-            <i data-lucide="clipboard-list"></i>
-            <span>注文管理</span>
-        </a>
-
-        <a href="{{ route('admin.shipping.index') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.shipping.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-            <i data-lucide="truck"></i>
-            <span>発送状況</span>
-        </a>
-
-        @if (Route::has('admin.payments.index'))
-            <a href="{{ route('admin.payments.index') }}"
-               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.payments.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-                <i data-lucide="credit-card"></i>
-                <span>決済状況</span>
+        <div class="px-8 py-8 border-b border-white/10">
+            <a href="{{ route('admin.dashboard') }}" class="block text-white">
+                <div class="text-2xl font-bold leading-none">
+                    ShopSwift
+                </div>
+                <div class="mt-3 text-xs tracking-[0.25em] text-white/50">
+                    ADMIN PANEL
+                </div>
             </a>
-        @else
-            <a href="{{ route('admin.orders.index') }}"
-               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="credit-card"></i>
-                <span>決済状況</span>
-            </a>
-        @endif
-
-        <a href="{{ route('admin.articles.index') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
-            <i data-lucide="newspaper"></i>
-            <span>記事管理</span>
-        </a>
-
-    </nav>
-
-    <div class="px-4 py-6 border-t border-white/10 space-y-2">
-
-        <a href="{{ route('products.index') }}"
-           class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-            <i data-lucide="external-link"></i>
-            <span>サイトを見る</span>
-        </a>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit"
-                    class="admin-sidebar-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
-                <i data-lucide="log-out"></i>
-                <span>ログアウト</span>
-            </button>
-        </form>
-
-    </div>
-
-</aside>
-
-{{-- Mobile Header --}}
-<header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
-    <div>
-        <div class="text-2xl font-bold leading-none">ShopSwift</div>
-        <div class="mt-2 text-xs tracking-[0.25em] text-white/50">ADMIN PANEL</div>
-    </div>
-
-    <button type="button"
-            id="adminMenuOpen"
-            class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
-        <i data-lucide="menu" class="w-7 h-7"></i>
-    </button>
-</header>
-
-{{-- Mobile Drawer --}}
-<div id="adminMobileMenu"
-     class="fixed inset-0 z-[999] hidden lg:hidden">
-
-    <div id="adminMobileOverlay"
-         class="absolute inset-0 bg-black/50"></div>
-
-    <aside class="absolute left-0 top-0 h-full w-[82%] max-w-[320px] bg-[#070d16] text-white flex flex-col">
-
-        <div class="px-6 py-7 border-b border-white/10 flex items-center justify-between">
-            <div>
-                <div class="text-2xl font-bold leading-none">ShopSwift</div>
-                <div class="mt-2 text-xs tracking-[0.25em] text-white/50">ADMIN PANEL</div>
-            </div>
-
-            <button type="button"
-                    id="adminMenuClose"
-                    class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
-                <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
         </div>
 
         <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
 
             <a href="{{ route('admin.dashboard') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                <i data-lucide="layout-dashboard"></i>
                 <span>ダッシュボード</span>
             </a>
 
             <a href="{{ route('admin.products.index') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                <i data-lucide="package" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                <i data-lucide="package"></i>
                 <span>商品管理</span>
             </a>
 
             <a href="{{ route('admin.orders.index') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                <i data-lucide="clipboard-list"></i>
                 <span>注文管理</span>
             </a>
 
             <a href="{{ route('admin.shipping.index') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.shipping.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                <i data-lucide="truck" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.shipping.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                <i data-lucide="truck"></i>
                 <span>発送状況</span>
             </a>
 
             @if (Route::has('admin.payments.index'))
                 <a href="{{ route('admin.payments.index') }}"
-                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.payments.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                   class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.payments.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                    <i data-lucide="credit-card"></i>
                     <span>決済状況</span>
                 </a>
             @else
                 <a href="{{ route('admin.orders.index') }}"
-                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                   class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="credit-card"></i>
                     <span>決済状況</span>
                 </a>
             @endif
 
             <a href="{{ route('admin.articles.index') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
-                <i data-lucide="newspaper" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10 hover:text-white' }} transition">
+                <i data-lucide="newspaper"></i>
                 <span>記事管理</span>
             </a>
 
@@ -251,8 +146,8 @@
         <div class="px-4 py-6 border-t border-white/10 space-y-2">
 
             <a href="{{ route('products.index') }}"
-               class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                <i data-lucide="external-link" class="w-5 h-5"></i>
+               class="admin-sidebar-link rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                <i data-lucide="external-link"></i>
                 <span>サイトを見る</span>
             </a>
 
@@ -260,8 +155,8 @@
                 @csrf
 
                 <button type="submit"
-                        class="w-full flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
-                    <i data-lucide="log-out" class="w-5 h-5"></i>
+                        class="admin-sidebar-button rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10 hover:text-white transition">
+                    <i data-lucide="log-out"></i>
                     <span>ログアウト</span>
                 </button>
             </form>
@@ -270,20 +165,148 @@
 
     </aside>
 
-</div>
-    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
-        <div class="mb-8">
-            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">決済状況</h1>
-            <p class="text-gray-500 mt-4 text-base sm:text-lg">注文の決済ステータスを確認できます</p>
+    {{-- Mobile Header --}}
+    <header class="lg:hidden sticky top-0 z-50 bg-[#070d16] text-white px-5 py-5 flex items-center justify-between">
+        <div>
+            <div class="text-2xl font-bold leading-none">ShopSwift</div>
+            <div class="mt-2 text-xs tracking-[0.25em] text-white/50">ADMIN PANEL</div>
         </div>
 
+        <button type="button"
+                id="adminMenuOpen"
+                class="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center">
+            <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+    </header>
+
+    {{-- Mobile Drawer --}}
+    <div id="adminMobileMenu"
+         class="fixed inset-0 z-[999] hidden lg:hidden">
+
+        <div id="adminMobileOverlay"
+             class="absolute inset-0 bg-black/50"></div>
+
+        <aside class="absolute left-0 top-0 h-full w-[82%] max-w-[320px] bg-[#070d16] text-white flex flex-col">
+
+            <div class="px-6 py-7 border-b border-white/10 flex items-center justify-between">
+                <div>
+                    <div class="text-2xl font-bold leading-none">ShopSwift</div>
+                    <div class="mt-2 text-xs tracking-[0.25em] text-white/50">ADMIN PANEL</div>
+                </div>
+
+                <button type="button"
+                        id="adminMenuClose"
+                        class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+
+                <a href="{{ route('admin.dashboard') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>ダッシュボード</span>
+                </a>
+
+                <a href="{{ route('admin.products.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.products.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                    <i data-lucide="package" class="w-5 h-5"></i>
+                    <span>商品管理</span>
+                </a>
+
+                <a href="{{ route('admin.orders.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.orders.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                    <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                    <span>注文管理</span>
+                </a>
+
+                <a href="{{ route('admin.shipping.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.shipping.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                    <i data-lucide="truck" class="w-5 h-5"></i>
+                    <span>発送状況</span>
+                </a>
+
+                @if (Route::has('admin.payments.index'))
+                    <a href="{{ route('admin.payments.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.payments.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @else
+                    <a href="{{ route('admin.orders.index') }}"
+                       class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="credit-card" class="w-5 h-5"></i>
+                        <span>決済状況</span>
+                    </a>
+                @endif
+
+                <a href="{{ route('admin.articles.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold {{ request()->routeIs('admin.articles.*') ? 'bg-white text-[#070d16]' : 'text-white/80 hover:bg-white/10' }}">
+                    <i data-lucide="newspaper" class="w-5 h-5"></i>
+                    <span>記事管理</span>
+                </a>
+
+            </nav>
+
+            <div class="px-4 py-6 border-t border-white/10 space-y-2">
+
+                <a href="{{ route('products.index') }}"
+                   class="flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    <span>サイトを見る</span>
+                </a>
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <button type="submit"
+                            class="w-full flex items-center gap-4 rounded-2xl px-5 py-4 text-base font-bold text-white/80 hover:bg-white/10">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                        <span>ログアウト</span>
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    <main class="flex-1 min-w-0 px-4 sm:px-6 lg:px-10 py-8 lg:py-10">
+
+        <div class="mb-8">
+            <h1 class="text-4xl sm:text-5xl font-bold tracking-tight">
+                決済状況
+            </h1>
+
+            <p class="text-gray-500 mt-4 text-base sm:text-lg">
+                注文ごとの商品内容と決済ステータスを確認できます
+            </p>
+        </div>
+
+        @if (session('success'))
+            <div class="mb-6 rounded-2xl bg-green-100 text-green-700 px-5 py-4 font-bold">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if ($errors->any())
+            <div class="mb-6 rounded-2xl bg-red-100 text-red-700 px-5 py-4 font-bold">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
         <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
+
             <div class="overflow-x-auto">
-                <table class="w-full min-w-[900px] text-left">
+                <table class="w-full min-w-[1280px] text-left">
+
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">決済状況</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文日時</th>
@@ -292,8 +315,10 @@
 
                     <tbody>
                     @forelse ($orders as $order)
+
                         @php
                             $paymentStatus = $order->payment_status ?? $order->status ?? '';
+
                             $paymentLabel = match ($paymentStatus) {
                                 'paid' => '決済完了',
                                 'unpaid' => '未決済',
@@ -302,29 +327,94 @@
                                 'refunded' => '返金済み',
                                 default => $paymentStatus ? $paymentStatus : '未決済',
                             };
+
+                            $paymentClass = match ($paymentStatus) {
+                                'paid' => 'bg-green-100 text-green-700',
+                                'pending' => 'bg-yellow-100 text-yellow-700',
+                                'unpaid' => 'bg-gray-100 text-gray-700',
+                                'failed' => 'bg-red-100 text-red-700',
+                                'refunded' => 'bg-purple-100 text-purple-700',
+                                default => 'bg-gray-100 text-gray-700',
+                            };
                         @endphp
 
                         <tr class="border-b border-gray-200 last:border-b-0 hover:bg-gray-50 transition">
-                            <td class="px-6 py-7 font-bold whitespace-nowrap">#{{ $order->id }}</td>
-                            <td class="px-6 py-7 font-bold whitespace-nowrap">{{ $order->user->name ?? $order->name ?? '不明' }}</td>
-                            <td class="px-6 py-7 font-bold whitespace-nowrap">¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}</td>
-                            <td class="px-6 py-7 whitespace-nowrap">
-                                <span class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-bold text-sm">{{ $paymentLabel }}</span>
+
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">
+                                #{{ $order->id }}
                             </td>
-                            <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">{{ optional($order->created_at)->format('Y/m/d H:i') }}</td>
+
+                            <td class="px-6 py-7 whitespace-nowrap">
+                                <div class="font-bold">
+                                    {{ $order->user->name ?? $order->customer_name ?? $order->name ?? '不明' }}
+                                </div>
+
+                                <div class="text-sm text-gray-500 mt-1">
+                                    {{ $order->user->email ?? $order->customer_email ?? $order->email ?? '' }}
+                                </div>
+                            </td>
+
+                            <td class="px-6 py-7 min-w-[260px]">
+                                @if ($order->items && $order->items->count() > 0)
+                                    <div class="space-y-2">
+                                        @foreach ($order->items as $item)
+                                            <div class="rounded-xl bg-gray-50 border border-gray-100 px-4 py-3">
+                                                <div class="font-bold text-sm text-gray-800 leading-6">
+                                                    {{ $item->product_name ?? $item->product->name ?? '商品名なし' }}
+                                                </div>
+
+                                                <div class="mt-1 text-xs text-gray-500 font-bold">
+                                                    数量：{{ $item->quantity }}　
+                                                    単価：¥{{ number_format($item->price ?? 0) }}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <span class="text-gray-400 font-bold">
+                                        商品情報なし
+                                    </span>
+                                @endif
+                            </td>
+
+                            <td class="px-6 py-7 font-bold whitespace-nowrap">
+                                ¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}
+                            </td>
+
+                            <td class="px-6 py-7 whitespace-nowrap">
+                                <span class="inline-flex px-4 py-2 rounded-full {{ $paymentClass }} font-bold text-sm">
+                                    {{ $paymentLabel }}
+                                </span>
+                            </td>
+
+                            <td class="px-6 py-7 text-gray-500 font-bold whitespace-nowrap">
+                                {{ optional($order->created_at)->timezone('Asia/Tokyo')->format('Y/m/d H:i') }}
+                            </td>
+
                         </tr>
+
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-16 text-center text-gray-500 font-bold">注文はまだありません。</td>
+                            <td colspan="6" class="px-6 py-16 text-center text-gray-500 font-bold">
+                                注文はまだありません。
+                            </td>
                         </tr>
                     @endforelse
                     </tbody>
+
                 </table>
             </div>
+
         </section>
+
+        @if (isset($orders) && method_exists($orders, 'links'))
+            <div class="mt-8">
+                {{ $orders->links() }}
+            </div>
+        @endif
+
     </main>
 </div>
-
 
 <script>
     lucide.createIcons();
