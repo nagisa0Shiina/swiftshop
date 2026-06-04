@@ -516,19 +516,26 @@
                     {{-- step 1 --}}
                     <div class="relative">
                         <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
-                           <div class="relative overflow-visible">
-                            <div class="overflow-hidden rounded-t-[1.75rem]">
+                            <div class="relative">
                                 <img
                                     src="{{ asset('home/images/step-select.png') }}"
                                     alt="商品を選ぶ"
-                                    class="w-full h-44 object-cover"
+                                    class="w-full h-52 lg:h-60 object-cover"
                                 >
+
+                                <div class="absolute -bottom-7 left-8 w-14 h-14 rounded-full bg-[#75885d] text-white flex items-center justify-center text-xl font-bold shadow-md">
+                                    1
+                                </div>
                             </div>
 
-                            <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-[#75885d] text-white flex items-center justify-center text-lg font-bold shadow-md z-30">
-                                1
-                            </div>
-                        </div>
+                            <div class="pt-12 p-7">
+                                <div class="flex items-center gap-4 mb-5">
+                                    <i data-lucide="search" class="w-7 h-7 text-[#75885d] shrink-0"></i>
+
+                                    <h3 class="text-2xl font-bold text-[#111827] leading-snug">
+                                        商品を選ぶ
+                                    </h3>
+                                </div>
 
                                 <p class="text-gray-600 leading-loose">
                                     豊富なカテゴリから、お好みの商品をお選びください。気になる商品はお気に入りにも追加できます。
@@ -544,19 +551,26 @@
                     {{-- step 2 --}}
                     <div class="relative">
                         <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
-                     <div class="relative overflow-visible">
-                            <div class="overflow-hidden rounded-t-[1.75rem]">
+                            <div class="relative">
                                 <img
                                     src="{{ asset('home/images/step-cart.png') }}"
                                     alt="カートに入れる"
-                                    class="w-full h-44 object-cover"
+                                    class="w-full h-52 lg:h-60 object-cover"
                                 >
+
+                                <div class="absolute -bottom-7 left-8 w-14 h-14 rounded-full bg-[#c98962] text-white flex items-center justify-center text-xl font-bold shadow-md">
+                                    2
+                                </div>
                             </div>
 
-                            <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-[#c98962] text-white flex items-center justify-center text-lg font-bold shadow-md z-30">
-                                2
-                            </div>
-                        </div>
+                            <div class="pt-12 p-7">
+                                <div class="flex items-center gap-4 mb-5">
+                                    <i data-lucide="shopping-cart" class="w-7 h-7 text-[#c27a52] shrink-0"></i>
+
+                                    <h3 class="text-2xl font-bold text-[#111827] leading-snug">
+                                        カートに入れる
+                                    </h3>
+                                </div>
 
                                 <p class="text-gray-600 leading-loose">
                                     気になる商品をカートに入れて、数量や合計金額を確認しながら購入手続きへ進めます。
@@ -570,7 +584,7 @@
                     </div>
 
                     {{-- step 3 --}}
-                    <div>
+                    <div class="relative">
                         <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
                             <div class="relative">
                                 <img
@@ -638,19 +652,19 @@
 
                     {{-- step 2 --}}
                     <div class="rounded-[1.75rem] bg-white border border-white shadow-sm overflow-hidden">
-                                        <div class="relative overflow-visible">
-                        <div class="overflow-hidden rounded-t-[1.75rem]">
-                            <img
-                                src="{{ asset('home/images/step-cart.png') }}"
-                                alt="カートに入れる"
-                                class="w-full h-44 object-cover"
-                            >
-                        </div>
-
-                        <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-[#c98962] text-white flex items-center justify-center text-lg font-bold shadow-md z-30">
-                            2
-                        </div>
+                                    <div class="relative overflow-visible">
+                    <div class="overflow-hidden rounded-t-[1.75rem]">
+                        <img
+                            src="{{ asset('home/images/step-cart.png') }}"
+                            alt="カートに入れる"
+                            class="w-full h-44 object-cover"
+                        >
                     </div>
+
+                    <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-[#c98962] text-white flex items-center justify-center text-lg font-bold shadow-md z-30">
+                        2
+                    </div>
+                </div>
 
                         <div class="p-5">
                             <div class="flex items-center gap-3 mb-3">
@@ -670,19 +684,17 @@
                     {{-- step 3 --}}
           <div class="relative rounded-[1.75rem] bg-white border border-white shadow-sm overflow-visible">
 
-                    <div class="relative overflow-visible">
-                <div class="overflow-hidden rounded-t-[1.75rem]">
+                <div class="relative rounded-t-[1.75rem] overflow-hidden">
                     <img
                         src="{{ asset('home/images/step-complete.png') }}"
                         alt="ご注文完了"
-                        class="w-full h-44 object-cover"
+                        class="w-full h-44 object-cover block"
                     >
-                </div>
 
-                <div class="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md z-30">
-                    3
+                    <div class="absolute -top-3 -left-3 md:top-4 md:left-4 w-11 h-11 z-50 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
+                        3
+                    </div>
                 </div>
-            </div>
 
                 <div class="p-5">
                     <div class="flex items-center gap-3 mb-3">
