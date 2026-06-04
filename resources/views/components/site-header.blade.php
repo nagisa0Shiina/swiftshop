@@ -201,7 +201,7 @@
     </a>
 
     <a href="{{ route('products.index') }}#products"
-       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold">
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('') ? $mobileActive : $mobileNormal }}">
         <span>人気商品</span>
         <i data-lucide="arrow-right" class="w-5 h-5"></i>
     </a>
