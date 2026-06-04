@@ -391,7 +391,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
 
       {{-- ShopSwiftのこだわり --}}
-<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14">
+<section class="max-w-7xl mx-auto px-4 sm:px-10 lg:px-8 py-10 md:py-14">
     <div class="relative overflow-hidden rounded-[2rem] border  border-[#e8dccb]  shadow-sm">
 
         {{-- 背景画像 --}}
@@ -596,7 +596,7 @@
                     </div>
 
                     <div class="pt-12 p-7">
-                        <div class="w-full h-14 rounded-full  flex items-center justify-center mb-5 gap-4">
+                        <div class="w-full h-14 rounded-full  flex items-center justify-center mb-5 ">
                             <i data-lucide="package-check" class="w-7 h-7 text-[#a98244] text-xl"></i>
                             <h3 class="text-2xl font-bold text-[#111827]">
                                 ご注文完了
