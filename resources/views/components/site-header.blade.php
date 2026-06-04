@@ -182,67 +182,89 @@
             </button>
         </div>
 
-        <nav class="flex-1 px-6 py-7 space-y-2 overflow-y-auto">
+        @php
+    $mobileActive = 'bg-[#070d16] text-white';
+    $mobileNormal = 'bg-gray-50 text-[#111827]';
+@endphp
+<nav class="flex-1 px-6 py-7 space-y-2 overflow-y-auto">
 
-            <a href="{{ route('products.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-[#070d16] text-white font-bold">
-                <span>ホーム</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    <a href="{{ route('products.index') }}"
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('products.index') ? $mobileActive : $mobileNormal }}">
+        <span>ホーム</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    </a>
+
+    <a href="{{ route('products.all') }}"
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('products.all') || request()->routeIs('products.show') ? $mobileActive : $mobileNormal }}">
+        <span>全商品を見る</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    </a>
+
+    <a href="{{ route('products.index') }}#products"
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('products.index') ? $mobileActive : $mobileNormal }}">
+        <span>人気商品</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    </a>
+
+    <a href="{{ route('articles.index') }}"
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('articles.*') ? $mobileActive : $mobileNormal }}">
+        <span>Journal</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    </a>
+
+    <a href="{{ route('contact.index') }}"
+       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('contact.*') ? $mobileActive : $mobileNormal }}">
+        <span>お問い合わせ</span>
+        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+    </a>
+
+    @auth
+        <div class="pt-5 mt-5 border-t border-gray-100 space-y-2">
+
+            @if (auth()->user()->is_admin)
+                <a href="{{ route('admin.dashboard') }}"
+                   class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('admin.*') ? $mobileActive : $mobileNormal }}">
+                    <span>管理画面</span>
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                </a>
+            @endif
+
+            <a href="{{ route('mypage') }}"
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('mypage') ? $mobileActive : $mobileNormal }}">
+                <span>マイページ</span>
+                <i data-lucide="user" class="w-5 h-5"></i>
             </a>
 
-            <a href="{{ route('products.all') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                <span>全商品を見る</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <a href="{{ route('cart.index') }}"
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('cart.*') ? $mobileActive : $mobileNormal }}">
+                <span>カート</span>
+                <i data-lucide="shopping-cart" class="w-5 h-5"></i>
             </a>
 
-            <a href="{{ route('products.index') }}#products"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                <span>人気商品</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <a href="{{ route('orders.index') }}"
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('orders.*') ? $mobileActive : $mobileNormal }}">
+                <span>注文履歴</span>
+                <i data-lucide="receipt-text" class="w-5 h-5"></i>
             </a>
 
-            <a href="{{ route('articles.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                <span>Journal</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </div>
+    @else
+        <div class="pt-5 mt-5 border-t border-gray-100 space-y-2">
+            <a href="{{ route('login') }}"
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('login') ? $mobileActive : $mobileNormal }}">
+                <span>ログイン</span>
+                <i data-lucide="user" class="w-5 h-5"></i>
             </a>
 
-            <a href="{{ route('contact.index') }}"
-               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                <span>お問い合わせ</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            <a href="{{ route('register') }}"
+               class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 font-bold {{ request()->routeIs('register') ? $mobileActive : $mobileNormal }}">
+                <span>新規登録</span>
+                <i data-lucide="user-plus" class="w-5 h-5"></i>
             </a>
+        </div>
+    @endauth
 
-            @auth
-                          @if (auth()->user()->is_admin)
-                    <a href="{{ route('admin.dashboard') }}"
-                    class="hover:text-gray-500">
-                        管理画面
-                    </a>
-                @endif
-                <div class="pt-5 mt-5 border-t border-gray-100 space-y-2">
-                    <a href="{{ route('mypage') }}"
-                       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                        <span>マイページ</span>
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                    </a>
-
-                    <a href="{{ route('cart.index') }}"
-                       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                        <span>カート</span>
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                    </a>
-
-                    <a href="{{ route('orders.index') }}"
-                       class="site-mobile-link flex items-center justify-between rounded-2xl px-5 py-4 bg-gray-50 text-[#111827] font-bold">
-                        <span>注文履歴</span>
-                        <i data-lucide="receipt-text" class="w-5 h-5"></i>
-                    </a>
-                </div>
-            @endauth
-
-        </nav>
+</nav>
 
         <div class="px-6 py-6 border-t border-gray-100">
             @auth
