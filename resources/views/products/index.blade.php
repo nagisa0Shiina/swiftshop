@@ -686,7 +686,7 @@
                                 class="w-full h-44 object-cover"
                             >
 
-                            <div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
+                            <div class="absolute top-4 left-4 w-11 h-11 sm:top-0 sm:left-0 rounded-full bg-[#d98b65] text-white flex items-center justify-center text-lg font-bold shadow-md">
                                 3
                             </div>
                         </div>
