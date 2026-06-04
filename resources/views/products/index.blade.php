@@ -551,7 +551,7 @@
                 <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
                     <div class="relative">
                         <img
-                            src="{{ asset('images/home/step-cart.jpg') }}"
+                            src="{{ asset('home/images/step-cart.png') }}"
                             alt="カートに入れる"
                             class="w-full h-52 lg:h-60 object-cover"
                         >
@@ -586,7 +586,7 @@
                 <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
                     <div class="relative">
                         <img
-                            src="{{ asset('images/home/step-complete.jpg') }}"
+                            src="{{ asset('home/images/step-complete.png') }}"
                             alt="ご注文完了"
                             class="w-full h-52 lg:h-60 object-cover"
                         >
