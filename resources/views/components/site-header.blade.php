@@ -6,51 +6,51 @@
         </a>
 
         {{-- PC Nav --}}
-        <nav class="hidden lg:flex items-center gap-8 text-sm font-bold">
-            <a href="{{ route('products.index') }}"
-               class="hover:text-gray-500 bg-[#070d16] text-white px-5 py-3 rounded-full">
-                ホーム
+     <nav class="hidden lg:flex items-center gap-8 text-sm font-bold">
+    <a href="{{ route('products.index') }}"
+       class="{{ request()->routeIs('products.index') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+        ホーム
+    </a>
+
+    <a href="{{ route('products.all') }}"
+       class="{{ request()->routeIs('products.all') || request()->routeIs('products.show') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+        全商品を見る
+    </a>
+
+    <a href="{{ route('products.index') }}#products"
+       class="hover:text-gray-500">
+        人気商品
+    </a>
+
+    <a href="{{ route('articles.index') }}"
+       class="{{ request()->routeIs('articles.*') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+        Journal
+    </a>
+
+    <a href="{{ route('contact.index') }}"
+       class="{{ request()->routeIs('contact.*') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+        お問い合わせ
+    </a>
+
+    @auth
+        @if (auth()->user()->is_admin)
+            <a href="{{ route('admin.dashboard') }}"
+               class="{{ request()->routeIs('admin.*') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+                管理画面
             </a>
+        @endif
 
-            <a href="{{ route('products.all') }}"
-               class="hover:text-gray-500">
-                全商品を見る
-            </a>
+        <a href="{{ route('mypage') }}"
+           class="{{ request()->routeIs('mypage') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+            マイページ
+        </a>
 
-            <a href="{{ route('products.index') }}#products"
-               class="hover:text-gray-500">
-                人気商品
-            </a>
-
-            <a href="{{ route('articles.index') }}"
-               class="hover:text-gray-500">
-                Journal
-            </a>
-
-            <a href="{{ route('contact.index') }}"
-               class="hover:text-gray-500">
-                お問い合わせ
-            </a>
-
-            @auth
-                            @if (auth()->user()->is_admin)
-                    <a href="{{ route('admin.dashboard') }}"
-                    class="hover:text-gray-500">
-                        管理画面
-                    </a>
-                @endif
-
-                <a href="{{ route('mypage') }}"
-                   class="hover:text-gray-500">
-                    マイページ
-                </a>
-
-                <a href="{{ route('orders.index') }}"
-                   class="hover:text-gray-500">
-                    注文履歴
-                </a>
-            @endauth
-        </nav>
+        <a href="{{ route('orders.index') }}"
+           class="{{ request()->routeIs('orders.*') ? 'text-[#b8946d]' : 'hover:text-gray-500' }}">
+            注文履歴
+        </a>
+    @endauth
+</nav>
 
         <div class="flex items-center gap-3 md:gap-5 shrink-0">
 
