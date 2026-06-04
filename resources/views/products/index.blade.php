@@ -1320,8 +1320,98 @@
         }
     });
 
+        document.addEventListener('DOMContentLoaded', () => {
+        const demoNoticeModal = document.getElementById('demoNoticeModal');
+        const demoNoticeClose = document.getElementById('demoNoticeClose');
+
+        if (!demoNoticeModal || !demoNoticeClose) {
+            return;
+        }
+
+        const hasSeenDemoNotice = localStorage.getItem('shopswift_demo_notice_seen');
+
+        if (!hasSeenDemoNotice) {
+            demoNoticeModal.classList.remove('hidden');
+            demoNoticeModal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        demoNoticeClose.addEventListener('click', () => {
+            localStorage.setItem('shopswift_demo_notice_seen', 'true');
+
+            demoNoticeModal.classList.add('hidden');
+            demoNoticeModal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+        });
+    });
+
 </script>
 
+{{-- Demo Site Notice Modal --}}
+<div id="demoNoticeModal"
+     class="fixed inset-0 z-[9999] hidden items-center justify-center px-4">
 
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+
+    <div class="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+        <div class="bg-[#070d16] text-white px-6 py-5">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center">
+                    <i data-lucide="info" class="w-6 h-6"></i>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-bold">
+                        デモサイトについて
+                    </h2>
+
+                    <p class="text-sm text-white/60 mt-1">
+                        ShopSwift Demo Site
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="px-6 py-7">
+
+            <p class="text-gray-700 leading-8 font-bold">
+                このサイトは、Laravel 13で制作したECサイトのデモサイトです。
+            </p>
+
+            <div class="mt-5 space-y-3 text-sm text-gray-600 leading-7">
+                <p>
+                    商品閲覧、会員登録、ログイン、カート、Stripeテスト決済、お問い合わせなど、一通りの機能を確認できます。
+                </p>
+
+                <p>
+                    Stripe決済はテスト環境のため、実際の請求は発生しません。
+                </p>
+
+                <p>
+                    デモサイトのため、入力内容や操作内容については自己責任でお願いいたします。
+                </p>
+            </div>
+
+            <div class="mt-6 rounded-2xl bg-[#f8f4ef] border border-[#eadfd2] px-5 py-4 text-sm text-gray-700 leading-7">
+                <div class="font-bold mb-1">
+                    テスト決済について
+                </div>
+
+                <div>
+                    Stripeのテストカード番号 <span class="font-bold">4242 4242 4242 4242</span> で動作確認できます。
+                </div>
+            </div>
+
+            <button type="button"
+                    id="demoNoticeClose"
+                    class="mt-7 w-full rounded-2xl bg-[#070d16] text-white py-4 font-bold hover:bg-gray-800 transition">
+                理解しました
+            </button>
+
+        </div>
+
+    </div>
+</div>
 </body>
 </html>
