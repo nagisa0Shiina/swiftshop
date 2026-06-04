@@ -281,7 +281,7 @@
             </h1>
 
             <p class="text-gray-500 mt-4 text-base sm:text-lg">
-                注文内容・発送状況・決済状況を確認できます
+                注文内容・発送先・発送状況・決済状況を確認できます
             </p>
         </div>
 
@@ -294,12 +294,13 @@
         <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
 
             <div class="overflow-x-auto">
-                <table class="w-full min-w-[1380px] text-left">
+                <table class="w-full min-w-[1680px] text-left">
 
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文番号</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">注文者</th>
+                        <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">発送先</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">商品名</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">金額</th>
                         <th class="px-6 py-5 text-gray-500 font-bold whitespace-nowrap">決済状況</th>
@@ -362,6 +363,30 @@
 
                             <td class="px-6 py-7 font-bold whitespace-nowrap">
                                 {{ $order->user->name ?? $order->customer_name ?? $order->name ?? '不明' }}
+                            </td>
+
+                            <td class="px-6 py-7 min-w-[320px]">
+                                <div class="rounded-2xl bg-gray-50 border border-gray-100 px-4 py-4 text-sm">
+                                    <div class="font-bold text-gray-800">
+                                        {{ $order->customer_name ?? $order->user->name ?? '不明' }}
+                                    </div>
+
+                                    <div class="mt-2 text-gray-500">
+                                        〒{{ $order->postal_code ?? '未登録' }}
+                                    </div>
+
+                                    <div class="mt-2 text-gray-700 leading-6 whitespace-normal break-words">
+                                        {{ $order->address ?? '住所未登録' }}
+                                    </div>
+
+                                    <div class="mt-2 text-gray-500">
+                                        TEL：{{ $order->phone ?? '未登録' }}
+                                    </div>
+
+                                    <div class="mt-2 text-gray-500 break-all">
+                                        {{ $order->customer_email ?? $order->user->email ?? '' }}
+                                    </div>
+                                </div>
                             </td>
 
                             <td class="px-6 py-7 min-w-[260px]">
@@ -430,7 +455,7 @@
 
                     @empty
                         <tr>
-                            <td colspan="8" class="px-6 py-16 text-center text-gray-500 font-bold">
+                            <td colspan="9" class="px-6 py-16 text-center text-gray-500 font-bold">
                                 注文はまだありません。
                             </td>
                         </tr>

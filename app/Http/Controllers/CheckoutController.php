@@ -82,23 +82,19 @@ class CheckoutController extends Controller
                     'max:255',
                     'regex:/^[ぁ-んァ-ヶ一-龯a-zA-Z\s]+$/u',
                 ],
-
                 'customer_email' => [
                     'required',
                     'email:rfc,dns',
                     'max:255',
                 ],
-
                 'postal_code' => [
                     'required',
                     'regex:/^\d{3}-?\d{4}$/',
                 ],
-
                 'phone' => [
                     'required',
                     'regex:/^0[789]0-?\d{4}-?\d{4}$/',
                 ],
-
                 'address' => [
                     'required',
                     'string',
@@ -122,13 +118,6 @@ class CheckoutController extends Controller
             ]
         );
 
-        /*
-        |--------------------------------------------------------------------------
-        | 保存用に整形
-        |--------------------------------------------------------------------------
-        | 入力はハイフンあり/なし両方OK。
-        | DB保存時は 080-1234-5678 形式に統一。
-        */
         $digitsPhone = preg_replace('/[^0-9]/', '', $validated['phone']);
         $validated['phone'] = preg_replace(
             '/^(0[789]0)(\d{4})(\d{4})$/',
