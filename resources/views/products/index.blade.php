@@ -397,7 +397,7 @@
         {{-- 背景画像 --}}
         <div class="absolute inset-0">
             <img
-                src="{{ asset('images/home/commitment-bg.jpg') }}"
+                src="{{ asset('home/images/commitment-bg.png') }}"
                 alt="ShopSwiftのこだわり"
                 class="w-full h-full object-cover opacity-55"
             >
@@ -516,7 +516,7 @@
                 <div class="relative rounded-[1.75rem] bg-white shadow-sm border border-white overflow-hidden">
                     <div class="relative">
                         <img
-                            src="{{ asset('images/home/step-select.jpg') }}"
+                            src="{{ asset('home/images/step-select.png') }}"
                             alt="商品を選ぶ"
                             class="w-full h-52 lg:h-60 object-cover"
                         >
