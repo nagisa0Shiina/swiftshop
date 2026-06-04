@@ -294,7 +294,7 @@
         <section class="bg-white border border-gray-200 rounded-3xl shadow-sm overflow-hidden">
 
             <div class="overflow-x-auto">
-                <table class="w-full min-w-[1220px] text-left">
+                <table class="w-full min-w-[1380px] text-left">
 
                     <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
@@ -364,6 +364,29 @@
                                 {{ $order->user->name ?? $order->customer_name ?? $order->name ?? '不明' }}
                             </td>
 
+                            <td class="px-6 py-7 min-w-[260px]">
+                                @if ($order->items && $order->items->count() > 0)
+                                    <div class="space-y-2">
+                                        @foreach ($order->items as $item)
+                                            <div class="rounded-xl bg-gray-50 border border-gray-100 px-4 py-3">
+                                                <div class="font-bold text-sm text-gray-800 leading-6">
+                                                    {{ $item->product_name ?? $item->product->name ?? '商品名なし' }}
+                                                </div>
+
+                                                <div class="mt-1 text-xs text-gray-500 font-bold">
+                                                    数量：{{ $item->quantity }}　
+                                                    単価：¥{{ number_format($item->price ?? 0) }}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <span class="text-gray-400 font-bold">
+                                        商品情報なし
+                                    </span>
+                                @endif
+                            </td>
+
                             <td class="px-6 py-7 font-bold whitespace-nowrap">
                                 ¥{{ number_format($order->total_amount ?? $order->total ?? 0) }}
                             </td>
@@ -407,7 +430,7 @@
 
                     @empty
                         <tr>
-                            <td colspan="7" class="px-6 py-16 text-center text-gray-500 font-bold">
+                            <td colspan="8" class="px-6 py-16 text-center text-gray-500 font-bold">
                                 注文はまだありません。
                             </td>
                         </tr>
