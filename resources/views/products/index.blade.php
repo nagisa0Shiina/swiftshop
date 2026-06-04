@@ -679,7 +679,7 @@
 
                     {{-- step 3 --}}
                     <div class="rounded-[1.75rem] bg-white border border-white shadow-sm overflow-hidden">
-                        <div class="relative">
+                        <div class="relative z-10">
                             <img
                                 src="{{ asset('home/images/step-complete.png') }}"
                                 alt="ご注文完了"
