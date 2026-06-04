@@ -639,7 +639,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-[96px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
+            <div class="grid grid-cols-[120px_1fr] gap-4 rounded-3xl bg-white border border-white shadow-sm p-4">
                 <div class="relative">
                     <img
                         src="{{ asset('home/images/step-cart.png') }}"
